@@ -1,0 +1,29 @@
+.button {
+    height: 38px;
+    line-height: 36px;
+    vertical-align: middle;
+    width: 100%;
+    padding: 0 23px;
+    margin: 5px 0 0 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #ccc;
+}
+
+.button:hover, .button:focus, .button:active {
+    color: #fff;
+    box-shadow: 0 0 3px #000;
+    text-decoration: none;
+}
+
+.button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.primary {
+    background: linear-gradient(#404040, #222)
+}

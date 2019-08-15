@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { styles } from './formRequiredField'
+
+import styles from './formRequiredField.module.css'
 
 export default class FormRequiredField extends Component {
 

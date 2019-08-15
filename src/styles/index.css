@@ -1,6 +1,7 @@
 :root {
     /* Colors */
     --red: #970000;
+    --trans-red: rgba(150, 0, 0, 0.08);
     --trans-white: rgba(255, 255, 255, 0.1);
     --background: #313131;
     --link: #222;

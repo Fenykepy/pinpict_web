@@ -1,0 +1,21 @@
+.spinner {
+    margin: 60px 0;
+    font-size: 20px;
+    font-size: 2rem;
+    text-align: center;
+ }
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner img {
+    border: none;
+    margin-bottom: 30px;
+    animation: rotating .6s steps(12) infinite;
+}

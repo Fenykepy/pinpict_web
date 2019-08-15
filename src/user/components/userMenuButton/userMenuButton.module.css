@@ -20,7 +20,7 @@
     width: 0;
     left: 25px;
     top: 25px;
-    /* .arrow-down(@white, 6px, 6px) */
+    /* .arrow-down(@white, 6px, 6px) //with less mixins */
     border-top: 6px solid var(--header-color);
     border-right: 6px solid transparent;
     border-left: 6px solid transparent;
