@@ -10,6 +10,8 @@ import * as serviceWorker from './serviceWorker'
 
 let store = createStoreWithMiddleware(rootReducer)
 
+// try to authenticate here
+
 // Log the initial state
 console.log(store.getState())
 
