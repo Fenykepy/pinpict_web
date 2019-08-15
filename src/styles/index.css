@@ -1,6 +1,7 @@
 :root {
     /* Colors */
     --red: #970000;
+    --trans-white: rgba(255, 255, 255, 0.1);
     --background: #313131;
     --link: #222;
     --link-hover: #000;
@@ -9,6 +10,7 @@
     --link-visited: #000;
     --header-bg: #222;
     --header-color: #fff;
+
 
     /* Sizes */
     --header-height: 55px;

@@ -22,3 +22,8 @@
     padding-left: 30px;
     height: var(--header-height);
 }
+
+.headerLinks {
+    display: flex;
+    margin: 0 40px 0 auto;
+}

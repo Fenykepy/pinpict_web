@@ -1,0 +1,35 @@
+.userMenu {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: var(--header-height);
+    color: var(--header-color);
+    padding: 0 25px;
+    background: none;
+    position: relative;
+}
+
+.userMenu:hover, .userMenu:active, .userMenu:focus {
+    background-color: var(--trans-white); 
+}
+
+.userMenu::before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    left: 25px;
+    top: 25px;
+    /* .arrow-down(@white, 6px, 6px) */
+    border-top: 6px solid var(--header-color);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+}
+
+.userMenu > div {
+    padding-left: 25px; /* we escape arrow */
+}
+
+.wrapper {
+    position: relative;
+}

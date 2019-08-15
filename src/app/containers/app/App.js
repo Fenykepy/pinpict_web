@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import Header from 'app/components/header/Header'
 
+import styles from './app.module.css'
+
 class App extends Component {
 
     render() {
       return (
-        <div>
-            <Header />
+        <section
+            role="main"
+            className={styles.main}
+        >
+            <Header usermail="fred@lavilotte-rolle.fr" />
             <p>Bienvenue sur PhotoBook !</p>
-        </div>
+        </section>
       )
     }
 }
