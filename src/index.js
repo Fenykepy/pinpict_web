@@ -11,9 +11,12 @@ import 'styles/forms.css'
 import App from './app/containers/app/App'
 import * as serviceWorker from './serviceWorker'
 
+import { refresh } from 'user/actions'
+
 let store = createStoreWithMiddleware(rootReducer)
 
 // try to authenticate here
+store.dispatch(refresh())
 
 // Log the initial state
 console.log('initial store', store.getState())
