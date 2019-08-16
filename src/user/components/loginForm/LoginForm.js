@@ -30,7 +30,7 @@ export default class LoginForm extends Component {
           <input
             id="id-email"
             name="email"
-            type="text"
+            type="email"
             value={this.props.email}
             onChange={this.props.handleEmailChange.bind(this)}
             required
