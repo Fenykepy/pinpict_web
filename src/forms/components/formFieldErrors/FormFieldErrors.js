@@ -8,6 +8,10 @@ export default class FormFieldErrors extends Component {
   render() {
     if (this.props.errors_list && this.props.errors_list[this.props.field]) {
       let errors = this.props.errors_list[this.props.field]
+      if (typeof(errors) === "string") {
+        // we force errors to be in array
+        errors = [errors]
+      }
       return (
         <ul
           className={styles.errorsList}
@@ -20,11 +24,12 @@ export default class FormFieldErrors extends Component {
         </ul>
       )
     }
+
     return null
   }
 }
 
 FormFieldErrors.propTypes = {
   field: PropTypes.string.isRequired,
-  errors_list: PropTypes.array,
+  errors_list: PropTypes.object,
 }

@@ -21,6 +21,7 @@
     margin: 0;
     padding-left: 30px;
     height: var(--header-height);
+    color: var(--header-color);
 }
 
 .headerLinks {

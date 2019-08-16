@@ -16,10 +16,10 @@ let store = createStoreWithMiddleware(rootReducer)
 // try to authenticate here
 
 // Log the initial state
-console.log(store.getState())
+console.log('initial store', store.getState())
 
 // Everytime the state changes, log it
-store.subscribe(() => console.log(store.getState()))
+const unsubscribe = store.subscribe(() => console.log('store', store.getState()))
 
 
 render(

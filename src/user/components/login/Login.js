@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { login } from 'user/actions'
+
 import FormWrapper from 'forms/components/formWrapper/FormWrapper'
 import FieldWrapper from 'forms/components/fieldWrapper/FieldWrapper'
 import LoginForm from 'user/components/loginForm/LoginForm'
@@ -30,8 +32,7 @@ export default class Login extends Component {
 
   handleLogin(e) {
     e.preventDefault()
-    //this.props.dispatch(login(this.state))
-    console.log('login !')
+    this.props.dispatch(login(this.state))
   }
 
   render() {
@@ -53,7 +54,7 @@ export default class Login extends Component {
             handlePasswordChange={this.handlePasswordChange.bind(this)}
             email={this.state.email}
             password={this.state.password}
-            errors={this.props.errors}
+            login_errors={this.props.login_errors}
           />
           <footer>
             <FieldWrapper>
@@ -81,7 +82,8 @@ export default class Login extends Component {
 
 Login.propTypes = {
   is_logging_in: PropTypes.bool.isRequired,  
-  errors: PropTypes.object,
+  login_errors: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
 }
 
 

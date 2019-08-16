@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch'
+import { getCookie } from 'helpers/cookieManager'
 
-import settings from '../config'
-
-import { browserHistory } from 'react-router'
+import settings from 'photobook_config'
 
 let base_url = settings.base_url
 
@@ -21,30 +20,30 @@ class Fetch {
     }
   }
 
-  setAuthorization(headers, state) {
-    if (state && state.common && state.common.user.token) {
+  setAuthorization(headers) {
+    let access_token = getCookie('access_token')
+    if (access_token) {
       return Object.assign({},
         headers,
-        {'Authorization': 'JWT ' + state.common.user.token}
+        {'Authorization': 'Bearer ' + access_token}
       )
     }
     return headers
   }
 
-  setDefaultHeaders(headers={}, state) {
+  setDefaultHeaders(headers={}) {
     headers = Object.assign({},
         this.default_headers,
-        this.setAuthorization(headers, state)
+        this.setAuthorization(headers)
     )
     return new Headers(headers)
   }
 
   checkStatus(response) {
-    if (response.status == 401) {
-      // redirect to login page
-      // TODO Add next link
-      browserHistory.push('/login/')
-    }
+    /*if (response.status === 401) {
+      // TODO dispatch refresh token
+      console.log(response)
+    }*/
     if (response.status >= 200 && response.status < 300) {
       return response
     } else {
@@ -54,11 +53,11 @@ class Fetch {
     }
   }
 
-  get(url, state, headers={}) {
+  get(url, headers={}) {
     return fetch(base_url + url,
         {
           method: "GET",
-          headers: this.setDefaultHeaders(headers, state)
+          headers: this.setDefaultHeaders(headers)
         })
         .then(this.checkStatus)
         .then(response => 
@@ -66,11 +65,11 @@ class Fetch {
         )
   }
 
-  post(url, state, headers={}, body) {
+  post(url, headers={}, body) {
     return fetch(base_url + url,
         {
           method: "POST",
-          headers: new Headers(this.setAuthorization(headers, state)),
+          headers: new Headers(this.setAuthorization(headers)),
           body: body
         })
         .then(this.checkStatus)
@@ -79,11 +78,11 @@ class Fetch {
         )
   }
 
-  patch(url, state, headers={}, body) {
+  patch(url, headers={}, body) {
     return fetch(base_url + url,
         {
           method: "PATCH",
-          headers: new Headers(this.setAuthorization(headers, state)),
+          headers: new Headers(this.setAuthorization(headers)),
           body: body
         })
         .then(this.checkStatus)
@@ -92,11 +91,11 @@ class Fetch {
         )
   }
 
-  delete(url, state, headers={}) {
+  delete(url, headers={}) {
     return fetch(base_url + url,
         {
           method: "DELETE",
-          headers: this.setDefaultHeaders(headers, state)
+          headers: this.setDefaultHeaders(headers)
         })
         .then(this.checkStatus)
   }

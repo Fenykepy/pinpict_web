@@ -17,14 +17,14 @@ export default class LoginForm extends Component {
       >
         <FieldWrapper>
           <FormFieldErrors
-            errors_list={this.props.errors}
-            field={'non_field_errors'}
+            errors_list={this.props.login_errors}
+            field={'detail'}
           />
         </FieldWrapper>
         <FieldWrapper>
           <label htmlFor="id-email">Email:<FormRequiredField /></label>
           <FormFieldErrors
-            errors_list={this.props.errors}
+            errors_list={this.props.login_errors}
             field={'email'}
           />
           <input
@@ -39,7 +39,7 @@ export default class LoginForm extends Component {
         <FieldWrapper>
           <label htmlFor="id-password">Password:<FormRequiredField /></label>
           <FormFieldErrors
-            errors_list={this.props.errors}
+            errors_list={this.props.login_errors}
             field={'password'}
           />
           <input
