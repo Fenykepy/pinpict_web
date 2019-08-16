@@ -1,6 +1,3 @@
-.required_field {
-    margin-bottom: 1.5em ;
-}
-.red {
+.requiredField {
     color: var(--red);
 }

@@ -1,0 +1,27 @@
+form:invalid, form:invalid:hover, form:invalid:focus, :invalid {
+    box-shadow: none;
+}
+
+input, textarea, select, option, :invalid, :valid {
+    outline: none;
+}
+
+input, option, select, textarea {
+    font-family: var(--sans);
+    width: 100%;
+    border-radius: 2px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    font-size: 16px;
+    font-size: 1.6rem;
+    color: var(--input-color);
+    text-align: left;
+    padding: 6px 12px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+input:hover, input:focus, textarea:hover, textarea:focus, select:hover, select:focus {
+    box-shadow: 0 0 3px #000;
+}
+

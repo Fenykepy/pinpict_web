@@ -6,6 +6,7 @@ import rootReducer from './rootReducer'
 
 import 'styles/reset.css'
 import 'styles/index.css'
+import 'styles/forms.css'
 
 import App from './app/containers/app/App'
 import * as serviceWorker from './serviceWorker'
