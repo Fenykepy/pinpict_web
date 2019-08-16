@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from 'app/components/header/Header'
-import Login from 'user/components/login/Login'
+import Login from 'user/containers/login/Login'
 
 import styles from './app.module.css'
 
