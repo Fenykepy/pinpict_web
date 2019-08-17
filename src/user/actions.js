@@ -1,8 +1,12 @@
 import * as types from './actionsTypes'
 import { getCookie, setCookie, deleteCookie } from 'helpers/cookieManager'
-
 import Fetch from 'helpers/http'
-// actions creators
+
+import {
+  fetchPicturesIfNeeded,
+  fetchAlbumsIfNeeded,
+} from 'librairy/actions'
+
 
 // Logging in
 
@@ -25,6 +29,12 @@ function refreshAuthTimer(access, dispatch) {
   let delay = (jwt.exp - now - 30) * 1000
   setTimeout(() => dispatch(refresh()), delay)
 }
+
+function fetchCommonData(dispatch) {
+  dispatch(fetchPicturesIfNeeded())
+  dispatch(fetchAlbumsIfNeeded())
+}
+
 
 function requestLogin() {
   return {
@@ -68,6 +78,8 @@ export function login(credentials) {
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
       dispatch(requestLoginSuccess(usermail))
+      // we fetch common data
+      fetchCommonData(dispatch)
     })
     .catch(error => {
       error.response.json().then(json => {
@@ -142,6 +154,8 @@ export function refresh() {
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
       dispatch(requestRefreshSuccess(usermail))
+      // we fetch common data
+      fetchCommonData(dispatch)
     })
     .catch(error => {
       error.response.json().then(json => {

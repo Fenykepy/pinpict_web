@@ -1,5 +1,3 @@
-import marked from 'marked'
-
 export function listsHaveCommon(list1, list2) {
   /*
    * Returns true if one element of list1 is also in list2
@@ -11,16 +9,6 @@ export function listsHaveCommon(list1, list2) {
   return false
 }
 
-export function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-}
-
 export function formatFileSize(bytes, precision = 1) {
   if (isNaN(bytes) || ! isFinite(bytes)) return '-'
   let units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB']
@@ -28,13 +16,8 @@ export function formatFileSize(bytes, precision = 1) {
   return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) + units[number]
 }
 
-
 export function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1)
-}
-
-export function getJWTDate(token) {
-  return JSON.parse(window.atob(token.split('.')[1]))['exp']
 }
 
 export function isTrue(array) {
@@ -46,4 +29,10 @@ export function getItemByKey(array, propertyName, propertyValue) {
   return array.find((item) =>
     item[propertyName] === propertyValue
   )
+}
+
+export function appendToArray(item, array) {
+  let new_array = array.slice()
+  new_array.push(item)
+  return new_array
 }
