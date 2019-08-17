@@ -34,27 +34,25 @@ function addPicture(picture) {
 
 
 function fetchPictures() {
-  return function(dispatch) {
+  return async function(dispatch) {
     // start request
     dispatch(requestPictures())
 
-    // return a promise
-    return Fetch.get('api/librairy/picture/')
-    .then(json => {
+    try {
+      let json = await Fetch.get('api/librairy/picture/')
       dispatch(requestPicturesSuccess())
       json.forEach((picture) =>
         dispatch(addPicture(picture))
       )
-    })
-    .catch(error => {
-      error.response.json().then(json => {
-        // store error in state
-        dispatch(requestPicturesFailure(json))
-        throw json
-      })
-    })
+    } catch(error) {
+      throw error
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestPicturesFailure(json))
+    }
   }
 }
+
 
 
 function shouldFetchPictures(state) {
@@ -108,25 +106,22 @@ function addAlbum(album) {
 
 
 function fetchAlbums() {
-  return function(dispatch) {
+  return async function(dispatch) {
     // start request
     dispatch(requestAlbums())
 
-    // return a promise
-    return Fetch.get('api/librairy/album/')
-    .then(json => {
+    try {
+      let json = await Fetch.get('api/librairy/album/')
       dispatch(requestAlbumsSuccess())
       json.forEach((album) =>
         dispatch(addAlbum(album))
       )
-    })
-    .catch(error => {
-      error.response.json().then(json => {
-        // store error in state
-        dispatch(requestAlbumsFailure(json))
-        throw json
-      })
-    })
+
+    } catch (error) {
+      throw error
+      let json = await error.response.json()
+      dispatch(requestAlbumsFailure(json))
+    }
   }
 }
 

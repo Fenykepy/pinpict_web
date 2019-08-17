@@ -53,51 +53,45 @@ class Fetch {
     }
   }
 
-  get(url, headers={}) {
-    return fetch(base_url + url,
+  async get(url, headers={}) {
+    let response = await fetch(base_url + url,
         {
           method: "GET",
           headers: this.setDefaultHeaders(headers)
         })
-        .then(this.checkStatus)
-        .then(response => 
-          response.json()
-        )
+    response = this.checkStatus(response)
+    return await response.json()
   }
 
-  post(url, headers={}, body) {
-    return fetch(base_url + url,
+  async post(url, headers={}, body) {
+    let response = await fetch(base_url + url,
         {
           method: "POST",
           headers: new Headers(this.setAuthorization(headers)),
           body: body
         })
-        .then(this.checkStatus)
-        .then(response =>
-          response.json()
-        )
+    response = this.checkStatus(response)
+    return await response.json()
   }
 
-  patch(url, headers={}, body) {
-    return fetch(base_url + url,
+  async patch(url, headers={}, body) {
+    let response = await fetch(base_url + url,
         {
           method: "PATCH",
           headers: new Headers(this.setAuthorization(headers)),
           body: body
         })
-        .then(this.checkStatus)
-        .then(response =>
-          response.json()
-        )
+    response = this.checkStatus(response)
+    return await response.json()
   }
 
-  delete(url, headers={}) {
-    return fetch(base_url + url,
+  async delete(url, headers={}) {
+    let response = await fetch(base_url + url,
         {
           method: "DELETE",
           headers: this.setDefaultHeaders(headers)
         })
-        .then(this.checkStatus)
+      return this.checkStatus(response)
   }
 }
 

@@ -60,34 +60,31 @@ export function login(credentials) {
   /*
    * try to get token with given credentials
    */
-  return function(dispatch) {
+  return async function(dispatch) {
     let usermail = credentials.email
     // start request
     dispatch(requestLogin())
 
-    // return a promise
-    return Fetch.post('api/user/token/',
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      JSON.stringify(credentials)
-    )
-    .then(json => {
+    try {
+      let json = await Fetch.post('api/user/token/',
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        JSON.stringify(credentials)
+      )
       storeAuth(json.access, json.refresh, usermail)
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
       dispatch(requestLoginSuccess(usermail))
       // we fetch common data
       fetchCommonData(dispatch)
-    })
-    .catch(error => {
-      error.response.json().then(json => {
-        // store error in state
-        dispatch(requestLoginFailure(json))
-        throw json
-      })
-    })
+    } catch(error) {
+      throw error
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestLoginFailure(json))
+    }
   }
 }
 
@@ -129,7 +126,7 @@ export function refresh() {
   /*
    * try to refresh token
    */
-  return function(dispatch) {
+  return async function(dispatch) {
     let usermail = getCookie('usermail')
     let refresh_token = getCookie('refresh_token')
 
@@ -141,29 +138,26 @@ export function refresh() {
     // start request
     dispatch(requestRefresh())
 
-    // return a promise
-    return Fetch.post('api/user/token/refresh/',
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      JSON.stringify({refresh: refresh_token})
-    )
-    .then(json => {
+    try {
+      let json = await Fetch.post('api/user/token/refresh/',
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        JSON.stringify({refresh: refresh_token})
+      )
       storeAuth(json.access, json.refresh, usermail)
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
       dispatch(requestRefreshSuccess(usermail))
       // we fetch common data
       fetchCommonData(dispatch)
-    })
-    .catch(error => {
-      error.response.json().then(json => {
-        // store error in state
-        dispatch(requestRefreshFailure(json))
-        dispatch(logout())
-        throw json
-      })
-    })
+    } catch(error) {
+      throw error
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestRefreshFailure(json))
+      dispatch(logout())
+    }
   }
 }
