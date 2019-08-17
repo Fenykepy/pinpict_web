@@ -45,10 +45,10 @@ function fetchPictures() {
         dispatch(addPicture(picture))
       )
     } catch(error) {
-      throw error
       let json = await error.response.json()
       // store error in state
       dispatch(requestPicturesFailure(json))
+      throw error
     }
   }
 }
@@ -118,9 +118,9 @@ function fetchAlbums() {
       )
 
     } catch (error) {
-      throw error
       let json = await error.response.json()
       dispatch(requestAlbumsFailure(json))
+      throw error
     }
   }
 }

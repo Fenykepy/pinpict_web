@@ -7,6 +7,7 @@ import { userSelector } from 'user/selectors'
 
 import Header from 'app/components/header/Header'
 import Login from 'user/components/login/Login'
+import Librairy from 'librairy/containers/librairy/Librairy'
 
 import styles from './app.module.css'
 
@@ -35,7 +36,7 @@ class App extends Component {
             className={styles.main}
         >
             <Header usermail="fred@lavilotte-rolle.fr" />
-            <p>Bienvenue sur PhotoBook !</p>
+            <Librairy />
         </section>
       )
     }

@@ -80,10 +80,10 @@ export function login(credentials) {
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {
-      throw error
       let json = await error.response.json()
       // store error in state
       dispatch(requestLoginFailure(json))
+      throw error
     }
   }
 }
@@ -153,11 +153,11 @@ export function refresh() {
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {
-      throw error
       let json = await error.response.json()
       // store error in state
       dispatch(requestRefreshFailure(json))
       dispatch(logout())
+      throw error
     }
   }
 }
