@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import styles from './picture.module.css'
+
 import settings from 'photobook_config'
 
 const BASE_URL = settings.base_url
+
 
 export default class Picture extends Component {
   
@@ -11,12 +14,18 @@ export default class Picture extends Component {
     console.log('Picture', this.props)
 
     return (
-      <article>
-        <img
-          src={BASE_URL + 'media/pictures/full/' + this.props.pict.path}
-          alt={this.props.pict.description}
-        />
-        <p>{this.props.pict.description}</p>
+      <article
+        className={styles.picture}
+      >
+        <a href="">
+          <img
+            src={BASE_URL + 'media/pictures/full/' + this.props.pict.path}
+            alt={this.props.pict.description}
+          />
+        </a>
+        <p
+          className={styles.description}
+        >{this.props.pict.description}</p>
       </article>
     )
   }

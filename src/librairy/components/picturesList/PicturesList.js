@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Picture from 'librairy/components/picture/Picture'
 
+import styles from './picturesList.module.css'
+
 export default class PicturesList extends Component {
   
   render() {
     console.log('PicturesList', this.props)
 
     return (
-      <section>
+      <section
+        className={styles.pictures_list}
+      >
         {this.props.pictures.map(pict =>
           <Picture
             key={pict.sha1}

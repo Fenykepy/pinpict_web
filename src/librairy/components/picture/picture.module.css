@@ -1,0 +1,26 @@
+.picture {
+    display: inline-block;
+    width: 236px;
+    height: auto;
+    overflow: hidden;
+    margin: 14px 7px 0 7px;
+    padding: 0;
+    position: relative;
+}
+
+.picture img {
+    width: 100%;
+    display: block;
+}
+
+.picture a {
+    display: block;
+}
+
+.description {
+    padding: 10px 14px;
+    margin: 0;
+    word-wrap: break-word;
+    border-top: 1px solid #505050;
+    line-height: 1.4em;
+}
