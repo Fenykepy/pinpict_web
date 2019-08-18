@@ -55,8 +55,13 @@ albums = {
 tags = [name, name, name]
 */
 
+let default_pictures_state = {
+  is_fetching: false,
+  fetched: false,
+  order: [],
+}
 
-function pictures(state = {}, action) {
+function pictures(state = default_pictures_state, action) {
   switch (action.type) {
     case REQUEST_PICTURES:
       return {
@@ -91,8 +96,13 @@ function pictures(state = {}, action) {
   }
 }
 
+let default_albums_state = {
+  is_fetching: false,
+  fetched: true,
+  order: [],
+}
 
-function albums(state = {}, action) {
+function albums(state = default_albums_state, action) {
   switch (action.type) {
     case REQUEST_ALBUMS:
       return {

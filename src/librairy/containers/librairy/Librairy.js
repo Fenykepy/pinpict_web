@@ -5,15 +5,18 @@ import { connect } from 'react-redux'
 
 import { librairySelector } from 'librairy/selectors'
 
+import PicturesList from 'librairy/components/picturesList/PicturesList'
+
 class Librairy extends Component {
 
-  // We show a list of all pictures
   render() {
     console.log('Librairy', this.props)
+    
     return (
       <div>
-        <div
-        >test</div>
+        <PicturesList
+          pictures={this.props.pictures}
+        />
       </div>
     )
   }

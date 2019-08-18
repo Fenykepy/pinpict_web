@@ -33,6 +33,13 @@ function addPicture(picture) {
 }
 
 
+function setPicturePath(picture) {
+  let sha1 = picture.sha1
+  picture.path = sha1.substring(0, 2) + '/' + 
+      sha1.substring(2, 4) + '/' + sha1
+}
+
+
 function fetchPictures() {
   return async function(dispatch) {
     // start request
@@ -41,9 +48,11 @@ function fetchPictures() {
     try {
       let json = await Fetch.get('api/librairy/picture/')
       dispatch(requestPicturesSuccess())
-      json.forEach((picture) =>
+      json.forEach((picture) => {
+        // set path
+        setPicturePath(picture)
         dispatch(addPicture(picture))
-      )
+      })
     } catch(error) {
       let json = await error.response.json()
       // store error in state
