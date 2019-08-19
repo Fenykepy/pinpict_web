@@ -3,9 +3,9 @@
  */
 
 export const SET_MODULE = 'SET_MODULE'
-export const SET_PICTURE = 'SET_PICTURE'
+export const SET_ALL_SELECTED = 'SET_ALL_SELECTED'
 export const SET_ALBUM = 'SET_ALBUM'
-export const SET_ALBUM_PICTURE = 'SET_ALBUM_PICTURE'
+export const SET_ALBUM_SELECTED = 'SET_ALBUM_SELECTED'
 
 
 

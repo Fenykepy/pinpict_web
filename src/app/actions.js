@@ -7,10 +7,10 @@ export function setModule(module) {
   }
 }
 
-export function setPicture(picture) {
+export function setAllSelected(sha1) {
   return {
-    type: types.SET_PICTURE,
-    picture,
+    type: types.SET_ALL_SELECTED,
+    all_selected: sha1,
   }
 }
 
@@ -21,9 +21,9 @@ export function setAlbum(album) {
   }
 }
 
-export function setAlbumPicture(picture) {
+export function setAlbumSelected(sha1) {
   return {
-    type: types.SET_ALBUM_PICTURE,
-    album_picture: picture,
+    type: types.SET_ALBUM_SELECTED,
+    album_selected: sha1,
   }
 }

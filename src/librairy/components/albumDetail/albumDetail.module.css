@@ -1,0 +1,22 @@
+.albumDetail header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.albumDetail h1 {
+    color: #000;
+    font-size: 36px;
+    font-size: 3.6rem;
+    margin: 50px 0 20px;
+}
+
+.description {
+    margin: 25px;
+    font-size: 18px;
+    font-size: 1.8rem;
+}
+
+.nPicts {
+    font-weight: bold;
+    margin: 0;
+}

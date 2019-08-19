@@ -12,7 +12,7 @@ export default class Picture extends Component {
   
   openDetail(e) {
     e.preventDefault()
-    // TODO set detail view here
+    this.props.selectPicture(this.props.pict.sha1)
   }
 
   render() {
@@ -45,4 +45,6 @@ Picture.propTypes = {
     description: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
+  selectPicture: PropTypes.func.isRequired,
 }

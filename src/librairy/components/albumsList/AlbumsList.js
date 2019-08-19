@@ -17,6 +17,7 @@ export default class AlbumsList extends Component {
           <Album
             key={album.slug}
             album={album}
+            dispatch={this.props.dispatch}
           />
         )}
       </section>
@@ -26,4 +27,5 @@ export default class AlbumsList extends Component {
 
 AlbumsList.propTypes = {
   albums: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }

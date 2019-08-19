@@ -22,8 +22,10 @@ class Librairy extends Component {
       return (
         <Albums
           albums={this.props.albums}
-          album={this.props.navigation.album}
-          picture={this.props.navigation.album_picture}
+          album={this.props.album}
+          album_pictures={this.props.album_pictures}
+          selected_sha1={this.props.navigation.album_selected}
+          dispatch={this.props.dispatch}
         />
       ) 
     }
@@ -32,7 +34,9 @@ class Librairy extends Component {
       return (
           <Pictures
             pictures={this.props.pictures}
-            picture={this.props.navigation.picture}
+            pictures_order={this.props.pictures_order}
+            selected_sha1={this.props.navigation.all_selected}
+            dispatch={this.props.dispatch}
           />
       )
     }
@@ -42,7 +46,10 @@ class Librairy extends Component {
 Librairy.propTypes = {
   dispatch: PropTypes.func.isRequired,
   pictures: PropTypes.array.isRequired,
+  pictures_order: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
+  album: PropTypes.object.isRequired,
+  album_pictures: PropTypes.array.isRequired,
   navigation: PropTypes.object.isRequired,
 }
 

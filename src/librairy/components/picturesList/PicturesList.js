@@ -10,20 +10,26 @@ export default class PicturesList extends Component {
     console.log('PicturesList', this.props)
 
     return (
-      <section
+      <div
         className={styles.picturesList}
       >
-        {this.props.pictures.map(pict =>
+        {this.props.pictures.map((pict, index) =>
           <Picture
             key={pict.sha1}
             pict={pict}
+            index={index}
+            selectPicture={this.props.selectPicture}
           />
         )}
-      </section>
+      </div>
     )
   }
 }
 
 PicturesList.propTypes = {
   pictures: PropTypes.array.isRequired,
+  selected_sha1: PropTypes.string.isRequired,
+  selectPicture: PropTypes.func.isRequired,
+  selectNext: PropTypes.func.isRequired,
+  selectPrev: PropTypes.func.isRequired,
 }

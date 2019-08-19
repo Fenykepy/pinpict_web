@@ -5,6 +5,8 @@ import styles from './album.module.css'
 
 import settings from 'photobook_config'
 
+import { setAlbum } from 'app/actions'
+
 import { getPicturePath } from 'librairy/actions'
 
 const BASE_URL = settings.base_url
@@ -13,7 +15,8 @@ export default class Album extends Component {
   
   openDetail(e) {
     e.preventDefault()
-    // TODO set detail view here
+    // open detail view here
+    this.props.dispatch(setAlbum(this.props.album.slug))
   }
 
   render() {
@@ -50,4 +53,5 @@ Album.propTypes = {
     title: PropTypes.string.isRequired, 
     pictures: PropTypes.array.isRequired, 
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
