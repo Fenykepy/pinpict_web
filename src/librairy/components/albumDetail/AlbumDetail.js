@@ -44,6 +44,7 @@ export default class AlbumDetail extends Component {
           selectPicture={this.selectPicture.bind(this)}
           selectNext={this.selectNext.bind(this)}
           selectPrev={this.selectPrev.bind(this)}
+          dispatch={this.props.dispatch}
         />
       </section>
     )
