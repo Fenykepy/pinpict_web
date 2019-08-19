@@ -29,6 +29,7 @@ export default class PicturesList extends Component {
 PicturesList.propTypes = {
   pictures: PropTypes.array.isRequired,
   selected_sha1: PropTypes.string.isRequired,
+  selected: PropTypes.object.isRequired,
   selectPicture: PropTypes.func.isRequired,
   selectNext: PropTypes.func.isRequired,
   selectPrev: PropTypes.func.isRequired,

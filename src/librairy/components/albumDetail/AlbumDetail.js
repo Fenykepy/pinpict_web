@@ -40,6 +40,7 @@ export default class AlbumDetail extends Component {
         <PicturesList
           pictures={this.props.album_pictures}
           selected_sha1={this.props.selected_sha1}
+          selected={this.props.selected}
           selectPicture={this.selectPicture.bind(this)}
           selectNext={this.selectNext.bind(this)}
           selectPrev={this.selectPrev.bind(this)}
@@ -57,5 +58,6 @@ AlbumDetail.propTypes = {
   }).isRequired,
   album_pictures: PropTypes.array.isRequired,
   selected_sha1: PropTypes.string.isRequired,
+  selected: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,  
 }

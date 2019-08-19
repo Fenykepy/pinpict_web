@@ -25,6 +25,7 @@ class Librairy extends Component {
           album={this.props.album}
           album_pictures={this.props.album_pictures}
           selected_sha1={this.props.navigation.album_selected}
+          selected={this.props.album_selected}
           dispatch={this.props.dispatch}
         />
       ) 
@@ -36,6 +37,7 @@ class Librairy extends Component {
             pictures={this.props.pictures}
             pictures_order={this.props.pictures_order}
             selected_sha1={this.props.navigation.all_selected}
+            selected={this.props.all_selected}
             dispatch={this.props.dispatch}
           />
       )
@@ -50,6 +52,8 @@ Librairy.propTypes = {
   albums: PropTypes.array.isRequired,
   album: PropTypes.object.isRequired,
   album_pictures: PropTypes.array.isRequired,
+  all_selected: PropTypes.object.isRequired,
+  album_selected: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
 }
 

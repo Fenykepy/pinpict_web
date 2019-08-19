@@ -16,6 +16,7 @@ export default class Albums extends Component {
           album={this.props.album}
           album_pictures={this.props.album_pictures}
           selected_sha1={this.props.selected_sha1}
+          selected={this.props.selected}
           dispatch={this.props.dispatch}
         />
       )
@@ -35,6 +36,7 @@ Albums.propTypes = {
   albums: PropTypes.array.isRequired,
   album: PropTypes.object.isRequired,
   album_pictures: PropTypes.array.isRequired,
-  selected_sha1: PropTypes.string,
+  selected_sha1: PropTypes.string.isRequired,
+  selected: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
