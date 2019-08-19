@@ -29,3 +29,35 @@
     display: flex;
     margin: 0 40px 0 auto;
 }
+
+.navLinks {
+    display: flex;
+    margin: 0 auto;
+}
+
+.navLinks a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #CCC;
+    font-size: 20px;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0 25px;
+    border-bottom: 3px solid transparent;
+}
+.navLinks a:hover, .navLinks a:focus, .navLinks a:active {
+    color: var(--header-color);
+}
+.navLinks a:active {
+    background-color: var(--trans-white); 
+}
+
+a.selected {
+    border-bottom: 3px solid var(--header-color);
+    color: var(--header-color);
+}
+
+a.selected:active {
+    background: none;
+}

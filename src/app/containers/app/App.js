@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
-import { userSelector } from 'user/selectors'
+import { appSelector } from 'app/selectors'
 
 import Header from 'app/components/header/Header'
 import Login from 'user/components/login/Login'
@@ -35,8 +35,14 @@ class App extends Component {
             role="main"
             className={styles.main}
         >
-            <Header usermail="fred@lavilotte-rolle.fr" />
-            <Librairy />
+            <Header 
+              usermail={this.props.usermail}
+              module={this.props.navigation.module}
+              dispatch={this.props.dispatch}
+            />
+            <Librairy
+              navigation={this.props.navigation}
+            />
         </section>
       )
     }
@@ -46,7 +52,9 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   is_logging_in: PropTypes.bool,
   login_errors: PropTypes.object,
+  usermail: PropTypes.string,
+  navigation: PropTypes.object.isRequired,
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(userSelector)(App)
+export default connect(appSelector)(App)
