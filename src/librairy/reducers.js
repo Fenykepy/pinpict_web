@@ -98,7 +98,7 @@ function pictures(state = default_pictures_state, action) {
 
 let default_albums_state = {
   is_fetching: false,
-  fetched: true,
+  fetched: false,
   order: [],
 }
 

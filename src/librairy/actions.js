@@ -33,9 +33,8 @@ function addPicture(picture) {
 }
 
 
-function setPicturePath(picture) {
-  let sha1 = picture.sha1
-  picture.path = sha1.substring(0, 2) + '/' + 
+export function getPicturePath(sha1) {
+  return sha1.substring(0, 2) + '/' + 
       sha1.substring(2, 4) + '/' + sha1
 }
 
@@ -50,7 +49,7 @@ function fetchPictures() {
       dispatch(requestPicturesSuccess())
       json.forEach((picture) => {
         // set path
-        setPicturePath(picture)
+        picture.path = getPicturePath(picture.sha1)
         dispatch(addPicture(picture))
       })
     } catch(error) {
@@ -122,6 +121,7 @@ function fetchAlbums() {
     try {
       let json = await Fetch.get('api/librairy/album/')
       dispatch(requestAlbumsSuccess())
+      console.log('action fetchAlbums', json)
       json.forEach((album) =>
         dispatch(addAlbum(album))
       )

@@ -1,0 +1,35 @@
+.album {
+    margin: 14px 7px 0 7px;
+    width: 236px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.album h1 {
+    font-size: 16px;
+    font-size: 1.6rem;
+    margin: 0 3px 6px 3px;
+}
+
+.album a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.album a:hover img, .album a:focus img, .album a:active img {
+    filter: brightness(110%);
+}
+
+.imgWrapper {
+    position: relative;
+    box-sizing: border-box;
+    width: 214px;
+    height: 160px;
+    overflow: hidden; 
+    border: 1px solid #222;
+    border-radius: 2px;
+}
+.imgWrapper img {
+    width: 100%;
+}

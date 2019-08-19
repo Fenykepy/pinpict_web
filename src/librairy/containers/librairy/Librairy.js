@@ -5,20 +5,37 @@ import { connect } from 'react-redux'
 
 import { librairySelector } from 'librairy/selectors'
 
-import PicturesList from 'librairy/components/picturesList/PicturesList'
+import {
+  ALBUMS_MODULE,
+  PICTURES_MODULE,
+} from 'app/actionsTypes'
+
+import Pictures from 'librairy/components/pictures/Pictures'
+import Albums from 'librairy/components/albums/Albums'
 
 class Librairy extends Component {
 
   render() {
     console.log('Librairy', this.props)
-    
-    return (
-      <div>
-        <PicturesList
-          pictures={this.props.pictures}
+  
+    if (this.props.navigation.module === ALBUMS_MODULE) {
+      return (
+        <Albums
+          albums={this.props.albums}
+          album={this.props.navigation.album}
+          picture={this.props.navigation.album_picture}
         />
-      </div>
-    )
+      ) 
+    }
+
+    if (this.props.navigation.module === PICTURES_MODULE) {
+      return (
+          <Pictures
+            pictures={this.props.pictures}
+            picture={this.props.navigation.picture}
+          />
+      )
+    }
   }
 }
 
@@ -26,6 +43,7 @@ Librairy.propTypes = {
   dispatch: PropTypes.func.isRequired,
   pictures: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
+  navigation: PropTypes.object.isRequired,
 }
 
 // Wrap the component to inject dispatch and state into it

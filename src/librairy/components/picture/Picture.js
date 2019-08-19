@@ -10,6 +10,11 @@ const BASE_URL = settings.base_url
 
 export default class Picture extends Component {
   
+  openDetail(e) {
+    e.preventDefault()
+    // TODO set detail view here
+  }
+
   render() {
     console.log('Picture', this.props)
 
@@ -17,7 +22,10 @@ export default class Picture extends Component {
       <article
         className={styles.picture}
       >
-        <a href="">
+        <a 
+          href="/"
+          onClick={this.openDetail.bind(this)}
+        >
           <img
             src={BASE_URL + 'media/pictures/full/' + this.props.pict.path}
             alt={this.props.pict.description}

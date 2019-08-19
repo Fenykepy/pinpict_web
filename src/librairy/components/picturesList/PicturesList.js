@@ -11,7 +11,7 @@ export default class PicturesList extends Component {
 
     return (
       <section
-        className={styles.pictures_list}
+        className={styles.picturesList}
       >
         {this.props.pictures.map(pict =>
           <Picture
