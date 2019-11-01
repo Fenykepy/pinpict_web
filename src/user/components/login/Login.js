@@ -17,13 +17,13 @@ export default class Login extends Component {
     super(props)
 
     this.state = {
-      email: '',
+      username: '',
       password: '',
     }
   }
 
-  handleEmailChange(e) {
-    this.setState({email: e.target.value})
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value})
   }
 
   handlePasswordChange(e) {
@@ -50,9 +50,9 @@ export default class Login extends Component {
           <LoginForm
             id={LOGIN_FORM}
             onSubmit={this.handleLogin.bind(this)}
-            handleEmailChange={this.handleEmailChange.bind(this)}
+            handleUsernameChange={this.handleUsernameChange.bind(this)}
             handlePasswordChange={this.handlePasswordChange.bind(this)}
-            email={this.state.email}
+            username={this.state.username}
             password={this.state.password}
             login_errors={this.props.login_errors}
           />

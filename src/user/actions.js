@@ -10,9 +10,9 @@ import {
 
 // Logging in
 
-function storeAuth(access, refresh, usermail) {
+function storeAuth(access, refresh, username) {
   // store usermail in cookie
-  setCookie('usermail', usermail)
+  setCookie('username', username)
   // store access token in cookie
   setCookie('access_token', access)
   // store refresh token in cookie
@@ -42,10 +42,10 @@ function requestLogin() {
   }
 }
 
-function requestLoginSuccess(usermail) {
+function requestLoginSuccess(username) {
   return {
     type: types.REQUEST_LOGIN_SUCCESS,
-    usermail
+    username
   }
 }
 
@@ -61,7 +61,7 @@ export function login(credentials) {
    * try to get token with given credentials
    */
   return async function(dispatch) {
-    let usermail = credentials.email
+    let username = credentials.username
     // start request
     dispatch(requestLogin())
 
@@ -73,10 +73,10 @@ export function login(credentials) {
         },
         JSON.stringify(credentials)
       )
-      storeAuth(json.access, json.refresh, usermail)
+      storeAuth(json.access, json.refresh, username)
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
-      dispatch(requestLoginSuccess(usermail))
+      dispatch(requestLoginSuccess(username))
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {
@@ -127,10 +127,10 @@ export function refresh() {
    * try to refresh token
    */
   return async function(dispatch) {
-    let usermail = getCookie('usermail')
+    let username = getCookie('username')
     let refresh_token = getCookie('refresh_token')
 
-    if (! usermail || ! refresh_token) {
+    if (! username || ! refresh_token) {
       // nothing to refresh, logout
       return dispatch(logout())
     }
@@ -146,10 +146,10 @@ export function refresh() {
         },
         JSON.stringify({refresh: refresh_token})
       )
-      storeAuth(json.access, json.refresh, usermail)
+      storeAuth(json.access, json.refresh, username)
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
-      dispatch(requestRefreshSuccess(usermail))
+      dispatch(requestRefreshSuccess(username))
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {

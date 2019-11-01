@@ -22,17 +22,17 @@ export default class LoginForm extends Component {
           />
         </FieldWrapper>
         <FieldWrapper>
-          <label htmlFor="id-email">Email:<FormRequiredField /></label>
+          <label htmlFor="id-username">Username:<FormRequiredField /></label>
           <FormFieldErrors
             errors_list={this.props.login_errors}
-            field={'email'}
+            field={'username'}
           />
           <input
-            id="id-email"
-            name="email"
-            type="email"
-            value={this.props.email}
-            onChange={this.props.handleEmailChange.bind(this)}
+            id="id-username"
+            name="username"
+            type="text"
+            value={this.props.username}
+            onChange={this.props.handleUsernameChange.bind(this)}
             required
           />
         </FieldWrapper>
@@ -59,9 +59,9 @@ export default class LoginForm extends Component {
 
 LoginForm.propTypes = {
   id: PropTypes.string.isRequired,
-  email: PropTypes.string,
+  username: PropTypes.string,
   password: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  handleEmailChange: PropTypes.func.isRequired,
+  handleUsernameChange: PropTypes.func.isRequired,
   handlePasswordChange: PropTypes.func.isRequired,
 }

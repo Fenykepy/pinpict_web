@@ -13,11 +13,11 @@ function user(state = {}, action) {
     case REQUEST_LOGIN:
       return {
         is_logging_in: true,
-        usermail: '',
+        username: '',
       }
     case REQUEST_LOGIN_SUCCESS:
       return {
-        usermail: action.usermail,
+        username: action.username,
       }
     case REQUEST_LOGIN_FAILURE:
       return {
@@ -31,7 +31,7 @@ function user(state = {}, action) {
       }
     case REQUEST_REFRESH_SUCCESS:
       return {
-        usermail: action.usermail,
+        username: action.username,
       }
     case REQUEST_REFRESH_FAILURE:
       return {
