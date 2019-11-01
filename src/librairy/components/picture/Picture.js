@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './picture.module.css'
 
-import settings from 'photobook_config'
+import settings from 'pinpict_config'
 
 const BASE_URL = settings.base_url
 

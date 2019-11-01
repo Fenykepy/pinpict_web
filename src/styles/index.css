@@ -1,5 +1,5 @@
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans&text=PhotoBook);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&text=PinPict);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic);
 
 
@@ -31,7 +31,7 @@
 
     /* Fonts */
     --sans: "Source Sans Pro", sans-serif;
-    --photobook: "OpenSans", var(--sans);
+    --pinpict: "OpenSans", var(--sans);
 }
 
 html {

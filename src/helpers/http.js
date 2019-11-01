@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { getCookie } from 'helpers/cookieManager'
 
-import settings from 'photobook_config'
+import settings from 'pinpict_config'
 
 let base_url = settings.base_url
 

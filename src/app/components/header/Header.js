@@ -34,7 +34,7 @@ export default class Header extends Component {
       >
         <h1
           className={styles.title}
-        >PhotoBook</h1>
+        >PinPict</h1>
 
         <nav
           className={styles.navLinks}

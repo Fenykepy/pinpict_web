@@ -132,7 +132,7 @@ export function refresh() {
 
     if (! usermail || ! refresh_token) {
       // nothing to refresh, logout
-      dispatch(logout())
+      return dispatch(logout())
     }
 
     // start request

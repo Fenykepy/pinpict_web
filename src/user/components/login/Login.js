@@ -46,7 +46,7 @@ export default class Login extends Component {
     // Show login form
       child = (
         <FormWrapper>
-          <h1>Log into PhotoBook</h1>
+          <h1>Log into PinPict</h1>
           <LoginForm
             id={LOGIN_FORM}
             onSubmit={this.handleLogin.bind(this)}

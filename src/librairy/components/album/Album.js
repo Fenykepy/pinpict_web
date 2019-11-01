@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './album.module.css'
 
-import settings from 'photobook_config'
+import settings from 'pinpict_config'
 
 import { setAlbum } from 'app/actions'
 
