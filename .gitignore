@@ -4,7 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
+
+# vim files
 *.swp
+*.swo
+*.swn
+
+*.toc
+*.seg
 
 # testing
 /coverage
