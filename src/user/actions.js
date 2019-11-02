@@ -2,11 +2,6 @@ import * as types from './actionsTypes'
 import { getCookie, setCookie, deleteCookie } from 'helpers/cookieManager'
 import Fetch from 'helpers/http'
 
-import {
-  fetchPicturesIfNeeded,
-  fetchAlbumsIfNeeded,
-} from 'librairy/actions'
-
 
 // Logging in
 
@@ -31,8 +26,7 @@ function refreshAuthTimer(access, dispatch) {
 }
 
 function fetchCommonData(dispatch) {
-  dispatch(fetchPicturesIfNeeded())
-  dispatch(fetchAlbumsIfNeeded())
+  dispatch(fetchCurrentUserIfNeeded())
 }
 
 
@@ -42,10 +36,11 @@ function requestLogin() {
   }
 }
 
-function requestLoginSuccess(username) {
+function requestLoginSuccess(username, userslug) {
   return {
     type: types.REQUEST_LOGIN_SUCCESS,
-    username
+    username,
+    userslug
   }
 }
 
@@ -74,9 +69,10 @@ export function login(credentials) {
         JSON.stringify(credentials)
       )
       storeAuth(json.access, json.refresh, username)
+      let userslug = readJWT(json.access).slug
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
-      dispatch(requestLoginSuccess(username))
+      dispatch(requestLoginSuccess(username, userslug))
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {
@@ -108,10 +104,11 @@ function requestRefresh() {
   }
 }
 
-function requestRefreshSuccess(username) {
+function requestRefreshSuccess(username, userslug) {
   return {
     type: types.REQUEST_REFRESH_SUCCESS,
-    username
+    username,
+    userslug
   }
 }
 
@@ -147,9 +144,10 @@ export function refresh() {
         JSON.stringify({refresh: refresh_token})
       )
       storeAuth(json.access, json.refresh, username)
+      let userslug = readJWT(json.access).slug
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
-      dispatch(requestRefreshSuccess(username))
+      dispatch(requestRefreshSuccess(username, userslug))
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {
@@ -157,6 +155,66 @@ export function refresh() {
       // store error in state
       dispatch(requestRefreshFailure(json))
       dispatch(logout())
+      throw error
+    }
+  }
+}
+
+
+
+function requestCurrentUser() {
+  return {
+    type: types.REQUEST_CURRENT_USER
+  }
+}
+
+function requestCurrentUserSuccess(user) {
+  return {
+    type: types.REQUEST_CURRENT_USER_SUCCESS,
+    user
+  }
+}
+
+function requestCurrentUserFailure(errors) {
+  return {
+    type: types.REQUEST_CURRENT_USER_FAILURE,
+    errors
+  }
+}
+
+
+function shouldFetchCurrentUser(state) {
+  const current = state.user.current
+  if (! current) return true
+  if (current.is_fetching || current.fetched) return false
+  return true
+}
+
+
+
+function fetchCurrentUserIfNeeded() {
+  return (dispatch, getState) => {
+    if ( shouldFetchCurrentUser(getState()) ) {
+      return dispatch(fetchCurrentUser())
+    }
+  }
+  // else return a resolved promise
+  return new Promise((resolve, reject) => resolve())
+}
+
+
+function fetchCurrentUser() {
+  return async function(dispatch) {
+    // start request
+    dispatch(requestCurrentUser())
+    
+    try {
+      let json = await Fetch.get('api/user/current/')
+      dispatch(requestCurrentUserSuccess(json))
+    } catch(error) {
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestCurrentUserFailure(json))
       throw error
     }
   }

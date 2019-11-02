@@ -8,6 +8,12 @@ import FormWrapper from 'forms/components/formWrapper/FormWrapper'
 export default class Register extends Component {
 
   render() {
+
+    if (this.props.userslug) {
+      // Redirect if user is loggued in
+      return (<Redirect to={`/${this.props.userslug}/`} />)
+    }
+
     return (
       <FormWrapper>
         <h1>Join Pinpict</h1>
@@ -21,6 +27,6 @@ export default class Register extends Component {
 }
 
 Register.propTypes = {
-  username: PropTypes.string,
+  userslug: PropTypes.string,
 }
 

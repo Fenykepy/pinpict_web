@@ -39,9 +39,9 @@ export default class Login extends Component {
   render() {
     console.log('Login', this.props)
     
-    if (this.props.username) {
+    if (this.props.userslug) {
       // Redirect if user is loggued in
-      return (<Redirect to="/" />)
+      return (<Redirect to={`/${this.props.userslug}/`} />)
     }
 
 
@@ -87,7 +87,7 @@ Login.propTypes = {
   is_logging_in: PropTypes.bool.isRequired,  
   login_errors: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
-  username: PropTypes.string,
+  userslug: PropTypes.string,
 }
 
 

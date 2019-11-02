@@ -31,17 +31,19 @@ class App extends Component {
           <Switch>
             <Route path="/login">
                <Login
-                username={this.props.username}
+                userslug={this.props.userslug}
                 is_logging_in={false}
                 dispatch={this.props.dispatch}
                 login_errors={this.props.login_errors}
                />
             </Route>
             <Route path="/signup">
-              <Register />
+              <Register
+                userslug={this.props.userslug}
+              />
             </Route>
             <Route path="/">
-                <Librairy />
+              <div>Connecté comme {this.props.username}</div>
             </Route>
           </Switch>
         </section>
@@ -54,6 +56,7 @@ App.propTypes = {
   is_logging_in: PropTypes.bool,
   login_errors: PropTypes.object,
   username: PropTypes.string,
+  userslug: PropTypes.string,
 }
 
 // Wrap the component to inject dispatch and state into it
