@@ -21,7 +21,7 @@ function user(state = {}, action) {
       }
     case REQUEST_LOGIN_FAILURE:
       return {
-        usermail: '',
+        username: '',
         login_errors: action.errors,
       }
     case REQUEST_REFRESH:
@@ -35,7 +35,7 @@ function user(state = {}, action) {
       }
     case REQUEST_REFRESH_FAILURE:
       return {
-        usermail:'',
+        username:'',
         refresh_errors: action.errors,
       }
     case LOGOUT:

@@ -2,47 +2,48 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 import { appSelector } from 'app/selectors'
 
 import Header from 'app/components/header/Header'
 import Login from 'user/components/login/Login'
+import Register from 'user/components/register/Register'
 import Librairy from 'librairy/containers/librairy/Librairy'
 
 import styles from './app.module.css'
 
 class App extends Component {
 
-
-    // if user is authenticated, we show main page
-    // else we show login form
-
-
     render() {
       console.log('App', this.props)
 
       return (
         <section
-            role="main"
-            className={styles.main}
+          role="main"
+          className={styles.main}
         >
-            <Header 
-              username={this.props.username}
-              dispatch={this.props.dispatch}
-            />
-            <Switch>
-              <Route path="/login">
-                 <Login
-                  is_logging_in={false}
-                  dispatch={this.props.dispatch}
-                  login_errors={this.props.login_errors}
-                 />
-              </Route>
-              <Route path="/">
+          <Header 
+            username={this.props.username}
+            dispatch={this.props.dispatch}
+          />
+
+          <Switch>
+            <Route path="/login">
+               <Login
+                username={this.props.username}
+                is_logging_in={false}
+                dispatch={this.props.dispatch}
+                login_errors={this.props.login_errors}
+               />
+            </Route>
+            <Route path="/signup">
+              <Register />
+            </Route>
+            <Route path="/">
                 <Librairy />
-              </Route>
-            </Switch>
+            </Route>
+          </Switch>
         </section>
       )
     }
@@ -56,4 +57,4 @@ App.propTypes = {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(appSelector)(App)
+export default withRouter(connect(appSelector)(App))

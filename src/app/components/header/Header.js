@@ -1,29 +1,45 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import { NavLink, Link } from 'react-router-dom'
 
 import UserMenuButton from 'user/components/userMenuButton/UserMenuButton'
 
 import styles from './header.module.css'
 
-import {
-  ALBUMS_MODULE,
-  PICTURES_MODULE,
-} from 'app/actionsTypes'
-
-import { setModule } from 'app/actions'
 
 export default class Header extends Component {
 
-  selectPictures(e) {
-    e.preventDefault()
-    this.props.dispatch(setModule(PICTURES_MODULE))
+  getHeaderLinks() {
+    if (this.props.username) {
+      // user is authenticated
+      return (
+        <ul
+          className={styles.headerLinks}
+        >
+          <li><UserMenuButton
+            username={this.props.username}
+          /></li>
+        </ul>
+      )
+    }
+
+    // show login Link
+    return (
+        <ul
+          className={styles.headerLinks}
+        >
+          <li><NavLink
+            to="/login/"
+            activeClassName={styles.active}
+          >Login</NavLink></li>
+          <li><NavLink
+            to="/signup/"
+            activeClassName={styles.active}
+          >Sign up</NavLink></li>
+      </ul>
+    )
   }
- 
-  selectAlbums(e) {
-    e.preventDefault()
-    this.props.dispatch(setModule(ALBUMS_MODULE))
-  }
+
 
   render() {
         
@@ -32,31 +48,11 @@ export default class Header extends Component {
         role="banner"
         className={styles.header}
       >
-        <h1
+        <Link to="/"><h1
           className={styles.title}
-        >PinPict</h1>
+        >PinPict</h1></Link>
 
-        <nav
-          className={styles.navLinks}
-        >
-          <a 
-            href="/"
-            className={this.props.module === PICTURES_MODULE ? styles.selected : ""}
-            onClick={this.selectPictures.bind(this)}
-          >Pictures</a>
-          <a 
-            href="/"
-            className={this.props.module === ALBUMS_MODULE ? styles.selected : ""}
-            onClick={this.selectAlbums.bind(this)}
-          >Albums</a>
-        </nav>
-        <ul
-          className={styles.headerLinks}
-        >
-          <li><UserMenuButton
-            usermail={this.props.usermail}
-          /></li>
-        </ul>
+        {this.getHeaderLinks()}
       </header>
     )
   }
@@ -64,6 +60,5 @@ export default class Header extends Component {
 
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  usermail: PropTypes.string.isRequired,
-  module: PropTypes.string.isRequired,
+  username: PropTypes.string,
 }

@@ -1,7 +1,7 @@
 import { createStructuredSelector } from 'reselect'
 
 import {
-  usermailSelector,
+  usernameSelector,
   isLoggingInSelector,
   loginErrorsSelector,
 } from 'user/selectors'
@@ -10,7 +10,7 @@ import {
 const navigationSelector = state => state.navigation
 
 export const appSelector = createStructuredSelector({
-  usermail: usermailSelector,
+  username: usernameSelector,
   is_logging_in: isLoggingInSelector,
   login_errors: loginErrorsSelector,
   navigation: navigationSelector, 

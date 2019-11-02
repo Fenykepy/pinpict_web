@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Redirect, Link } from 'react-router-dom'
 
 import { login } from 'user/actions'
 
@@ -38,43 +39,45 @@ export default class Login extends Component {
   render() {
     console.log('Login', this.props)
     
-    let child
-    // Show spinner if user is logging in
-    if (this.props.is_logging_in) {
-      child = (<Spinner message="Logging in..." />)
-    } else {
-    // Show login form
-      child = (
-        <FormWrapper>
-          <h1>Log into PinPict</h1>
-          <LoginForm
-            id={LOGIN_FORM}
-            onSubmit={this.handleLogin.bind(this)}
-            handleUsernameChange={this.handleUsernameChange.bind(this)}
-            handlePasswordChange={this.handlePasswordChange.bind(this)}
-            username={this.state.username}
-            password={this.state.password}
-            login_errors={this.props.login_errors}
-          />
-          <footer>
-            <FieldWrapper>
-              <Submit
-                primary={true}
-                form={LOGIN_FORM}
-                value="Log in"
-              />
-            </FieldWrapper>
-          </footer>
-        </FormWrapper>
-      )
+    if (this.props.username) {
+      // Redirect if user is loggued in
+      return (<Redirect to="/" />)
     }
 
 
+    // Show spinner if user is logging in
+    if (this.props.is_logging_in) {
+      return (<Spinner message="Logging in..." />)
+    }
+    
+
+    // Show login form
     return (
-      <section role="main">
-        {child}
-      </section>
+      <FormWrapper>
+        <h1>Log into PinPict</h1>
+        <LoginForm
+          id={LOGIN_FORM}
+          onSubmit={this.handleLogin.bind(this)}
+          handleUsernameChange={this.handleUsernameChange.bind(this)}
+          handlePasswordChange={this.handlePasswordChange.bind(this)}
+          username={this.state.username}
+          password={this.state.password}
+          login_errors={this.props.login_errors}
+        />
+        <footer>
+          <FieldWrapper>
+            <Submit
+              primary={true}
+              form={LOGIN_FORM}
+              value="Log in"
+            />
+          </FieldWrapper>
+          <p>No account yet? <Link to="/signup">Sign up</Link></p>
+        </footer>
+      </FormWrapper>
     )
+
+
   }
   
 }
@@ -84,6 +87,7 @@ Login.propTypes = {
   is_logging_in: PropTypes.bool.isRequired,  
   login_errors: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
+  username: PropTypes.string,
 }
 
 

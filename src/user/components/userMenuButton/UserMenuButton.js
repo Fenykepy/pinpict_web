@@ -42,7 +42,7 @@ export default class UserMenuButton extends Component {
         <button
           className={styles.userMenu}
           onClick={this.toogleMenu.bind(this)}
-        ><div>{this.props.usermail}</div>
+        ><div>{this.props.username}</div>
         </button>
         {this.getMenu()}
       </div>
@@ -51,5 +51,5 @@ export default class UserMenuButton extends Component {
 }
 
 UserMenuButton.propTypes = {
-  usermail: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 }

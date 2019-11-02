@@ -11,7 +11,7 @@ import {
 // Logging in
 
 function storeAuth(access, refresh, username) {
-  // store usermail in cookie
+  // store username in cookie
   setCookie('username', username)
   // store access token in cookie
   setCookie('access_token', access)
@@ -92,7 +92,7 @@ export function login(credentials) {
 // logout
 export function logout() {
   // delete access and refresh token
-  deleteCookie('usermail')
+  deleteCookie('username')
   deleteCookie('access_token')
   deleteCookie('refresh_token')
   return {
@@ -108,10 +108,10 @@ function requestRefresh() {
   }
 }
 
-function requestRefreshSuccess(usermail) {
+function requestRefreshSuccess(username) {
   return {
     type: types.REQUEST_REFRESH_SUCCESS,
-    usermail
+    username
   }
 }
 
