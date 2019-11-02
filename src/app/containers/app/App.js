@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
+import { Switch, Route } from 'react-router-dom'
 
 import { appSelector } from 'app/selectors'
 
@@ -20,15 +21,6 @@ class App extends Component {
 
     render() {
       console.log('App', this.props)
-      if (! this.props.usermail) {
-        return (
-           <Login
-            is_logging_in={false}
-            dispatch={this.props.dispatch}
-            login_errors={this.props.login_errors}
-           />
-        )
-      }
 
       return (
         <section
@@ -36,13 +28,21 @@ class App extends Component {
             className={styles.main}
         >
             <Header 
-              usermail={this.props.usermail}
-              module={this.props.navigation.module}
+              username={this.props.username}
               dispatch={this.props.dispatch}
             />
-            <Librairy
-              navigation={this.props.navigation}
-            />
+            <Switch>
+              <Route path="/login">
+                 <Login
+                  is_logging_in={false}
+                  dispatch={this.props.dispatch}
+                  login_errors={this.props.login_errors}
+                 />
+              </Route>
+              <Route path="/">
+                <Librairy />
+              </Route>
+            </Switch>
         </section>
       )
     }
@@ -52,8 +52,7 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   is_logging_in: PropTypes.bool,
   login_errors: PropTypes.object,
-  usermail: PropTypes.string,
-  navigation: PropTypes.object.isRequired,
+  username: PropTypes.string,
 }
 
 // Wrap the component to inject dispatch and state into it

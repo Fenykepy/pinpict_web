@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStoreWithMiddleware } from './store'
 import rootReducer from './rootReducer'
-
+import { BrowserRouter as Router } from 'react-router-dom'
 import 'styles/reset.css'
 import 'styles/index.css'
 import 'styles/forms.css'
@@ -27,7 +27,9 @@ const unsubscribe = store.subscribe(() => console.log('store', store.getState())
 
 render(
     <Provider store={store}>
+      <Router>
         <App />
+      </Router>
     </Provider>, document.getElementById('root')
 )
 
