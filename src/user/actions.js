@@ -197,9 +197,9 @@ function fetchCurrentUserIfNeeded() {
     if ( shouldFetchCurrentUser(getState()) ) {
       return dispatch(fetchCurrentUser())
     }
+    // else return a resolved promise
+    return new Promise((resolve, reject) => resolve())
   }
-  // else return a resolved promise
-  return new Promise((resolve, reject) => resolve())
 }
 
 

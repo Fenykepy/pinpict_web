@@ -9,7 +9,6 @@ import { appSelector } from 'app/selectors'
 import Header from 'app/components/header/Header'
 import Login from 'user/components/login/Login'
 import Register from 'user/components/register/Register'
-import Librairy from 'librairy/containers/librairy/Librairy'
 
 import styles from './app.module.css'
 

@@ -22,7 +22,7 @@ store.dispatch(refresh())
 console.log('initial store', store.getState())
 
 // Everytime the state changes, log it
-const unsubscribe = store.subscribe(() => console.log('store', store.getState()))
+store.subscribe(() => console.log('store', store.getState()))
 
 
 render(

@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux'
 
-import navigation from 'app/reducers'
 import user from 'user/reducers'
-import librairy from 'librairy/reducers'
+import pinpict from 'pinpict/reducers'
 
 const rootReducer = combineReducers({
-  navigation,
   user,
-  librairy,
+  pinpict,
 })
 
 export default rootReducer
@@ -65,7 +63,7 @@ boards = {
     cover4: string,
     cover5: string,
 
-    // full data
+    // public data
     description: string,
     pin_default_description: string,
     pins_order: string,
@@ -74,21 +72,10 @@ boards = {
     followers: [],
     n_followers: int,
     pins: []
+
+    // full data 
   }
 }
 
-users = {
-  userslug: {
-    fetched: bool,
-    is_fetching: bool,
-    slug: string,
-    username: slug,
-    avatar: string,
-    website: string,
-    ...socialmedias
-  }
-}
-
-currentuser = userslug
 
 */
