@@ -9,6 +9,7 @@ import { appSelector } from 'app/selectors'
 import Header from 'app/components/header/Header'
 import Login from 'user/components/login/Login'
 import Register from 'user/components/register/Register'
+import Pinpict from 'pinpict/components/pinpict/Pinpict'
 
 import styles from './app.module.css'
 
@@ -42,7 +43,7 @@ class App extends Component {
               />
             </Route>
             <Route path="/">
-              <div>Connecté comme {this.props.username}</div>
+              <Pinpict />
             </Route>
           </Switch>
         </section>

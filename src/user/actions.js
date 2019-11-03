@@ -161,7 +161,8 @@ export function refresh() {
 }
 
 
-
+// Get current user
+//
 function requestCurrentUser() {
   return {
     type: types.REQUEST_CURRENT_USER

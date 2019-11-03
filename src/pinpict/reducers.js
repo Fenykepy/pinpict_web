@@ -39,6 +39,8 @@ import {
 
   STORE_BOARD_ABSTRACT,
 
+  SELECT_USER,
+
 } from 'pinpict/actionsTypes'
 
 
@@ -200,7 +202,7 @@ function boards(state = {}, action) {
             [action.boarduserslug]: {
               ...state[action.boarduserslug],
               abstract: true,
-              ...action.board,
+              ...action.boardabstract,
             }
           }
       case REQUEST_SHORT_BOARD:
@@ -306,6 +308,18 @@ function pins(state = {}, action) {
 }
 
 
+function selected_user(state = '', action) {
+  switch (action.type) {
+      case SELECT_USER:
+          return action.userslug
+      case LOGOUT:
+          return ''
+      default:
+          return state
+  }
+}
+
+
 
 const pinpict = combineReducers({
   users,
@@ -313,6 +327,7 @@ const pinpict = combineReducers({
   scan,
   pins,
   boards,
+  selected_user,
 })
 
 export default pinpict
