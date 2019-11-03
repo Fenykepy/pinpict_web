@@ -184,9 +184,9 @@ function requestCurrentUserFailure(errors) {
 
 
 function shouldFetchCurrentUser(state) {
-  const current = state.user.current
-  if (! current) return true
-  if (current.is_fetching || current.fetched) return false
+  const user = state.user
+  if (! user) return true
+  if (user.is_fetching || user.fetched) return false
   return true
 }
 

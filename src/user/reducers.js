@@ -1,3 +1,4 @@
+
 import {
   LOGOUT,
   REQUEST_LOGIN,
@@ -11,7 +12,7 @@ import {
   REQUEST_CURRENT_USER_FAILURE,
 } from 'user/actionsTypes'
 
-function user(state = {}, action) {
+export default function user(state = {}, action) {
   switch (action.type) {
     case REQUEST_LOGIN:
       return {
@@ -37,6 +38,8 @@ function user(state = {}, action) {
       }
     case REQUEST_REFRESH_SUCCESS:
       return {
+        ...state,
+        is_refreshing: false,
         username: action.username,
         userslug: action.userslug,
       }
@@ -46,6 +49,26 @@ function user(state = {}, action) {
         userslug: '',
         refresh_errors: action.errors,
       }
+    case REQUEST_CURRENT_USER:
+      return {
+        ...state,
+        is_fetching: true,
+        fetched: false,
+      }
+    case REQUEST_CURRENT_USER_SUCCESS:
+      return {
+        ...state,
+        is_fetching: false,
+        fetched: true,
+        ...action.user,
+      }
+    case REQUEST_CURRENT_USER_FAILURE:
+      return {
+        ...state,
+        is_fetching: false,
+        fetched: false,
+        fetch_errors: action.errors,
+      }
     case LOGOUT:
       return {}
     default:
@@ -53,4 +76,3 @@ function user(state = {}, action) {
   }
 }
 
-export default user
