@@ -14,6 +14,9 @@ import {
 
 } from 'pinpict/actions'
 
+import UserDetail from 'pinpict/components/userDetail/UserDetail'
+
+
 class Boards extends Component {
 
   fetchDatas(userslug) {
@@ -29,9 +32,9 @@ class Boards extends Component {
     this.fetchDatas(this.props.match.params.userslug)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     // we fetch given user and his boards if params changed
-    if (this.props.match.params.userslug !== nextProps.match.params.userslug) {
+    if (this.props.match.params.userslug !== prevProps.match.params.userslug) {
       this.fetchDatas(this.props.match.params.userslug)
     }
   }
@@ -40,7 +43,13 @@ class Boards extends Component {
     console.log('Boards', this.props)
 
     return (
-      <p>Userslug is { this.props.match.params.userslug }</p>
+      <div>
+        <UserDetail
+          userslug={this.props.userslug}
+          selected_user={this.props.selected_user}
+          dispatch={this.props.dispatch}
+        />
+      </div>
     )
     
   }
@@ -49,6 +58,9 @@ class Boards extends Component {
 Boards.propTypes = {
   userslug: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
+  selected_user: PropTypes.object.isRequired,
+  public_boards: PropTypes.array.isRequired,
+  private_boards: PropTypes.array.isRequired,
 }
 
 
