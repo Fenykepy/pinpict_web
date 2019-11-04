@@ -120,3 +120,21 @@ article {
     border-radius: 4px;
     padding: 20px 0;
 }
+
+
+hr {
+    margin: 0 15px 8px 10px;
+    height: 0px;
+    border: none;
+    border-top: 1px solid #313131;
+    border-bottom: 1px solid #7a7a7a;
+}
+
+.accessibility_text {
+    position: absolute;
+    left: -200000px;
+    color: transparent;
+    height: 0;
+    width: 0;
+    display: block;
+}

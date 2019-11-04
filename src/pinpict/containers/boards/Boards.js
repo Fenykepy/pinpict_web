@@ -56,7 +56,6 @@ class Boards extends Component {
 }
 
 Boards.propTypes = {
-  userslug: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   selected_user: PropTypes.object.isRequired,
   public_boards: PropTypes.array.isRequired,
