@@ -1,0 +1,13 @@
+.website {
+    font-size: 13px;
+    font-size: 1.3rem;
+}
+
+.website a {
+    text-decoration: none;
+}
+.website a:hover, .website a:active, .website a:focus {
+    color: #fff;
+}
+
+
