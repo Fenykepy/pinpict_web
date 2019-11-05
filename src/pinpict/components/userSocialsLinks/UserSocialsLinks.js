@@ -56,6 +56,7 @@ export default class UserSocialsLinks extends Component {
                href={social.link}
                className={social.class}
                target="_blank"
+               rel="noopener noreferrer"
              ><span
                 className="accessibility_text"
                >{social.alt} link</span></a></li>

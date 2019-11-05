@@ -1,27 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from 'react-router-dom'
-
 import settings from 'pinpict_config'
 import styles from './userDetail.module.css'
 
 import UserWebsite from 'pinpict/components/userWebsite/UserWebsite'
 import UserSocialsLinks from 'pinpict/components/userSocialsLinks/UserSocialsLinks'
 import UserNav from 'pinpict/components/userNav/UserNav'
+import UserProfileLink from 'pinpict/components/userProfileLink/UserProfileLink'
 
 const BASE_URL = settings.base_url
 
 export default class UserDetail extends Component {
   
-  getEditButton() {
-    console.log(this.props.selected_user.slug, this.props.userslug)
-    if (this.props.selected_user.slug === this.props.userslug) {
-      return <Link to="/profile/">Edit profile</Link>
-    }
-    return null
-  }
-
   render() {
     return(
       <article
@@ -34,7 +25,10 @@ export default class UserDetail extends Component {
           <h1>{this.props.selected_user.username}</h1>
           <hr />
 
-          {this.getEditButton()}
+          <UserProfileLink
+            userslug={this.props.userslug}
+            selected_slug={this.props.selected_user.slug}
+          />
           <UserWebsite
             website={this.props.selected_user.website}
           />
@@ -52,4 +46,11 @@ export default class UserDetail extends Component {
     )
   }
 }
+
+UserDetail.propTypes = {
+  userslug: PropTypes.string,
+  selected_user: PropTypes.object,
+}
+
+
 

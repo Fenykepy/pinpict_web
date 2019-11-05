@@ -1,0 +1,26 @@
+
+.link, .link:visited {
+    line-height: 36px;
+    vertical-align: middle;
+    padding: 0 23px;
+    margin: 5px 0 0 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #ccc;
+    float: right;
+    width: auto;
+    margin-right: 15px;
+    background: linear-gradient(#404040, #222);
+    cursor: pointer;
+}
+
+
+.link:hover, .link:focus, .link:active {
+    color: #fff;
+    box-shadow: 0 0 3px #000;
+    text-decoration: none;
+}
+

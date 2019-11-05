@@ -47,7 +47,6 @@ class Boards extends Component {
         <UserDetail
           userslug={this.props.userslug}
           selected_user={this.props.selected_user}
-          dispatch={this.props.dispatch}
         />
       </div>
     )

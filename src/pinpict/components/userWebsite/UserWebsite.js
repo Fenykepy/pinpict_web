@@ -15,6 +15,7 @@ export default class UserWebsite extends Component {
             <a
               href={this.props.website}
               target="_blank"
+              rel="noopener noreferrer"
             >{this.props.website}</a>
         </div>
       )
