@@ -1,0 +1,48 @@
+
+.userNav {
+    clear: both;
+    border-top: 1px solid #474747;
+}
+
+.userNav ul {
+    width: 100%;
+}
+
+.userNav li {
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    width: 25%;
+    height: 41px;
+    border-right: 1px solid #474747;
+}
+
+.userNav li:last-child {
+    border-right: none;
+}
+
+.userNav a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    font-size: 14px;
+    font-size: 1.4rem;
+    padding: 3px 5px;
+    color: #222;
+    box-sizing: border-box;
+}
+
+.userNav a:hover, .usernav a:focus, .usernav a:active {
+    background: #585858;
+    color: #000;
+}
+
+a.active, a.active:hover, a.active:focus, a.active:active {
+    background: #505050;
+    color: #000;
+}
+
+.number {
+    font-weight: bold;
+}
