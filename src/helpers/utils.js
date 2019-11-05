@@ -36,3 +36,10 @@ export function appendToArray(item, array) {
   new_array.push(item)
   return new_array
 }
+
+export function getPicturePath(sha1) {
+  return sha1.substring(0, 2) + '/' + 
+      sha1.substring(2, 4) + '/' + sha1
+}
+
+

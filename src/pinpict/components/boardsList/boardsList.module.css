@@ -1,0 +1,64 @@
+.boardsList {
+    display: flex;
+    margin: 0 auto 50px;
+}
+
+@media screen and (min-width:280px) {
+    .boardsList {
+        width: 250px; /* 1 column */
+    }
+}
+
+@media screen and (min-width:530px) {
+    .boardsList {
+        width: 500px; /* 2 columns */
+    }
+}
+
+@media screen and (min-width:780px) {
+    .boardsList {
+        width: 750px; /* 3 columns */
+    }
+}
+
+@media screen and (min-width:1030px) {
+    .boardsList {
+        width: 1000px; /* 4 columns */
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .boardsList {
+        width: 1250px; /* 5 columns */
+    }
+}
+
+@media screen and (min-width:1530px) {
+    .boardsList {
+        width: 1500px; /* 6 columns */
+    }
+}
+
+@media screen and (min-width:1780px) {
+    .boardsList {
+        width: 1750px; /* 7 columns */
+    }
+}
+
+@media screen and (min-width:2030px) {
+    .boardsList {
+        width: 2000px; /* 8 columns */
+    }
+}
+
+@media screen and (min-width:2280px) {
+    .boardsList {
+        width: 2250px; /* 9 columns */
+    }
+}
+
+@media screen and (min-width:2530px) {
+    .boardsList {
+        width: 2500px; /* 10 columns */
+    }
+}

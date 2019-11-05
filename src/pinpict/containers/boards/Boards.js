@@ -14,7 +14,10 @@ import {
 
 } from 'pinpict/actions'
 
+import styles from './boards.module.css'
+
 import UserDetail from 'pinpict/components/userDetail/UserDetail'
+import BoardsList from 'pinpict/components/boardsList/BoardsList'
 
 
 class Boards extends Component {
@@ -48,6 +51,20 @@ class Boards extends Component {
           userslug={this.props.userslug}
           selected_user={this.props.selected_user}
         />
+        <section>
+          <BoardsList
+            boards={this.props.public_boards}
+          />
+        </section>
+        <section
+          className={styles.private_boards}
+        >
+          <h2>Private boards</h2>
+          <BoardsList
+            boards={this.props.private_boards}
+          />
+        </section>
+
       </div>
     )
     
@@ -59,6 +76,7 @@ Boards.propTypes = {
   selected_user: PropTypes.object.isRequired,
   public_boards: PropTypes.array.isRequired,
   private_boards: PropTypes.array.isRequired,
+  userslug: PropTypes.string,
 }
 
 

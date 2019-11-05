@@ -8,13 +8,29 @@ import UserWebsite from 'pinpict/components/userWebsite/UserWebsite'
 import UserSocialsLinks from 'pinpict/components/userSocialsLinks/UserSocialsLinks'
 import UserNav from 'pinpict/components/userNav/UserNav'
 import UserProfileLink from 'pinpict/components/userProfileLink/UserProfileLink'
+import Spinner from 'app/components/spinner/Spinner'
 
 const BASE_URL = settings.base_url
 
 export default class UserDetail extends Component {
   
   render() {
-    return(
+
+    console.log('UserDetail', this.props)
+    
+    if (! this.props.selected_user || this.props.selected_user.is_fetching ) {
+      return (
+        <article
+          className={styles.user_detail}
+        >
+            <Spinner
+              message="Fetching user..."
+            />
+        </article>
+      )
+    }
+
+    return (
       <article
         className={styles.user_detail}
       >
