@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import settings from 'pinpict_config'
+import styles from './userDetail.module.css'
 
 const BASE_URL = settings.base_url
 
@@ -21,7 +22,7 @@ export default class UserDetail extends Component {
     if (this.props.selected_user.website) {
       return (
         <div
-          className=""
+          className={styles.website}
         >
             <a
               href={this.props.selected_user.website}
@@ -38,7 +39,7 @@ export default class UserDetail extends Component {
     let user = this.props.selected_user
 
     if (user.facebook_link) {
-      socials.push({class: "fb", link: user.facebook_link,
+      socials.push({class: styles.fb, link: user.facebook_link,
       alt: "facebook link"})
     }
     if (user.flickr_link) {
@@ -76,7 +77,7 @@ export default class UserDetail extends Component {
     
     return (
       <ul
-        className="social_icons"
+        className={styles.social_icons}
       >
           {socials.map(social => 
             (<li
@@ -97,7 +98,7 @@ export default class UserDetail extends Component {
   render() {
     return(
       <article
-        className=""
+        className={styles.user_detail}
       >
           <img
             src={BASE_URL + 'media/' + this.props.selected_user.avatar}
