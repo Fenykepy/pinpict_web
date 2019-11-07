@@ -7,7 +7,7 @@
     display: flex;
     color: var(--header-color);
     background: var(--header-bg);
-    /*border-bottom: 1px solid #000;*/
+    border-bottom: 1px solid #131313;
     box-shadow: 0 0 8px #000;
     z-index: 1;
 }

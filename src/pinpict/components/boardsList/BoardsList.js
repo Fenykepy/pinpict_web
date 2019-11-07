@@ -17,6 +17,7 @@ export default class BoardsList extends Component {
       >
           {this.props.boards.map(board =>
             (<BoardAbstract
+              match={this.props.match}
               key={board.slug}
               {...board}
             />)
@@ -28,4 +29,5 @@ export default class BoardsList extends Component {
 
 BoardsList.propTypes = {
   boards: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
 }

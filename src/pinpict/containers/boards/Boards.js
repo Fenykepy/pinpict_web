@@ -54,6 +54,7 @@ class Boards extends Component {
         <section>
           <BoardsList
             boards={this.props.public_boards}
+            match={this.props.match}
           />
         </section>
         <section
@@ -62,6 +63,7 @@ class Boards extends Component {
           <h2>Private boards</h2>
           <BoardsList
             boards={this.props.private_boards}
+            match={this.props.match}
           />
         </section>
 
@@ -73,6 +75,7 @@ class Boards extends Component {
 
 Boards.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
   selected_user: PropTypes.object.isRequired,
   public_boards: PropTypes.array.isRequired,
   private_boards: PropTypes.array.isRequired,
