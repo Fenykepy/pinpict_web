@@ -1,8 +1,80 @@
-.private_boards {
+.privateBoardsWrapper {
     border-top: 1px solid #000;
     background-color: #222;
+    padding-top: 14px;
+    padding-bottom: 1px;
 }
 
-.private_boards > h2 {
+
+
+.boardsSection {
+    margin: 0 auto 50px;
+}
+
+.boardsSection > h2 {
     color: #000;
+    font-size: 18px;
+    font-size: 1.8rem;
+    font-weight: normal;
+    margin: 0 0 0 20px;
+}
+
+@media screen and (min-width:280px) {
+    .boardsSection {
+        width: 250px; /* 1 column */
+    }
+}
+
+@media screen and (min-width:530px) {
+    .boardsSection {
+        width: 500px; /* 2 columns */
+    }
+}
+
+@media screen and (min-width:780px) {
+    .boardsSection {
+        width: 750px; /* 3 columns */
+    }
+}
+
+@media screen and (min-width:1030px) {
+    .boardsSection {
+        width: 1000px; /* 4 columns */
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .boardsSection {
+        width: 1250px; /* 5 columns */
+    }
+}
+
+@media screen and (min-width:1530px) {
+    .boardsSection {
+        width: 1500px; /* 6 columns */
+    }
+}
+
+@media screen and (min-width:1780px) {
+    .boardsSection {
+        width: 1750px; /* 7 columns */
+    }
+}
+
+@media screen and (min-width:2030px) {
+    .boardsSection {
+        width: 2000px; /* 8 columns */
+    }
+}
+
+@media screen and (min-width:2280px) {
+    .boardsSection {
+        width: 2250px; /* 9 columns */
+    }
+}
+
+@media screen and (min-width:2530px) {
+    .boardsSection {
+        width: 2500px; /* 10 columns */
+    }
 }

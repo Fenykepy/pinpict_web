@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from 'react-router-dom'
 import ButtonLink from 'forms/components/buttonLink/ButtonLink'
 
 import styles from './userProfileLink.module.css'

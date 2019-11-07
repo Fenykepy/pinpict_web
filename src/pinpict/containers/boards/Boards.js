@@ -16,6 +16,7 @@ import {
 
 import styles from './boards.module.css'
 
+import Spinner from 'app/components/spinner/Spinner'
 import UserDetail from 'pinpict/components/userDetail/UserDetail'
 import BoardsList from 'pinpict/components/boardsList/BoardsList'
 
@@ -45,27 +46,42 @@ class Boards extends Component {
   render() {
     console.log('Boards', this.props)
 
+    if (! this.props.selected_user || this.props.selected_user.is_fetching ||
+        ! this.props.public_boards ) {
+          return (
+            <Spinner
+              message="Fetching..."
+            />
+          )
+    }
+
     return (
       <div>
         <UserDetail
           userslug={this.props.userslug}
           selected_user={this.props.selected_user}
         />
-        <section>
+        <section
+            className={styles.boardsSection}
+        >
           <BoardsList
             boards={this.props.public_boards}
             match={this.props.match}
           />
         </section>
-        <section
-          className={styles.private_boards}
+        <div
+          className={styles.privateBoardsWrapper}
         >
-          <h2>Private boards</h2>
-          <BoardsList
-            boards={this.props.private_boards}
-            match={this.props.match}
-          />
-        </section>
+          <section
+            className={styles.boardsSection}
+          >
+            <h2>Private boards</h2>
+            <BoardsList
+              boards={this.props.private_boards}
+              match={this.props.match}
+            />
+          </section>
+        </div>
 
       </div>
     )
