@@ -34,7 +34,30 @@ export default class BoardAbstract extends Component {
               alt={this.props.title}
             />
           </div>
+          <ul>
+            <li><img
+              src={BASE_URL + 'media/previews/50-50/' + 
+                getPicturePath(this.props.cover2 || "")}
+              alt={this.props.title}
+            /></li>
+            <li><img
+              src={BASE_URL + 'media/previews/50-50/' + 
+                getPicturePath(this.props.cover3 || "")}
+              alt={this.props.title}
+            /></li>
+            <li><img
+              src={BASE_URL + 'media/previews/50-50/' + 
+                getPicturePath(this.props.cover4 || "")}
+              alt={this.props.title}
+            /></li>
+            <li><img
+              src={BASE_URL + 'media/previews/50-50/' + 
+                getPicturePath(this.props.cover5 || "")}
+              alt={this.props.title}
+            /></li>
+          </ul>
         </Link>
+        <button>Edit</button>
       </article> 
     )
   }

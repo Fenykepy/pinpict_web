@@ -1,0 +1,57 @@
+.board {
+    margin: 14px 7px 0 7px;
+    width: 236px;
+    padding: 0;
+}
+
+.board h1 {
+    font-size: 16px;
+    font-size: 1.6rem;
+    margin: 0 3px 6px 3px;
+}
+
+.board a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.board a:hover img, .board a:focus img, .board a:active img {
+    filter: brightness(110%);
+}
+
+.imgWrapper {
+    position: relative;
+    box-sizing: border-box;
+    width: 216px;
+    height: 160px;
+    overflow: hidden; 
+    border: 1px solid #222;
+    border-radius: 2px;
+}
+.imgWrapper img {
+    width: 100%;
+}
+
+.board ul {
+    height: 55px;
+}
+.board li {
+    display: inline-block;
+    margin: 4px 4px 0 0;
+    width: 49px;
+    height: 49px;
+    overflow: hidden; 
+    border: 1px solid #222;
+    border-radius: 2px;
+}
+
+.board li:last-child {
+    margin-right: 0;
+}
+
+.board button {
+    width: 216px;
+    height: 31px;
+    margin: 0 10px 10px;
+}
