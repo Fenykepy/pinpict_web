@@ -19,7 +19,7 @@ const BASE_URL = settings.base_url
 export default class BoardAbstract extends Component {
   
   render() {
-    console.log('BoardAbstract', this.props)
+    //console.log('BoardAbstract', this.props)
 
     let url = this.props.match.url
     url = url.endsWith('/') ? url : url + "/"

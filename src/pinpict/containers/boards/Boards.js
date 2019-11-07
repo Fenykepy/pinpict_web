@@ -46,7 +46,7 @@ class Boards extends Component {
   render() {
     console.log('Boards', this.props)
 
-    if (! this.props.selected_user || this.props.selected_user.is_fetching ||
+    if (! this.props.selected_user.slug || this.props.selected_user.is_fetching ||
         ! this.props.public_boards ) {
           return (
             <Spinner
