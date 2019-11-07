@@ -1,16 +1,29 @@
 .button {
     height: 38px;
-    line-height: 36px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    font-size: 16px;
+    font-size: 1.6rem;
     vertical-align: middle;
     width: 100%;
     padding: 0 23px;
     margin: 5px 0 0 0;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     border: 1px solid #000;
     border-radius: 2px;
     color: #ccc;
+    background: linear-gradient(#404040, #222);
+
+}
+
+a.button, a.button:visited {
+    color: #ccc;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .button:hover, .button:focus, .button:active {
@@ -26,4 +39,7 @@
 
 .primary {
     background: linear-gradient(#404040, #222);
+    font-weight: bold;
+    font-size: 14px;
+    font-size: 1.4rem;
 }

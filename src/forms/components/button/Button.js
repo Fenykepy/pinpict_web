@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './submit.module.css'
+import styles from '../submit/submit.module.css'
 
-export default class Submit extends Component {
+export default class Button extends Component {
   
   getClassNames() {
     let classes = []
@@ -18,21 +18,20 @@ export default class Submit extends Component {
 
   render() {
     return (
-      <input
+      <button
         className={this.getClassNames()}
-        type="submit"
+        value={this.props.value || ""}
         title={this.props.title || null}
-        value={this.props.value}
-        form={this.props.form}
-      />
+        type={this.props.type || "button"}
+      >{this.props.children}</button>
     )
   }
 }
 
-Submit.propTypes = {
-  value: PropTypes.string.isRequired,
-  form: PropTypes.string.isRequired,
+Button.propTypes = {
   title: PropTypes.string,
+  value: PropTypes.string,
   className: PropTypes.string,
+  type: PropTypes.string,
   primary: PropTypes.bool,
 }

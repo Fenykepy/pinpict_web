@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './submit.module.css'
+import { Link } from 'react-router-dom'
 
-export default class Submit extends Component {
+import styles from '../submit/submit.module.css'
+
+export default class ButtonLink extends Component {
   
   getClassNames() {
     let classes = []
@@ -18,20 +20,17 @@ export default class Submit extends Component {
 
   render() {
     return (
-      <input
-        className={this.getClassNames()}
-        type="submit"
+      <Link
+        to={this.props.to}
         title={this.props.title || null}
-        value={this.props.value}
-        form={this.props.form}
-      />
+        className={this.getClassNames()}
+      >{this.props.children}</Link>
     )
   }
 }
 
-Submit.propTypes = {
-  value: PropTypes.string.isRequired,
-  form: PropTypes.string.isRequired,
+ButtonLink.propTypes = {
+  to: PropTypes.string.isRequired,
   title: PropTypes.string,
   className: PropTypes.string,
   primary: PropTypes.bool,

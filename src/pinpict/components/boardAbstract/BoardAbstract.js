@@ -9,7 +9,10 @@ import settings from 'pinpict_config'
 
 import { getPicturePath } from 'helpers/utils'
 
+import Button from 'forms/components/button/Button'
+
 const BASE_URL = settings.base_url
+
 
 export default class BoardAbstract extends Component {
   
@@ -57,7 +60,10 @@ export default class BoardAbstract extends Component {
             /></li>
           </ul>
         </Link>
-        <button>Edit</button>
+        <Button
+          title="Edit board"
+          primary={true}
+        >Edit</Button>
       </article> 
     )
   }
