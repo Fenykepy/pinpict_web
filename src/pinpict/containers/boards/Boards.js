@@ -19,6 +19,7 @@ import styles from './boards.module.css'
 import Spinner from 'app/components/spinner/Spinner'
 import UserDetail from 'pinpict/components/userDetail/UserDetail'
 import BoardsList from 'pinpict/components/boardsList/BoardsList'
+import PrivateBoardsWrapper from 'pinpict/components/privateBoardsWrapper/PrivateBoardsWrapper'
 
 
 class Boards extends Component {
@@ -69,20 +70,11 @@ class Boards extends Component {
             match={this.props.match}
           />
         </section>
-        <div
-          className={styles.privateBoardsWrapper}
-        >
-          <section
-            className={styles.boardsSection}
-          >
-            <h2>Private boards</h2>
-            <BoardsList
-              boards={this.props.private_boards}
-              match={this.props.match}
-            />
-          </section>
-        </div>
-
+        <PrivateBoardsWrapper
+            private_boards={this.props.private_boards}
+            match={this.props.match}
+            userslug={this.props.userslug}
+        />
       </div>
     )
     
