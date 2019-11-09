@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import Pin from 'pinpict/components/pin/Pin'
 
-import styles from './pinsList.module.css'
-
 export default class PinsList extends Component {
 
   render() {
@@ -12,9 +10,7 @@ export default class PinsList extends Component {
     console.log('PinsList', this.props)
 
     return(
-      <div
-        className={styles.pinsList}
-      >
+      <div>
           {this.props.pins.map(pin =>
              (<Pin 
                 {...pin}

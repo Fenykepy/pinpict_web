@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './boardsList.module.css'
-
 import BoardAbstract from 'pinpict/components/boardAbstract/BoardAbstract'
 
 export default class BoardsList extends Component {
@@ -12,9 +10,7 @@ export default class BoardsList extends Component {
     console.log('BoardsList', this.props)
 
     return (
-      <div
-        className={styles.boardsList}
-      >
+      <div>
           {this.props.boards.map(board =>
             (<BoardAbstract
               match={this.props.match}
