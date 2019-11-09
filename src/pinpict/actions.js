@@ -1,7 +1,9 @@
 import * as types from './actionsTypes'
 import Fetch from 'helpers/http'
 
-
+function setBoarduserslug(userslug, boardslug) {
+  return `${boardslug}@${userslug}`
+}
 
 // Select current user
 export function selectUser(userslug) {
@@ -136,11 +138,11 @@ function fetchUserPublicBoards(userslug) {
     dispatch(requestUserPublicBoards(userslug))
 
     try {
-      let json = await Fetch.get(`api/board/user/${userslug}/`)
+      let json = await Fetch.get(`api/board/public/user/${userslug}/`)
       // keep only boards boarduserslug in array
       // and store other data in boards reducer
       let boards = json.map(abstract => {
-        let boarduserslug = `${abstract.slug}@${userslug}`
+        let boarduserslug = setBoarduserslug(userslug, abstract.slug)
         dispatch(storeBoardAbstract(boarduserslug, abstract))
         return boarduserslug
       })
@@ -154,6 +156,7 @@ function fetchUserPublicBoards(userslug) {
     }
   }
 }
+
 
 
 
@@ -219,7 +222,7 @@ function fetchUserPrivateBoards(userslug) {
       // keep only boards boarduserslug in array
       // and store other data in boards reducer
       let boards = json.map(abstract => {
-        let boarduserslug = `${abstract.slug}@${userslug}`
+        let boarduserslug = setBoarduserslug(userslug, abstract.slug)
         dispatch(storeBoardAbstract(boarduserslug, abstract))
         return boarduserslug
       })
@@ -239,6 +242,13 @@ function fetchUserPrivateBoards(userslug) {
 
 
 
+// Select pin
+export function selectPin(pin_id) {
+  return {
+    type: types.SELECT_PIN,
+    pin_id,
+  }
+}
 
 
 
@@ -248,7 +258,89 @@ function fetchUserPrivateBoards(userslug) {
 
 // Scan url
 
+
+// Select board
+export function selectBoard(userslug, boardslug) {
+  return {
+    type: types.SELECT_BOARD,
+    boarduserslug: setBoarduserslug(userslug, boardslug),
+  }
+}
+
+
 // Get short board data
+
+
+function requestShortBoard(boarduserslug) {
+  return {
+    type: types.REQUEST_SHORT_BOARD,
+    boarduserslug,
+  }
+}
+
+
+function requestShortBoardSuccess(boarduserslug, board) {
+  return {
+    type: types.REQUEST_SHORT_BOARD_SUCCESS,
+    boarduserslug,
+    board,
+  }
+}
+
+
+function requestShortBoardFailure(boarduserslug, errors) {
+  return {
+    type: types.REQUEST_SHORT_BOARD_FAILURE,
+    boarduserslug,
+    errors,
+  }
+}
+
+
+function shouldFetchShortBoard(state, boarduserslug) {
+  const board = state.pinpict.boards.boarduserslug
+  if (! board) return true
+  if (board.is_fetching_short || board.short_fetched) return false
+  return true
+}
+
+
+export function fetchShortBoardIfNeeded(userslug, boardslug) {
+  let boarduserslug = setBoarduserslug(userslug, boardslug)
+  return (dispatch, getState) => {
+    if ( shouldFetchShortBoard(getState(), boarduserslug) ) {
+      return dispatch(fetchShortBoard(userslug, boardslug))
+    }
+    // else return a resolved promise
+    return new Promise((resolve, reject) => resolve())
+  }
+}
+
+
+
+function fetchShortBoard(userslug, boardslug) {
+  return async function(dispatch) {
+    let boarduserslug = setBoarduserslug(userslug, boardslug)
+    // start request
+    dispatch(requestShortBoard(boarduserslug))
+
+    try {
+      let json = await Fetch.get(`api/board/user/${userslug}/board/${boardslug}/`)
+      dispatch(requestShortBoardSuccess(boarduserslug, json))
+    } catch (error) {
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestShortBoardFailure(boarduserslug, json))
+      throw error
+    }
+  }
+}
+
+
+
+
+
+
 
 // Get full board data
 

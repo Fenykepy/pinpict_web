@@ -1,0 +1,16 @@
+.boardDetail header {
+    padding: 1px 10px 10px;
+    text-align: center;
+}
+
+.boardDetail header h1 {
+    margin: 35px 0 15px;
+    font-size: 40px;
+    font-size: 4.0rem;
+    color: #000;
+}
+
+.nPins {
+    color: #000;
+    font-weight: bold;
+}

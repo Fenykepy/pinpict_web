@@ -1,0 +1,38 @@
+.user_short_detail {
+    max-width: 1236px;
+    display: block;
+    width: auto;
+    margin: 14px auto 2px auto;
+    height: 60px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+
+.user_short_detail img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px #000;
+}
+
+.user_short_detail h2 {
+    font-size: 20px;
+    font-size: 2.0rem;
+    color: #000;
+    vertical-align: top;
+    display: inline-block;
+    margin: 10px 3px 0;
+}
+
+.user_short_detail h2 a {
+    text-decoration: none;
+}
+
+.user_short_detail h2 a:hover, .user_short_detail h2 a:focus,
+.user_short_detail h2 a:active {
+    color: #222;
+}
+
