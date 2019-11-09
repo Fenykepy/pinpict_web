@@ -278,15 +278,15 @@ function pins(state = {}, action) {
       case REQUEST_PIN:
           return {
             ...state,
-            [action.id]: {
-              ...state[action.id],
+            [action.pin_id]: {
+              ...state[action.pin_id],
               is_fetching: true,
             }
           }
       case REQUEST_PIN_SUCCESS:
           return {
             ...state,
-            [action.id]: {
+            [action.pin_id]: {
               is_fetching: false,
               fetched: true,
               ...action.pin,
@@ -295,8 +295,8 @@ function pins(state = {}, action) {
       case REQUEST_PIN_FAILURE:
           return {
             ...state,
-            [action.id]: {
-              ...state[action.id],
+            [action.pin_id]: {
+              ...state[action.pin_id],
               is_fetching: false,
               fetched: true,
               errors: action.errors,

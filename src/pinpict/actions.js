@@ -41,7 +41,7 @@ function requestUserFailure(userslug, errors) {
 
 
 function shouldFetchUser(state, userslug) {
-  const user = state.pinpict.users.userslug
+  const user = state.pinpict.users[userslug]
   if (! user) return true
   if (user.is_fetching || user.fetched) return false
   return true
@@ -114,7 +114,7 @@ function requestUserPublicBoardsFailure(userslug, errors) {
 
 
 function shouldFetchUserPublicBoards(state, userslug) {
-  const user = state.pinpict.users.userslug
+  const user = state.pinpict.users[userslug]
   if (! user) return true
   if (user.is_fetching_public_boards || user.public_board_fetched) return false
   return true
@@ -191,7 +191,7 @@ function requestUserPrivateBoardsFailure(userslug, errors) {
 
 
 function shouldFetchUserPrivateBoards(state, userslug) {
-  const user = state.pinpict.users.userslug
+  const user = state.pinpict.users[userslug]
   const authenticated = state.user.authenticated_slug
   // we dont fetch private boards if user isn't authenticated
   if (! authenticated) return false
@@ -254,6 +254,80 @@ export function selectPin(pin_id) {
 
 // Get a pin
 
+function requestPin(pin_id) {
+  return {
+    type: types.REQUEST_PIN,
+    pin_id,
+  }
+}
+
+
+function requestPinSuccess(pin_id, pin) {
+  return {
+    type: types.REQUEST_PIN_SUCCESS,
+    pin_id,
+    pin,
+  }
+}
+
+
+function requestPinFailure(pin_id, errors) {
+  return {
+    type: types.REQUEST_PIN_FAILURE,
+    pin_id,
+    errors,
+  }
+}
+
+
+function shouldFetchPin(state, pin_id) {
+  const pin = state.pinpict.pins[pin_id]
+  if (! pin) return true
+  if (pin.is_fetching || pin.fetched) return false
+  return true
+}
+
+
+export function fetchPinIfNeeded(pin_id) {
+  return (dispatch, getState) => {
+    if ( shouldFetchPin(getState(), pin_id) ) {
+      return dispatch(fetchPin(pin_id))
+    }
+    // else return a resolved promise
+    return new Promise((resolve, reject) => resolve())
+  }
+}
+
+
+function fetchPin(pin_id) {
+  return async function(dispatch) {
+    // start request
+    dispatch(requestPin(pin_id))
+
+    try {
+      let json = await Fetch.get(`api/pin/${pin_id}/`)
+      dispatch(requestPinSuccess(pin_id, json))
+    } catch (error) {
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestPinFailure(pin_id, json))
+      throw error
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get tags
 
 // Scan url
@@ -298,7 +372,7 @@ function requestShortBoardFailure(boarduserslug, errors) {
 
 
 function shouldFetchShortBoard(state, boarduserslug) {
-  const board = state.pinpict.boards.boarduserslug
+  const board = state.pinpict.boards[boarduserslug]
   if (! board) return true
   if (board.is_fetching_short || board.short_fetched) return false
   return true
@@ -317,7 +391,6 @@ export function fetchShortBoardIfNeeded(userslug, boardslug) {
 }
 
 
-
 function fetchShortBoard(userslug, boardslug) {
   return async function(dispatch) {
     let boarduserslug = setBoarduserslug(userslug, boardslug)
@@ -327,6 +400,10 @@ function fetchShortBoard(userslug, boardslug) {
     try {
       let json = await Fetch.get(`api/board/user/${userslug}/board/${boardslug}/`)
       dispatch(requestShortBoardSuccess(boarduserslug, json))
+      // Fetch board pins' if necessary
+      for (const pin_id of json.pins) {
+        dispatch(fetchPinIfNeeded(pin_id))
+      }
     } catch (error) {
       let json = await error.response.json()
       // store error in state
@@ -335,10 +412,6 @@ function fetchShortBoard(userslug, boardslug) {
     }
   }
 }
-
-
-
-
 
 
 
