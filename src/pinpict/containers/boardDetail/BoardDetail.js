@@ -17,7 +17,7 @@ import styles from './boardDetail.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
 import UserShortDetail from 'pinpict/components/userShortDetail/UserShortDetail'
-
+import PinsList from 'pinpict/components/pinsList/PinsList'
 
 class BoardDetail extends Component {
   
@@ -71,7 +71,7 @@ class BoardDetail extends Component {
 
 
     return (
-        <section className={styles.boardDetail}>
+        <section className={styles.boardDetail + " columned"}>
           <header>
             <h1>{this.props.selected_board.title}</h1>
             <p
@@ -81,6 +81,10 @@ class BoardDetail extends Component {
           </header>
           <UserShortDetail
             selected_user={this.props.selected_user}
+          />
+          <PinsList
+            pins={this.props.pins}
+            match={this.props.match}
           />
         </section>
     )
@@ -92,6 +96,7 @@ BoardDetail.propTypes = {
   match: PropTypes.object.isRequired,
   selected_user: PropTypes.object.isRequired,
   selected_board: PropTypes.object.isRequired,
+  pins: PropTypes.array.isRequired,
 }
 
 export default withRouter(connect(boardDetailSelector)(BoardDetail))

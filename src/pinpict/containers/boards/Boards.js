@@ -62,7 +62,7 @@ class Boards extends Component {
           selected_user={this.props.selected_user}
         />
         <section
-            className={styles.boardsSection}
+            className={styles.boardsSection + " columned"}
         >
           <BoardsList
             boards={this.props.public_boards}

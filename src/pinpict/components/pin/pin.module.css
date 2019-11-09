@@ -1,0 +1,30 @@
+.pin {
+    width: 236px;
+    margin: 14px 7px 0 7px;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pin img {
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.button_wrapper a {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.description {
+    border-top: 1px solid #505050;
+    padding: 10px 14px;
+    word-wrap: break-word;
+    margin: 0;
+}

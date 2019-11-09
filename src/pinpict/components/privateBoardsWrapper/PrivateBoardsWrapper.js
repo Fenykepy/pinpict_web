@@ -37,7 +37,7 @@ export default class PrivateBoardWrapper extends Component {
           className={styles.privateBoardsWrapper}
         >
           <section
-            className={styles.boardsSection}
+            className={styles.boardsSection + " columned"}
           >
             <h2>Private boards</h2>
             <BoardsList

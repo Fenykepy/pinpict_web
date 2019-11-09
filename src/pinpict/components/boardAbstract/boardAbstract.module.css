@@ -3,6 +3,9 @@
     width: 236px;
     padding: 0;
     position: relative;
+    box-sizing: border-box;
+    border: none;
+    display: inline-block;
 }
 
 .board h1 {

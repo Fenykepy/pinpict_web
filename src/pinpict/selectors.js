@@ -5,6 +5,7 @@ import {
 } from 'reselect'
 
 const boardsSelector = state => state.pinpict.boards
+const pinsSelector = state => state.pinpict.pins
 const usersSelector = state => state.pinpict.users
 const selectedUserslugSelector = state => state.pinpict.selected_user_slug
 const selectedBoarduserslugSelector = state => state.pinpict.selected_boarduserslug
@@ -51,6 +52,20 @@ const selectedBoardSelector = createSelector(
   }
 )
 
+const selectedBoardPinsSelector = createSelector(
+  selectedBoardSelector, pinsSelector,
+  (board, pins) => {
+    if (board && board.pins) {
+      let board_pins = []
+      for (const pin_id of board.pins) {
+        if (pins[pin_id]) {board_pins.push(pins[pin_id])}
+      }
+      return board_pins
+    }
+    return []
+  }
+)
+
 
 export const boardsListSelector = createStructuredSelector({
   selected_user: selectedUserSelector,
@@ -61,4 +76,5 @@ export const boardsListSelector = createStructuredSelector({
 export const boardDetailSelector = createStructuredSelector({
   selected_user: selectedUserSelector,
   selected_board: selectedBoardSelector,
+  pins: selectedBoardPinsSelector,
 })
