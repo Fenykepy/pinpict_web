@@ -36,11 +36,11 @@ function requestLogin() {
   }
 }
 
-function requestLoginSuccess(username, userslug) {
+function requestLoginSuccess(username, authenticated_slug) {
   return {
     type: types.REQUEST_LOGIN_SUCCESS,
     username,
-    userslug
+    authenticated_slug
   }
 }
 
@@ -69,10 +69,10 @@ export function login(credentials) {
         JSON.stringify(credentials)
       )
       storeAuth(json.access, json.refresh, username)
-      let userslug = readJWT(json.access).slug
+      let authenticated_slug = readJWT(json.access).slug
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
-      dispatch(requestLoginSuccess(username, userslug))
+      dispatch(requestLoginSuccess(username, authenticated_slug))
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {
@@ -104,11 +104,11 @@ function requestRefresh() {
   }
 }
 
-function requestRefreshSuccess(username, userslug) {
+function requestRefreshSuccess(username, authenticated_slug) {
   return {
     type: types.REQUEST_REFRESH_SUCCESS,
     username,
-    userslug
+    authenticated_slug
   }
 }
 
@@ -144,10 +144,10 @@ export function refresh() {
         JSON.stringify({refresh: refresh_token})
       )
       storeAuth(json.access, json.refresh, username)
-      let userslug = readJWT(json.access).slug
+      let authenticated_slug = readJWT(json.access).slug
       // start timer to refresh token
       refreshAuthTimer(json.access, dispatch)
-      dispatch(requestRefreshSuccess(username, userslug))
+      dispatch(requestRefreshSuccess(username, authenticated_slug))
       // we fetch common data
       fetchCommonData(dispatch)
     } catch(error) {

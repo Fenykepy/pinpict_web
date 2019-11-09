@@ -308,7 +308,7 @@ function pins(state = {}, action) {
 }
 
 
-function selected_user(state = '', action) {
+function selected_user_slug(state = '', action) {
   switch (action.type) {
       case SELECT_USER:
           return action.userslug
@@ -327,7 +327,7 @@ const pinpict = combineReducers({
   scan,
   pins,
   boards,
-  selected_user,
+  selected_user_slug,
 })
 
 export default pinpict

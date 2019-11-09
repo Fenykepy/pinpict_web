@@ -6,11 +6,14 @@ import UserMenuButton from 'user/components/userMenuButton/UserMenuButton'
 
 import styles from './header.module.css'
 
+import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
 export default class Header extends Component {
 
+  static contextType = AppContext
+
   getHeaderLinks() {
-    if (this.props.username) {
+    if (this.context.authenticated_slug) {
       // user is authenticated
       return (
         <ul

@@ -189,7 +189,7 @@ function requestUserPrivateBoardsFailure(userslug, errors) {
 
 function shouldFetchUserPrivateBoards(state, userslug) {
   const user = state.pinpict.users.userslug
-  const authenticated = state.user.userslug
+  const authenticated = state.user.authenticated_slug
   // we dont fetch private boards if user isn't authenticated
   if (! authenticated) return false
   if (! user) return true

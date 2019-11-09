@@ -12,10 +12,10 @@ export default class Pinpict extends Component {
     
     return (
       <Switch>
-        <Route path="/:userslug/:boardslug/">
+        <Route path="/:selected_user_slug/:selected_board_slug/">
           <BoardDetail />
         </Route>
-        <Route path="/:userslug/">
+        <Route path="/:selected_user_slug/">
           <Boards />
         </Route>
       </Switch>

@@ -2,19 +2,19 @@ import { createStructuredSelector } from 'reselect'
 
 import {
   usernameSelector,
-  userslugSelector,
+  authenticatedSlugSelector,
   isLoggingInSelector,
+  isRefreshingSelector,
   loginErrorsSelector,
 } from 'user/selectors'
 
 
-const navigationSelector = state => state.navigation
 
 export const appSelector = createStructuredSelector({
   username: usernameSelector,
-  userslug: userslugSelector,
+  authenticated_slug: authenticatedSlugSelector,
   is_logging_in: isLoggingInSelector,
+  is_refreshing: isRefreshingSelector,
   login_errors: loginErrorsSelector,
-  navigation: navigationSelector, 
 })
 

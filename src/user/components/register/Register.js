@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import { Link, Redirect } from 'react-router-dom'
+
+import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
 import FormWrapper from 'forms/components/formWrapper/FormWrapper'
 
 export default class Register extends Component {
 
+  static contextType = AppContext
+  
   render() {
 
-    if (this.props.userslug) {
+    if (this.context.authenticated_slug) {
       // Redirect if user is loggued in
-      return (<Redirect to={`/${this.props.userslug}/`} />)
+      return (<Redirect to={`/${this.context.authenticated_slug}/`} />)
     }
 
     return (
@@ -26,7 +29,4 @@ export default class Register extends Component {
   }
 }
 
-Register.propTypes = {
-  userslug: PropTypes.string,
-}
 

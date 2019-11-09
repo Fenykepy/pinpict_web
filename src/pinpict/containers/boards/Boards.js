@@ -24,23 +24,23 @@ import PrivateBoardsWrapper from 'pinpict/components/privateBoardsWrapper/Privat
 
 class Boards extends Component {
 
-  fetchDatas(userslug) {
-    this.props.dispatch(selectUser(userslug))
-    this.props.dispatch(fetchUserIfNeeded(userslug))
-    this.props.dispatch(fetchUserPublicBoardsIfNeeded(userslug))
-    this.props.dispatch(fetchUserPrivateBoardsIfNeeded(userslug))
+  fetchDatas(selected_user_slug) {
+    this.props.dispatch(selectUser(selected_user_slug))
+    this.props.dispatch(fetchUserIfNeeded(selected_user_slug))
+    this.props.dispatch(fetchUserPublicBoardsIfNeeded(selected_user_slug))
+    this.props.dispatch(fetchUserPrivateBoardsIfNeeded(selected_user_slug))
   }
 
 
   componentDidMount() {
     // we fetch given user and his boards
-    this.fetchDatas(this.props.match.params.userslug)
+    this.fetchDatas(this.props.match.params.selected_user_slug)
   }
 
   componentDidUpdate(prevProps) {
     // we fetch given user and his boards if params changed
-    if (this.props.match.params.userslug !== prevProps.match.params.userslug) {
-      this.fetchDatas(this.props.match.params.userslug)
+    if (this.props.match.params.selected_user_slug !== prevProps.match.params.selected_user_slug) {
+      this.fetchDatas(this.props.match.params.selected_user_slug)
     }
   }
 
@@ -59,7 +59,6 @@ class Boards extends Component {
     return (
       <div>
         <UserDetail
-          userslug={this.props.userslug}
           selected_user={this.props.selected_user}
         />
         <section
@@ -73,7 +72,6 @@ class Boards extends Component {
         <PrivateBoardsWrapper
             private_boards={this.props.private_boards}
             match={this.props.match}
-            userslug={this.props.userslug}
         />
       </div>
     )
@@ -87,7 +85,6 @@ Boards.propTypes = {
   selected_user: PropTypes.object.isRequired,
   public_boards: PropTypes.array.isRequired,
   private_boards: PropTypes.array.isRequired,
-  userslug: PropTypes.string,
 }
 
 

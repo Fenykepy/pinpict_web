@@ -29,8 +29,7 @@ export default class UserDetail extends Component {
           <hr />
 
           <UserProfileLink
-            userslug={this.props.userslug}
-            selected_slug={this.props.selected_user.slug}
+            selected_user_slug={this.props.selected_user.slug}
           />
           <UserWebsite
             website={this.props.selected_user.website}
@@ -39,7 +38,7 @@ export default class UserDetail extends Component {
             user={this.props.selected_user}
           />
           <UserNav
-            userslug={this.props.selected_user.slug}
+            selected_user_slug={this.props.selected_user.slug}
             n_public_boards={this.props.selected_user.n_public_boards}
             n_public_pins={this.props.selected_user.n_public_pins}
             n_followers={this.props.selected_user.n_followers}
@@ -51,8 +50,7 @@ export default class UserDetail extends Component {
 }
 
 UserDetail.propTypes = {
-  userslug: PropTypes.string,
-  selected_user: PropTypes.object,
+  selected_user: PropTypes.object.isRequired,
 }
 
 

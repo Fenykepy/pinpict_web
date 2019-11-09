@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import { Redirect, Link } from 'react-router-dom'
 
 import { login } from 'user/actions'
+
+import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
 import FormWrapper from 'forms/components/formWrapper/FormWrapper'
 import FieldWrapper from 'forms/components/fieldWrapper/FieldWrapper'
@@ -13,6 +16,9 @@ import Spinner from 'app/components/spinner/Spinner'
 const LOGIN_FORM = "login-form"
 
 export default class Login extends Component {
+  
+  static contextType = AppContext
+
   
   constructor(props) {
     super(props)
@@ -37,11 +43,11 @@ export default class Login extends Component {
   }
 
   render() {
-    console.log('Login', this.props)
+    console.log('Login', this.props, this.context)
     
-    if (this.props.userslug) {
+    if (this.context.authenticated_slug) {
       // Redirect if user is loggued in
-      return (<Redirect to={`/${this.props.userslug}/`} />)
+      return (<Redirect to={`/${this.context.authenticated_slug}/`} />)
     }
 
 
