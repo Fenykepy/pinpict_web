@@ -7,6 +7,7 @@
     margin: 50px auto 14px;
     padding: 0;
     position: relative;
+    box-sizing: border-box;
 }
 
 .pin header {

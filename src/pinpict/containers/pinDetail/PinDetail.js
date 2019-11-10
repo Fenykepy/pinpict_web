@@ -26,6 +26,7 @@ import PrevPinButton from 'pinpict/components/prevPinButton/PrevPinButton'
 import NextPinButton from 'pinpict/components/nextPinButton/NextPinButton'
 import PinDetailHeader from 'pinpict/components/pinDetailHeader/PinDetailHeader'
 import PinDetailFooter from 'pinpict/components/pinDetailFooter/PinDetailFooter'
+import UserAdded from 'pinpict/components/userAdded/UserAdded'
 
 const BASE_URL = settings.base_url
 
@@ -133,6 +134,11 @@ class PinDetail extends Component {
         </article>
         
         {/* TODO add user article */}
+        <UserAdded
+          message="Added by"
+          user={this.props.user}
+          date={this.props.pin.date_created}
+        />
         {/* TODO add added via article */}
       </section>
     )
