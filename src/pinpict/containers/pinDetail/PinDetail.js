@@ -25,6 +25,7 @@ import Spinner from 'app/components/spinner/Spinner'
 import BackToBoardButton from 'pinpict/components/backToBoardButton/BackToBoardButton'
 import PrevPinButton from 'pinpict/components/prevPinButton/PrevPinButton'
 import NextPinButton from 'pinpict/components/nextPinButton/NextPinButton'
+import PinDetailFooter from 'pinpict/components/pinDetailFooter/PinDetailFooter'
 
 
 const BASE_URL = settings.base_url
@@ -124,15 +125,20 @@ class PinDetail extends Component {
               />
             </div>
           </a>
+          {/* TODO parse hashtags in description */}
           <p
             className={styles.description}
           >{this.props.pin.description}</p>
-          <footer>
-            {/* TODO source link if pinned from site */}
-            {/* TODO "Uploaded to pinpict" if uploaded */}
-            {/* TODO rate form if owner */}
-          </footer>
+          <PinDetailFooter
+            source={this.props.pin.source}
+            source_domain={this.props.pin.source_domain}
+            rate={this.props.pin.rate}
+            username={this.props.user.username}
+            userslug={this.props.user.slug}
+          />
         </article>
+        
+        {/* TODO add user article */}
       </section>
     )
 

@@ -5,6 +5,7 @@
 .pin {
     width: 736px;
     margin: 50px auto 14px;
+    padding: 0;
     position: relative;
 }
 
@@ -16,6 +17,24 @@
 
 .pin footer {
     border-top: 1px solid #505050;
+}
+
+.pin footer a {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    padding: 15px 25px;
+    border-radius: 0 0 4px 4px;
+}
+
+.pin footer a:hover, .pin footer a:active, .pin footer a:focus {
+    color: #222;
+    background-color: #585858;
+}
+
+.pin footer a span {
+    color: #000;
+    font-weight: bold;
 }
 
 .pin img {
