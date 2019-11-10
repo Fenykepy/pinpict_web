@@ -67,7 +67,9 @@ export default class BoardAbstract extends Component {
           <div
             className={styles.label + " " + styles.n_pins}
           >{this.props.n_pins}{this.props.n_pins === 1 ? " Pin" : " Pins"}</div>
+          {/* TODO edit cover button */}
         </Link>
+        {/* TODO edit button if owner, follow / unfollow button if authenticated, view button else */}
         <Button
           title="Edit board"
           primary={true}

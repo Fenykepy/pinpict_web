@@ -27,7 +27,7 @@ export default class UserDetail extends Component {
           />
           <h1>{this.props.user.username}</h1>
           <hr />
-
+          {/* TODO profile link if owner, follow / unfollow user if authenticated */}
           <UserProfileLink
             user_slug={this.props.user.slug}
           />

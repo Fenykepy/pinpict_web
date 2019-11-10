@@ -91,6 +91,7 @@ class PinDetail extends Component {
             {/* TODO link to site */}
             {/* TODO link to picture */}
             {/* TODO edit if owner */}
+            {/* TODO like if authenticated */}
             {/* TODO number of likes */}
             {/* TODO pin it if authenticated */}
           </header>

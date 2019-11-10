@@ -35,6 +35,8 @@ export default class Pin extends Component {
         <div
           className={styles.button_wrapper}
         >
+          {/* TODO like if authenticated, edit if owner */}
+          {/* TODO pinit if authenticated */}
           <Link
             to={'/pin/' + this.props.id + "/"}
           >
@@ -44,10 +46,12 @@ export default class Pin extends Component {
             />
           </Link>
         </div>
+          {/* TODO rate if owner */}
         <p
           className={styles.description}
         >{this.props.description}</p>
         <footer>
+          {/* TODO pinned from if source, uploaded to no source, user if search page or last pins page  */}
         </footer>
       </article>
 

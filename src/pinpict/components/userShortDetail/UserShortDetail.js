@@ -30,6 +30,7 @@ export default class UserShortDetail extends Component {
           <UserWebsite
             website={this.props.user.website}
           />
+          {/* TODO follow / unfollow board button if authenticated, edit button if owner */}
       </article>
     )
   }
