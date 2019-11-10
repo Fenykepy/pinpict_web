@@ -24,6 +24,7 @@ import {
 import styles from './pinDetail.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
+import BackToBoardButton from 'pinpict/components/backToBoardButton/BackToBoardButton'
 
 
 const BASE_URL = settings.base_url
@@ -94,6 +95,16 @@ class PinDetail extends Component {
             {/* TODO like if authenticated */}
             {/* TODO number of likes */}
             {/* TODO pin it if authenticated */}
+            {/* TODO back to board button */}
+            <BackToBoardButton
+              className={styles.back_to_board}
+              user_slug={this.props.pin.user}
+              board_slug={this.props.pin.board}
+            />
+            <button
+              className={styles.back_to_board}
+            ><span className="accessibility_text"></span></button>
+
           </header>
           {/* TODO prev link */}
           {/* TODO next link */}
