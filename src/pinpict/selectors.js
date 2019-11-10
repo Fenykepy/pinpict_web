@@ -9,6 +9,7 @@ const pinsSelector = state => state.pinpict.pins
 const usersSelector = state => state.pinpict.users
 const selectedUserslugSelector = state => state.pinpict.selected_user_slug
 const selectedBoarduserslugSelector = state => state.pinpict.selected_boarduserslug
+const selectedPinidSelector = state => state.pinpict.selected_pin_id
 
 const selectedUserSelector = createSelector(
   usersSelector, selectedUserslugSelector,
@@ -66,6 +67,14 @@ const selectedBoardPinsSelector = createSelector(
   }
 )
 
+const selectedPinSelector = createSelector(
+  selectedPinidSelector, pinsSelector,
+  (pin_id, pins) => {
+    if (pins[pin_id]) return pins[pin_id]
+    return {}
+  }
+)
+
 
 export const boardsListSelector = createStructuredSelector({
   selected_user: selectedUserSelector,
@@ -77,4 +86,9 @@ export const boardDetailSelector = createStructuredSelector({
   selected_user: selectedUserSelector,
   selected_board: selectedBoardSelector,
   pins: selectedBoardPinsSelector,
+})
+
+export const pinDetailSelector = createStructuredSelector({
+  selected_user: selectedUserSelector,
+  pin: selectedPinSelector,
 })

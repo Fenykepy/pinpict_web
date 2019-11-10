@@ -28,9 +28,6 @@ export default class Pin extends Component {
       )
     }
 
-    let url = this.props.match.url
-    url = url.endsWith('/') ? url : url + "/"
-
     return (
       <article
         className={styles.pin}
@@ -39,7 +36,7 @@ export default class Pin extends Component {
           className={styles.button_wrapper}
         >
           <Link
-            to={url + 'pin/' + this.props.id + "/"}
+            to={'/pin/' + this.props.id + "/"}
           >
             <img
               src={BASE_URL + 'media/previews/236/' + getPicturePath(this.props.sha1)}
