@@ -1,0 +1,21 @@
+.rater li {
+    display: inline-block;
+}
+
+.star, .dot {
+    height: 25px;
+    width: 25px;
+    background-color: inherit;
+}
+.star:hover, .star:active, .star:focus, .dot:hover, .dot:active, .dot:focus {
+    background-color: #585858;
+    border-radius: 12.5px;
+}
+
+.star {
+    background-image: url('./star.png');
+}
+
+.dot {
+    background-image: url('./dot.png');
+}

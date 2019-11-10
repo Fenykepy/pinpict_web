@@ -19,6 +19,14 @@
     border-top: 1px solid #505050;
 }
 
+/* rater */
+.pin footer ul {
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+    padding: 10px 0;
+}
+
 .pin footer a {
     text-decoration: none;
     display: block;

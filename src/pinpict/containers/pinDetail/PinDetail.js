@@ -132,7 +132,7 @@ class PinDetail extends Component {
           <PinDetailFooter
             source={this.props.pin.source}
             source_domain={this.props.pin.source_domain}
-            rate={this.props.pin.rate}
+            rate={this.props.pin.owner_rate}
             username={this.props.user.username}
             userslug={this.props.user.slug}
           />

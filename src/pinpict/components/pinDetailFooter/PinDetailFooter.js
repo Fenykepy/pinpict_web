@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Link } from 'react-router-dom'
 
+import PinRate from 'pinpict/components/pinRate/PinRate'
 
 export default class PinDetailFooter extends Component {
 
@@ -35,7 +36,10 @@ export default class PinDetailFooter extends Component {
         className={this.props.className}
       >
         {this.getLink()}
-        {/* TODO rate form if owner */}
+        <PinRate
+          rate={this.props.rate}
+          userslug={this.props.userslug}
+        />
       </footer>
     )
   }
