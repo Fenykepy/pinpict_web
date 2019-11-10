@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 
 import { appSelector } from 'app/selectors'
 
@@ -19,6 +19,11 @@ class App extends Component {
 
     render() {
       console.log('App', this.props)
+
+      if (! this.props.location.pathname.endsWith('/')) {
+        // We always append "/" at url end
+        return (<Redirect to={this.props.location.pathname + '/'} />)
+      }
 
       if (! this.props.authenticated_slug && (this.props.is_logging_in ||
           this.props.is_refreshing)) {
@@ -67,6 +72,7 @@ class App extends Component {
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
   is_logging_in: PropTypes.bool,
   login_errors: PropTypes.object,
   username: PropTypes.string,

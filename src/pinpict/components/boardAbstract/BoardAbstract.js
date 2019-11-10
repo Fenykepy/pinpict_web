@@ -21,15 +21,12 @@ export default class BoardAbstract extends Component {
   render() {
     //console.log('BoardAbstract', this.props)
 
-    let url = this.props.match.url
-    url = url.endsWith('/') ? url : url + "/"
-
     return (
       <article
         className={styles.board}
       >
         <Link
-          to={url + this.props.slug + "/"}
+          to={this.props.match.url + this.props.slug + "/"}
           title={'More from ' + this.props.title}
         >
           <header><h1>{this.props.title}</h1></header>
