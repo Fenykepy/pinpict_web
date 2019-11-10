@@ -291,8 +291,10 @@ function shouldFetchPin(state, pin_id) {
 export function fetchPinIfNeeded(pin_id) {
   return (dispatch, getState) => {
     if ( shouldFetchPin(getState(), pin_id) ) {
+      console.log('need to fetch pin')
       return dispatch(fetchPin(pin_id))
     }
+    console.log('no need to fetch pin')
     // else return a resolved promise
     return new Promise((resolve, reject) => resolve())
   }
@@ -303,16 +305,25 @@ function fetchPin(pin_id) {
   return async function(dispatch, getState) {
     // start request
     dispatch(requestPin(pin_id))
-
     try {
       let json = await Fetch.get(`api/pin/${pin_id}/`)
-      dispatch(requestPinSuccess(pin_id, json))
+      return dispatch(requestPinSuccess(pin_id, json))
     } catch (error) {
       let json = await error.response.json()
       // store error in state
       dispatch(requestPinFailure(pin_id, json))
       throw error
     }
+  }
+}
+
+
+export function fetchAddedViaIfNeeded(pin_id) {
+  return (dispatch, getState) => {
+    dispatch(fetchPinIfNeeded(pin_id)).then(() => {
+      let pin = getState().pinpict.pins[pin_id]
+      dispatch(fetchUserIfNeeded(pin.user))
+    })
   }
 }
 

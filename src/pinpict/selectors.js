@@ -75,6 +75,26 @@ const selectedPinSelector = createSelector(
   }
 )
 
+const addedViaUserslugSelector = createSelector(
+  selectedPinSelector, pinsSelector,
+  (pin, pins) => {
+    if (pin.added_via && pins[pin.added_via]) {
+      return pins[pin.added_via].user
+    }
+    return ''
+  }
+)
+
+const addedViaUserSelector = createSelector(
+  addedViaUserslugSelector, usersSelector,
+  (userslug, users) => {
+    if (userslug && users[userslug]) {
+      return users[userslug]
+    }
+    return {}
+  }
+)
+
 
 export const boardsListSelector = createStructuredSelector({
   user: selectedUserSelector,
@@ -92,4 +112,5 @@ export const pinDetailSelector = createStructuredSelector({
   user: selectedUserSelector,
   board: selectedBoardSelector,
   pin: selectedPinSelector,
+  added_via: addedViaUserSelector,
 })

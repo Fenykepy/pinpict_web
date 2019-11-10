@@ -17,6 +17,7 @@ import {
   fetchPinIfNeeded,
   fetchUserIfNeeded,
   fetchShortBoardIfNeeded,
+  fetchAddedViaIfNeeded,
 } from 'pinpict/actions'
 
 import styles from './pinDetail.module.css'
@@ -48,9 +49,18 @@ class PinDetail extends Component {
     }
   }
 
+  fetchAddedVia() {
+    // we fetch added via related pin, user will be fetched in action
+    if (this.props.pin.fetched && this.props.pin.added_via) {
+      this.props.dispatch(fetchAddedViaIfNeeded(this.props.pin.added_via))
+    }
+  }
+
+
   componentDidMount() {
     this.fetchPin(this.props.match.params.pin_id)
     this.fetchUserAndBoard()
+    this.fetchAddedVia()
   }
 
   componentDidUpdate(prevProps) {
@@ -61,6 +71,9 @@ class PinDetail extends Component {
         this.props.pin.board !== prevProps.pin.board) {
           console.log('fetch user and board')
           this.fetchUserAndBoard()
+    }
+    if (this.props.pin.added_via !== prevProps.pin.added_via) {
+      this.fetchAddedVia()
     }
   }
 
@@ -133,13 +146,16 @@ class PinDetail extends Component {
           />
         </article>
         
-        {/* TODO add user article */}
         <UserAdded
           message="Added by"
           user={this.props.user}
           date={this.props.pin.date_created}
         />
-        {/* TODO add added via article */}
+
+        <UserAdded
+          message="Added via"
+          user={this.props.added_via}
+        />
       </section>
     )
 
@@ -152,6 +168,7 @@ PinDetail.propTypes = {
   user: PropTypes.object.isRequired,
   board: PropTypes.object.isRequired,
   pin: PropTypes.object.isRequired,
+  added_via: PropTypes.object,
 }
 
 
