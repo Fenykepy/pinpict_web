@@ -22,12 +22,12 @@ import PinsList from 'pinpict/components/pinsList/PinsList'
 
 class BoardDetail extends Component {
   
-  fetchDatas(user_slug, board_slug) {
-    this.props.dispatch(selectUser(user_slug))
-    this.props.dispatch(selectBoard(user_slug, board_slug))
-    this.props.dispatch(fetchUserIfNeeded(user_slug))
+  fetchDatas(userslug, boardslug) {
+    this.props.dispatch(selectUser(userslug))
+    this.props.dispatch(selectBoard(userslug, boardslug))
+    this.props.dispatch(fetchUserIfNeeded(userslug))
     this.props.dispatch(fetchShortBoardIfNeeded(
-      user_slug, board_slug))
+      userslug, boardslug))
   }
   
   fetchPins() {
@@ -40,18 +40,18 @@ class BoardDetail extends Component {
 
   componentDidMount() {
     this.fetchDatas(
-      this.props.match.params.user_slug,
-      this.props.match.params.board_slug
+      this.props.match.params.userslug,
+      this.props.match.params.boardslug
     )
     this.fetchPins()
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.user_slug !== prevProps.match.params.user_slug ||
-        this.props.match.params.board_slug !== prevProps.match.params.board_slug) {
+    if (this.props.match.params.userslug !== prevProps.match.params.userslug ||
+        this.props.match.params.boardslug !== prevProps.match.params.boardslug) {
           this.fetchDatas(
-            this.props.match.params.user_slug,
-            this.props.match.params.board_slug
+            this.props.match.params.userslug,
+            this.props.match.params.boardslug
           )
           this.fetchPins()
     }

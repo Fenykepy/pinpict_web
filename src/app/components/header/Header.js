@@ -13,7 +13,7 @@ export default class Header extends Component {
   static contextType = AppContext
 
   getHeaderLinks() {
-    if (this.context.authenticated_slug) {
+    if (this.context.authenticatedslug) {
       // user is authenticated
       return (
         <ul

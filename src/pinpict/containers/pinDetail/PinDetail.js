@@ -93,8 +93,8 @@ class PinDetail extends Component {
             {/* TODO back to board button */}
             <BackToBoardButton
               className={styles.back_to_board}
-              user_slug={this.props.pin.user}
-              board_slug={this.props.pin.board}
+              userslug={this.props.pin.user}
+              boardslug={this.props.pin.board}
             />
           </header>
           {/* TODO prev link */}

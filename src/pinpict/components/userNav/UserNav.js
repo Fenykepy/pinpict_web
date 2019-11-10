@@ -15,7 +15,7 @@ export default class UserNav extends Component {
         <ul>
           <li>
             <NavLink
-              to={`/${this.props.user_slug}/`}
+              to={`/${this.props.userslug}/`}
               exact={true}
               activeClassName={styles.active}
             >
@@ -30,7 +30,7 @@ export default class UserNav extends Component {
           </li>
           <li>
             <NavLink
-              to={`/${this.props.user_slug}/pins/`}
+              to={`/${this.props.userslug}/pins/`}
               exact={true}
               activeClassName={styles.active}
             >
@@ -45,7 +45,7 @@ export default class UserNav extends Component {
           </li>
           <li>
             <NavLink
-              to={`/${this.props.user_slug}/followers/`}
+              to={`/${this.props.userslug}/followers/`}
               exact={true}
               activeClassName={styles.active}
             >
@@ -60,7 +60,7 @@ export default class UserNav extends Component {
           </li>
           <li>
             <NavLink
-              to={`/${this.props.user_slug}/following/`}
+              to={`/${this.props.userslug}/following/`}
               exact={true}
               activeClassName={styles.active}
             >
@@ -81,7 +81,7 @@ export default class UserNav extends Component {
 
 
 UserNav.propTypes = {
-  user_slug: PropTypes.string.isRequired,
+  userslug: PropTypes.string.isRequired,
   n_public_boards: PropTypes.number.isRequired,
   n_public_pins: PropTypes.number.isRequired,
   n_followers: PropTypes.number.isRequired,

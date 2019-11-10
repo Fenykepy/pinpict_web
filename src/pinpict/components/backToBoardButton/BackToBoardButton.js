@@ -8,10 +8,10 @@ export default class BackToBoardButton extends Component {
 
   render() {
 
-    if (this.props.user_slug && this.props.board_slug) {
+    if (this.props.userslug && this.props.boardslug) {
       return (
         <Link
-          to={`/${this.props.user_slug}/${this.props.board_slug}/`}
+          to={`/${this.props.userslug}/${this.props.boardslug}/`}
           className={this.props.className}
           title="Go to board"
         >
@@ -25,7 +25,7 @@ export default class BackToBoardButton extends Component {
 
 
 BackToBoardButton.propTypes = {
-  user_slug: PropTypes.string,
-  board_slug: PropTypes.string,
+  userslug: PropTypes.string,
+  boardslug: PropTypes.string,
   className: PropTypes.string,
 }

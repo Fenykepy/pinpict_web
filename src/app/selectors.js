@@ -12,7 +12,7 @@ import {
 
 export const appSelector = createStructuredSelector({
   username: usernameSelector,
-  authenticated_slug: authenticatedSlugSelector,
+  authenticatedslug: authenticatedSlugSelector,
   is_logging_in: isLoggingInSelector,
   is_refreshing: isRefreshingSelector,
   login_errors: loginErrorsSelector,

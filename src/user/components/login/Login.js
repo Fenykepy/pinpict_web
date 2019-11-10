@@ -45,9 +45,9 @@ export default class Login extends Component {
   render() {
     console.log('Login', this.props, this.context)
     
-    if (this.context.authenticated_slug) {
+    if (this.context.authenticatedslug) {
       // Redirect if user is loggued in
-      return (<Redirect to={`/${this.context.authenticated_slug}/`} />)
+      return (<Redirect to={`/${this.context.authenticatedslug}/`} />)
     }
 
 

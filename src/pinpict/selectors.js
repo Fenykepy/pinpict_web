@@ -7,7 +7,7 @@ import {
 const boardsSelector = state => state.pinpict.boards
 const pinsSelector = state => state.pinpict.pins
 const usersSelector = state => state.pinpict.users
-const selectedUserslugSelector = state => state.pinpict.selected_user_slug
+const selectedUserslugSelector = state => state.pinpict.selected_userslug
 const selectedBoarduserslugSelector = state => state.pinpict.selected_boarduserslug
 const selectedPinidSelector = state => state.pinpict.selected_pin_id
 

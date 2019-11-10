@@ -25,7 +25,7 @@ class App extends Component {
         return (<Redirect to={this.props.location.pathname + '/'} />)
       }
 
-      if (! this.props.authenticated_slug && (this.props.is_logging_in ||
+      if (! this.props.authenticatedslug && (this.props.is_logging_in ||
           this.props.is_refreshing)) {
             return (
               <section>
@@ -41,7 +41,7 @@ class App extends Component {
         >
           <AppContextProvider
             value={{
-              authenticated_slug: this.props.authenticated_slug
+              authenticatedslug: this.props.authenticatedslug
             }}
           >  
             <Header 
@@ -76,7 +76,7 @@ App.propTypes = {
   is_logging_in: PropTypes.bool,
   login_errors: PropTypes.object,
   username: PropTypes.string,
-  authenticated_slug: PropTypes.string,
+  authenticatedslug: PropTypes.string,
 }
 
 // Wrap the component to inject dispatch and state into it

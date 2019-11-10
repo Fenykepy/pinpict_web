@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 
 export const AppContext = React.createContext({
-  authenticated_slug: '',
+  authenticatedslug: '',
 })
 
 

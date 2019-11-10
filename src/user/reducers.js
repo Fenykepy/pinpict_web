@@ -18,17 +18,17 @@ export default function user(state = {}, action) {
       return {
         is_logging_in: true,
         username: '',
-        authenticated_slug: '',
+        authenticatedslug: '',
       }
     case REQUEST_LOGIN_SUCCESS:
       return {
         username: action.username,
-        authenticated_slug: action.authenticated_slug,
+        authenticatedslug: action.authenticatedslug,
       }
     case REQUEST_LOGIN_FAILURE:
       return {
         username: '',
-        authenticated_slug: '',
+        authenticatedslug: '',
         login_errors: action.errors,
       }
     case REQUEST_REFRESH:
@@ -41,12 +41,12 @@ export default function user(state = {}, action) {
         ...state,
         is_refreshing: false,
         username: action.username,
-        authenticated_slug: action.authenticated_slug,
+        authenticatedslug: action.authenticatedslug,
       }
     case REQUEST_REFRESH_FAILURE:
       return {
         username:'',
-        authenticated_slug: '',
+        authenticatedslug: '',
         refresh_errors: action.errors,
       }
     case REQUEST_CURRENT_USER:

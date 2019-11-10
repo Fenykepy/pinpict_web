@@ -12,11 +12,11 @@ export default class PrivateBoardWrapper extends Component {
   static contextType = AppContext
 
   shouldShowPrivateBoards() {
-    if (! this.context.authenticated_slug) {
+    if (! this.context.authenticatedslug) {
       // user isn't authenticated
       return false
     }
-    if (this.props.match.params.selected_user_slug === this.context.authenticated_slug) {
+    if (this.props.match.params.selected_userslug === this.context.authenticatedslug) {
       // selected user is authenticated user
       return true
     }

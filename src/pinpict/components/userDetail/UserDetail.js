@@ -29,7 +29,7 @@ export default class UserDetail extends Component {
           <hr />
           {/* TODO profile link if owner, follow / unfollow user if authenticated */}
           <UserProfileLink
-            user_slug={this.props.user.slug}
+            userslug={this.props.user.slug}
           />
           <UserWebsite
             website={this.props.user.website}
@@ -38,7 +38,7 @@ export default class UserDetail extends Component {
             user={this.props.user}
           />
           <UserNav
-            user_slug={this.props.user.slug}
+            userslug={this.props.user.slug}
             n_public_boards={this.props.user.n_public_boards}
             n_public_pins={this.props.user.n_public_pins}
             n_followers={this.props.user.n_followers}

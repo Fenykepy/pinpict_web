@@ -17,7 +17,7 @@ export default class UserProfileLink extends Component {
     
     console.log('UserProfileLink', this.props, this.context)
     
-    if (this.props.selected_user_slug === this.context.authenticated_slug) {
+    if (this.props.selected_userslug === this.context.authenticatedslug) {
       return (
         <ButtonLink
           to="/profile/"
@@ -33,6 +33,6 @@ export default class UserProfileLink extends Component {
 
 
 UserProfileLink.propTypes = {
-  selected_user_slug: PropTypes.string,
+  selected_userslug: PropTypes.string,
 }
 

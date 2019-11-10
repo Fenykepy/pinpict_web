@@ -24,23 +24,23 @@ import PrivateBoardsWrapper from 'pinpict/components/privateBoardsWrapper/Privat
 
 class Boards extends Component {
 
-  fetchDatas(user_slug) {
-    this.props.dispatch(selectUser(user_slug))
-    this.props.dispatch(fetchUserIfNeeded(user_slug))
-    this.props.dispatch(fetchUserPublicBoardsIfNeeded(user_slug))
-    this.props.dispatch(fetchUserPrivateBoardsIfNeeded(user_slug))
+  fetchDatas(userslug) {
+    this.props.dispatch(selectUser(userslug))
+    this.props.dispatch(fetchUserIfNeeded(userslug))
+    this.props.dispatch(fetchUserPublicBoardsIfNeeded(userslug))
+    this.props.dispatch(fetchUserPrivateBoardsIfNeeded(userslug))
   }
 
 
   componentDidMount() {
     // we fetch given user and his boards
-    this.fetchDatas(this.props.match.params.user_slug)
+    this.fetchDatas(this.props.match.params.userslug)
   }
 
   componentDidUpdate(prevProps) {
     // we fetch given user and his boards if params changed
-    if (this.props.match.params.user_slug !== prevProps.match.params.user_slug) {
-      this.fetchDatas(this.props.match.params.user_slug)
+    if (this.props.match.params.userslug !== prevProps.match.params.userslug) {
+      this.fetchDatas(this.props.match.params.userslug)
     }
   }
 
