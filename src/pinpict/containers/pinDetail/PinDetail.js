@@ -23,6 +23,8 @@ import styles from './pinDetail.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
 import BackToBoardButton from 'pinpict/components/backToBoardButton/BackToBoardButton'
+import PrevPinButton from 'pinpict/components/prevPinButton/PrevPinButton'
+import NextPinButton from 'pinpict/components/nextPinButton/NextPinButton'
 
 
 const BASE_URL = settings.base_url
@@ -93,13 +95,19 @@ class PinDetail extends Component {
               user_slug={this.props.pin.user}
               board_slug={this.props.pin.board}
             />
-            <button
-              className={styles.back_to_board}
-            ><span className="accessibility_text"></span></button>
-
           </header>
           {/* TODO prev link */}
+          <PrevPinButton
+            pins_ids={this.props.board.pins}
+            pin_id={this.props.match.params.pin_id}
+            className={styles.prev_pin}
+          />
           {/* TODO next link */}
+          <NextPinButton
+            pins_ids={this.props.board.pins}
+            pin_id={this.props.match.params.pin_id}
+            className={styles.next_pin}
+          />
           {/* We link full image if uploaded, and original url if pined from a site. */}
           <a
             href={this.props.pin.source ? this.props.pin.source : BASE_URL + 'media/previews/full/' + getPicturePath(this.props.pin.sha1)}

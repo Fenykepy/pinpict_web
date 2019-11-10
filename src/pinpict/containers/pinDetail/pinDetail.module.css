@@ -5,6 +5,7 @@
 .pin {
     width: 736px;
     margin: 50px auto 14px;
+    position: relative;
 }
 
 .pin header {
@@ -76,3 +77,64 @@ a.back_to_board:after {
     right: 30px;
     background-color: #222;
 }
+
+.prev_pin, .next_pin {
+    display: block;
+    position: absolute;
+    width: 55px;
+    top: 0;
+    bottom: 0;
+}
+
+.prev_pin div, .next_pin div {
+    visibility: hidden;
+    width: 45px;
+    position: absolute;
+    height: 80px;
+    width: 45px;
+    top: 40%;
+    border-radius: 4px;
+    background-color: #404040;
+    box-shadow: 0 0 8px #222;
+    border: 1px solid #222;
+}
+
+.prev_pin:hover div, .prev_pin:focus div, .prev_pin:active div {
+    visibility: visible;
+    left: 0;
+}
+
+.next_pin:hover div, .next_pin:focus div, .next_pin:active div {
+    visibility: visible;
+    right: 0;
+}
+
+.prev_pin {
+    left: -55px;
+}
+
+.next_pin {
+    right: -55px;
+}
+
+.prev_pin div:before, .next_pin div:before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: 50%;
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid transparent;
+    margin-top: -18px;
+}
+
+.prev_pin div:before {
+    border-right: 20px solid #222;
+    left: 10px;
+}
+
+.next_pin div:before {
+    border-left: 20px solid #222;
+    right: 10px;
+}
+

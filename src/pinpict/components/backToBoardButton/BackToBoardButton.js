@@ -13,6 +13,7 @@ export default class BackToBoardButton extends Component {
         <Link
           to={`/${this.props.user_slug}/${this.props.board_slug}/`}
           className={this.props.className}
+          title="Go to board"
         >
             <span className="accessibility_text">Back to board</span>
         </Link>
