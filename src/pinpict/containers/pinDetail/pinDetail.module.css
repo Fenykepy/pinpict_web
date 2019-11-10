@@ -11,13 +11,26 @@
 
 .pin header {
     height: 60px;
-    padding: 0 8px;
+    padding: 0 10px;
     border-bottom: 1px solid #313131;
+    display: flex;
+    align-items: center;
+}
+
+.pin header a, .pin header button {
+    width: auto;
+    height: 40px;
+    margin: 0 10px 0 0;
+}
+
+.pin header button.pinit {
+    margin: 0 0 0 auto;
 }
 
 .pin footer {
     border-top: 1px solid #505050;
 }
+
 
 /* rater */
 .pin footer ul {
@@ -63,7 +76,7 @@
     word-wrap: break-word;
 }
 
-a.back_to_board {
+.pin a.back_to_board {
     display: block;
     position: fixed;
     top: 80px;
@@ -74,6 +87,7 @@ a.back_to_board {
     border: 1px solid #222;
     background-color: #404040;
     border-radius: 4px 0 0 4px;
+    margin: 0;
 }
 
 a.back_to_board:hover, a.back_to_board:focus, a.back_to_board:active {

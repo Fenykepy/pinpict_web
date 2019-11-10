@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
-import ButtonLink from 'forms/components/buttonLink/ButtonLink'
+import ButtonRouterLink from 'forms/components/buttonRouterLink/ButtonRouterLink'
 
 import styles from './userProfileLink.module.css'
 
@@ -17,14 +17,14 @@ export default class UserProfileLink extends Component {
     
     console.log('UserProfileLink', this.props, this.context)
     
-    if (this.props.selected_userslug === this.context.authenticatedslug) {
+    if (this.props.userslug === this.context.authenticatedslug) {
       return (
-        <ButtonLink
+        <ButtonRouterLink
           to="/profile/"
           className={styles.link}
           title="Edit profile"
           primary={true}
-        >Edit profile</ButtonLink>
+        >Edit profile</ButtonRouterLink>
       )
     }
     return null
@@ -33,6 +33,6 @@ export default class UserProfileLink extends Component {
 
 
 UserProfileLink.propTypes = {
-  selected_userslug: PropTypes.string,
+  userslug: PropTypes.string,
 }
 

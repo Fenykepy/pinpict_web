@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import styles from '../submit/submit.module.css'
 
-export default class ButtonLink extends Component {
+export default class ButtonRouterLink extends Component {
   
   getClassNames() {
     let classes = []
@@ -20,22 +20,18 @@ export default class ButtonLink extends Component {
 
   render() {
     return (
-      <a
-        href={this.props.href}
+      <Link
+        to={this.props.to}
         title={this.props.title || null}
-        target={this.props.target || null}
-        rel={this.props.rel || null}
         className={this.getClassNames()}
-      >{this.props.children}</a>
+      >{this.props.children}</Link>
     )
   }
 }
 
-ButtonLink.propTypes = {
-  href: PropTypes.string.isRequired,
+ButtonRouterLink.propTypes = {
+  to: PropTypes.string.isRequired,
   title: PropTypes.string,
-  target: PropTypes.string,
-  rel: PropTypes.string,
   className: PropTypes.string,
   primary: PropTypes.bool,
 }

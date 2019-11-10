@@ -22,11 +22,10 @@ import {
 import styles from './pinDetail.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
-import BackToBoardButton from 'pinpict/components/backToBoardButton/BackToBoardButton'
 import PrevPinButton from 'pinpict/components/prevPinButton/PrevPinButton'
 import NextPinButton from 'pinpict/components/nextPinButton/NextPinButton'
+import PinDetailHeader from 'pinpict/components/pinDetailHeader/PinDetailHeader'
 import PinDetailFooter from 'pinpict/components/pinDetailFooter/PinDetailFooter'
-
 
 const BASE_URL = settings.base_url
 
@@ -83,27 +82,20 @@ class PinDetail extends Component {
         <article
           className={styles.pin}
         >
-          <header>
-            {/* TODO link to site */}
-            {/* TODO link to picture */}
-            {/* TODO edit if owner */}
-            {/* TODO like if authenticated */}
-            {/* TODO number of likes */}
-            {/* TODO pin it if authenticated */}
-            {/* TODO back to board button */}
-            <BackToBoardButton
-              className={styles.back_to_board}
-              userslug={this.props.pin.user}
-              boardslug={this.props.pin.board}
-            />
-          </header>
-          {/* TODO prev link */}
+          <PinDetailHeader
+            image_link={this.props.pin.source || 
+              BASE_URL + 'media/previews/full/' + 
+              getPicturePath(this.props.pin.sha1)}
+            userslug={this.props.pin.user}
+            boardslug={this.props.pin.board}
+            source={this.props.pin.source}
+            likes={this.props.pin.n_likes}
+          />
           <PrevPinButton
             pins_ids={this.props.board.pins}
             pin_id={this.props.match.params.pin_id}
             className={styles.prev_pin}
           />
-          {/* TODO next link */}
           <NextPinButton
             pins_ids={this.props.board.pins}
             pin_id={this.props.match.params.pin_id}
@@ -111,7 +103,8 @@ class PinDetail extends Component {
           />
           {/* We link full image if uploaded, and original url if pined from a site. */}
           <a
-            href={this.props.pin.source ? this.props.pin.source : BASE_URL + 'media/previews/full/' + getPicturePath(this.props.pin.sha1)}
+            href={this.props.pin.source ? this.props.pin.source : BASE_URL + 
+              'media/previews/full/' + getPicturePath(this.props.pin.sha1)}
             target="_blank"
             rel="noopener noreferrer"
             title="Open image in new tab"
@@ -140,6 +133,7 @@ class PinDetail extends Component {
         </article>
         
         {/* TODO add user article */}
+        {/* TODO add added via article */}
       </section>
     )
 

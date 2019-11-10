@@ -17,6 +17,7 @@ export default class PinRate extends Component {
   }
 
   ratePin(rate) {
+    // TODO Link it to rate function
       console.log(`rate pin ${this.props.pin_id} at ${rate}`)
   }
 

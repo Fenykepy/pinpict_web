@@ -17,7 +17,7 @@
     border-radius: 2px;
     color: #ccc;
     background: linear-gradient(#404040, #222);
-
+    box-sizing: border-box;
 }
 
 a.button, a.button:visited {
