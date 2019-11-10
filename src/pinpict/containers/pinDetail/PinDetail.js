@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from 'react-router-dom'
-
 import settings from 'pinpict_config'
 
 import { getPicturePath } from 'helpers/utils'
@@ -43,9 +41,7 @@ class PinDetail extends Component {
       this.props.dispatch(selectUser(this.props.pin.user))
       this.props.dispatch(fetchUserIfNeeded(this.props.pin.user))
       this.props.dispatch(selectBoard(this.props.pin.user, this.props.pin.board))
-      this.props.dispatch(fetchShortBoardIfNeeded(
-        this.props.pin.user, this.props.pin.board, false
-      ))
+      this.props.dispatch(fetchShortBoardIfNeeded(this.props.pin.user, this.props.pin.board))
     }
   }
 
@@ -63,10 +59,6 @@ class PinDetail extends Component {
           console.log('fetch user and board')
           this.fetchUserAndBoard()
     }
-  }
-
-  getPrevLink() {
-    let pins = this.props.board.pins
   }
 
   render() {

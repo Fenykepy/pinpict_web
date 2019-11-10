@@ -368,11 +368,11 @@ function shouldFetchShortBoard(state, boarduserslug) {
 }
 
 
-export function fetchShortBoardIfNeeded(userslug, boardslug, fetchPins=true) {
+export function fetchShortBoardIfNeeded(userslug, boardslug) {
   let boarduserslug = setBoarduserslug(userslug, boardslug)
   return (dispatch, getState) => {
     if ( shouldFetchShortBoard(getState(), boarduserslug) ) {
-      return dispatch(fetchShortBoard(userslug, boardslug, fetchPins))
+      return dispatch(fetchShortBoard(userslug, boardslug))
     }
     // else return a resolved promise
     return new Promise((resolve, reject) => resolve())
@@ -380,7 +380,7 @@ export function fetchShortBoardIfNeeded(userslug, boardslug, fetchPins=true) {
 }
 
 
-function fetchShortBoard(userslug, boardslug, fetchPins) {
+function fetchShortBoard(userslug, boardslug) {
   return async function(dispatch) {
     let boarduserslug = setBoarduserslug(userslug, boardslug)
     // start request
@@ -389,12 +389,6 @@ function fetchShortBoard(userslug, boardslug, fetchPins) {
     try {
       let json = await Fetch.get(`api/board/user/${userslug}/board/${boardslug}/`)
       dispatch(requestShortBoardSuccess(boarduserslug, json))
-      // Fetch board pins' if necessary
-      if (fetchPins) {
-        for (const pin_id of json.pins) {
-          dispatch(fetchPinIfNeeded(pin_id))
-        }
-      }
     } catch (error) {
       let json = await error.response.json()
       // store error in state

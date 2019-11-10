@@ -11,6 +11,7 @@ import {
   selectBoard,
   fetchUserIfNeeded,
   fetchShortBoardIfNeeded,
+  fetchPinIfNeeded,
 } from 'pinpict/actions'
 
 import styles from './boardDetail.module.css'
@@ -28,12 +29,21 @@ class BoardDetail extends Component {
     this.props.dispatch(fetchShortBoardIfNeeded(
       user_slug, board_slug))
   }
+  
+  fetchPins() {
+    if (this.props.board.pins) {
+      for (const pin_id of this.props.board.pins) {
+        this.props.dispatch(fetchPinIfNeeded(pin_id))
+      }
+    }
+  }
 
   componentDidMount() {
     this.fetchDatas(
       this.props.match.params.user_slug,
       this.props.match.params.board_slug
     )
+    this.fetchPins()
   }
 
   componentDidUpdate(prevProps) {
@@ -43,6 +53,10 @@ class BoardDetail extends Component {
             this.props.match.params.user_slug,
             this.props.match.params.board_slug
           )
+          this.fetchPins()
+    }
+    if (this.props.board.pins !== prevProps.board.pins) {
+        this.fetchPins()
     }
   }
 
