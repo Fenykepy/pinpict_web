@@ -1,0 +1,36 @@
+.pin_detail {
+    padding-bottom: 50px;
+}
+
+.pin {
+    width: 736px;
+    margin: 50px auto 14px;
+}
+
+.pin header {
+    height: 60px;
+    padding: 0 8px;
+    border-bottom: 1px solid #313131;
+}
+
+.pin footer {
+    border-top: 1px solid #505050;
+}
+
+.pin img {
+    display: block;
+    max-width: 726px;
+    margin: 0 auto;
+}
+
+.img_wrapper {
+    background-color: #474747;
+    text-align: center;
+    border-bottom: 1px solid #313131;
+    padding: 8px 0;
+}
+
+.description {
+    padding: 18px 25px;
+    word-wrap: break-word;
+}

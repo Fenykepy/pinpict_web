@@ -21,6 +21,7 @@ import {
   fetchShortBoardIfNeeded,
 } from 'pinpict/actions'
 
+import styles from './pinDetail.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
 
@@ -77,10 +78,10 @@ class PinDetail extends Component {
 
     return (
       <section
-        className="pin_detail"
+        className={styles.pin_detail}
       >
         <article
-          className="pin"
+          className={styles.pin}
         >
           <header>
             {/* TODO link to site */}
@@ -96,9 +97,10 @@ class PinDetail extends Component {
             href={this.props.pin.source ? this.props.pin.source : BASE_URL + 'media/previews/full/' + getPicturePath(this.props.pin.sha1)}
             target="_blank"
             rel="noopener noreferrer"
+            title="Open image in new tab"
           >
             <div
-              className="image_wrapper"
+              className={styles.img_wrapper}
             >
               <img
                 src={BASE_URL + 'media/previews/736/' + getPicturePath(this.props.pin.sha1)}
@@ -107,7 +109,7 @@ class PinDetail extends Component {
             </div>
           </a>
           <p
-            className="pin_description"
+            className={styles.description}
           >{this.props.pin.description}</p>
           <footer>
             {/* TODO source link if pinned from site */}
