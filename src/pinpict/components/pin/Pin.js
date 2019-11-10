@@ -18,7 +18,7 @@ const BASE_URL = settings.base_url
 export default class Pin extends Component {
 
   render() {
-    console.log('Pin', this.props)
+    //console.log('Pin', this.props)
 
     if (this.props.is_fetching) {
       return (

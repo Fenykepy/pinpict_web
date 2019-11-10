@@ -14,6 +14,7 @@ export default class PinsList extends Component {
           {this.props.pins.map(pin =>
              (<Pin 
                 {...pin}
+                key={pin.id}
                 match={this.props.match}
             />)
           )}

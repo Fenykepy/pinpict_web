@@ -13,10 +13,12 @@ import { withRouter } from 'react-router-dom'
 import { pinDetailSelector } from 'pinpict/selectors'
 
 import {
-  selectUser,
   selectPin,
+  selectUser,
+  selectBoard,
+  fetchPinIfNeeded,
   fetchUserIfNeeded,
-  fetchPinIfNeeded
+  fetchShortBoardIfNeeded,
 } from 'pinpict/actions'
 
 
@@ -28,29 +30,36 @@ const BASE_URL = settings.base_url
 
 class PinDetail extends Component {
 
-  fetchDatas(pin_id, selected_user_slug) {
+  fetchPin(pin_id) {
     this.props.dispatch(selectPin(pin_id))
     this.props.dispatch(fetchPinIfNeeded(pin_id))
-    if (selected_user_slug) {
-      // we need to fetch pin first
-      this.props.dispatch(selectUser(selected_user_slug))
-      this.props.dispatch(fetchUserIfNeeded(selected_user_slug))
+  }
+  
+  fetchUserAndBoard() {
+    if (this.props.pin.user && this.props.pin.board) {
+      // we fetch pin's board and user
+      this.props.dispatch(selectUser(this.props.pin.user))
+      this.props.dispatch(fetchUserIfNeeded(this.props.pin.user))
+      this.props.dispatch(selectBoard(this.props.pin.user, this.props.pin.board))
+      this.props.dispatch(fetchShortBoardIfNeeded(
+        this.props.pin.user, this.props.pin.board, false
+      ))
     }
   }
 
   componentDidMount() {
-    this.fetchDatas(
-      this.props.match.params.pin_id,
-      this.props.pin.user
-    )
+    this.fetchPin(this.props.match.params.pin_id)
+    this.fetchUserAndBoard()
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.pin_id !== prevProps.match.params.pin_id) {
-      this.fetchDatas(
-        this.props.match.params.pin_id,
-        this.props.pin.user
-      )
+      this.fetchPin(this.props.match.params.pin_id)
+    }
+    if (this.props.pin.user !== prevProps.pin.user ||
+        this.props.pin.board !== prevProps.pin.board) {
+          console.log('fetch user and board')
+          this.fetchUserAndBoard()
     }
   }
 

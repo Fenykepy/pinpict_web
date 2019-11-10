@@ -280,6 +280,7 @@ function pins(state = {}, action) {
             ...state,
             [action.pin_id]: {
               ...state[action.pin_id],
+              id: action.pin_id,
               is_fetching: true,
             }
           }
@@ -297,6 +298,7 @@ function pins(state = {}, action) {
             ...state,
             [action.pin_id]: {
               ...state[action.pin_id],
+              id: action.pin_id,
               is_fetching: false,
               fetched: true,
               errors: action.errors,

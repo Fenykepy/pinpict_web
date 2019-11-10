@@ -300,7 +300,7 @@ export function fetchPinIfNeeded(pin_id) {
 
 
 function fetchPin(pin_id) {
-  return async function(dispatch) {
+  return async function(dispatch, getState) {
     // start request
     dispatch(requestPin(pin_id))
 
@@ -315,17 +315,6 @@ function fetchPin(pin_id) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Get tags
@@ -379,11 +368,11 @@ function shouldFetchShortBoard(state, boarduserslug) {
 }
 
 
-export function fetchShortBoardIfNeeded(userslug, boardslug) {
+export function fetchShortBoardIfNeeded(userslug, boardslug, fetchPins=true) {
   let boarduserslug = setBoarduserslug(userslug, boardslug)
   return (dispatch, getState) => {
     if ( shouldFetchShortBoard(getState(), boarduserslug) ) {
-      return dispatch(fetchShortBoard(userslug, boardslug))
+      return dispatch(fetchShortBoard(userslug, boardslug, fetchPins))
     }
     // else return a resolved promise
     return new Promise((resolve, reject) => resolve())
@@ -391,7 +380,7 @@ export function fetchShortBoardIfNeeded(userslug, boardslug) {
 }
 
 
-function fetchShortBoard(userslug, boardslug) {
+function fetchShortBoard(userslug, boardslug, fetchPins) {
   return async function(dispatch) {
     let boarduserslug = setBoarduserslug(userslug, boardslug)
     // start request
@@ -401,8 +390,10 @@ function fetchShortBoard(userslug, boardslug) {
       let json = await Fetch.get(`api/board/user/${userslug}/board/${boardslug}/`)
       dispatch(requestShortBoardSuccess(boarduserslug, json))
       // Fetch board pins' if necessary
-      for (const pin_id of json.pins) {
-        dispatch(fetchPinIfNeeded(pin_id))
+      if (fetchPins) {
+        for (const pin_id of json.pins) {
+          dispatch(fetchPinIfNeeded(pin_id))
+        }
       }
     } catch (error) {
       let json = await error.response.json()
