@@ -21,33 +21,33 @@ import PinsList from 'pinpict/components/pinsList/PinsList'
 
 class BoardDetail extends Component {
   
-  fetchDatas(selected_user_slug, selected_board_slug) {
-    this.props.dispatch(selectUser(selected_user_slug))
-    this.props.dispatch(selectBoard(selected_user_slug, selected_board_slug))
-    this.props.dispatch(fetchUserIfNeeded(selected_user_slug))
+  fetchDatas(user_slug, board_slug) {
+    this.props.dispatch(selectUser(user_slug))
+    this.props.dispatch(selectBoard(user_slug, board_slug))
+    this.props.dispatch(fetchUserIfNeeded(user_slug))
     this.props.dispatch(fetchShortBoardIfNeeded(
-      selected_user_slug, selected_board_slug))
+      user_slug, board_slug))
   }
 
   componentDidMount() {
     this.fetchDatas(
-      this.props.match.params.selected_user_slug,
-      this.props.match.params.selected_board_slug
+      this.props.match.params.user_slug,
+      this.props.match.params.board_slug
     )
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.selected_user_slug !== prevProps.match.params.selected_user_slug ||
-        this.props.match.params.selected_board_slug !== prevProps.match.params.selected_board_slug) {
+    if (this.props.match.params.user_slug !== prevProps.match.params.user_slug ||
+        this.props.match.params.board_slug !== prevProps.match.params.board_slug) {
           this.fetchDatas(
-            this.props.match.params.selected_user_slug,
-            this.props.match.params.selected_board_slug
+            this.props.match.params.user_slug,
+            this.props.match.params.board_slug
           )
     }
   }
 
   getPrivateMessage() {
-    if (this.props.selected_board.policy === 0) {
+    if (this.props.board.policy === 0) {
       return (
         <p
           className={styles.private}
@@ -60,8 +60,8 @@ class BoardDetail extends Component {
   render() {
     console.log('BoardDetail', this.props)
 
-    if (! this.props.selected_user.slug || this.props.selected_user.is_fetching ||
-        ! this.props.selected_board.slug || this.props.selected_board.is_fetching_short ) {
+    if (! this.props.user.slug || this.props.user.is_fetching ||
+        ! this.props.board.slug || this.props.board.is_fetching_short ) {
           return (
             <Spinner
               message="Fetching..."
@@ -73,14 +73,14 @@ class BoardDetail extends Component {
     return (
         <section className={styles.boardDetail + " columned"}>
           <header>
-            <h1>{this.props.selected_board.title}</h1>
+            <h1>{this.props.board.title}</h1>
             <p
               className={styles.nPins}
-            >{this.props.selected_board.n_pins} {this.props.selected_board.n_pins === 1 ? "pin" : "pins"}</p>
+            >{this.props.board.n_pins} {this.props.board.n_pins === 1 ? "pin" : "pins"}</p>
             {this.getPrivateMessage()}
           </header>
           <UserShortDetail
-            selected_user={this.props.selected_user}
+            user={this.props.user}
           />
           <PinsList
             pins={this.props.pins}
@@ -94,8 +94,8 @@ class BoardDetail extends Component {
 BoardDetail.propTypes = {
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
-  selected_user: PropTypes.object.isRequired,
-  selected_board: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  board: PropTypes.object.isRequired,
   pins: PropTypes.array.isRequired,
 }
 

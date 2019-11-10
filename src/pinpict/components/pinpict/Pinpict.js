@@ -16,10 +16,10 @@ export default class Pinpict extends Component {
         <Route path="/pin/:pin_id/">
           <PinDetail />
         </Route>
-        <Route path="/:selected_user_slug/:selected_board_slug/">
+        <Route path="/:user_slug/:board_slug/">
           <BoardDetail />
         </Route>
-        <Route path="/:selected_user_slug/">
+        <Route path="/:user_slug/">
           <Boards />
         </Route>
       </Switch>

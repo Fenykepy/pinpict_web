@@ -22,27 +22,27 @@ export default class UserDetail extends Component {
         className={styles.user_detail}
       >
           <img
-            src={BASE_URL + 'media/' + this.props.selected_user.avatar}
-            alt={`${this.props.selected_user.username}'s avatar`}
+            src={BASE_URL + 'media/' + this.props.user.avatar}
+            alt={`${this.props.user.username}'s avatar`}
           />
-          <h1>{this.props.selected_user.username}</h1>
+          <h1>{this.props.user.username}</h1>
           <hr />
 
           <UserProfileLink
-            selected_user_slug={this.props.selected_user.slug}
+            user_slug={this.props.user.slug}
           />
           <UserWebsite
-            website={this.props.selected_user.website}
+            website={this.props.user.website}
           />
           <UserSocialsLinks
-            user={this.props.selected_user}
+            user={this.props.user}
           />
           <UserNav
-            selected_user_slug={this.props.selected_user.slug}
-            n_public_boards={this.props.selected_user.n_public_boards}
-            n_public_pins={this.props.selected_user.n_public_pins}
-            n_followers={this.props.selected_user.n_followers}
-            n_following={this.props.selected_user.n_following}
+            user_slug={this.props.user.slug}
+            n_public_boards={this.props.user.n_public_boards}
+            n_public_pins={this.props.user.n_public_pins}
+            n_followers={this.props.user.n_followers}
+            n_following={this.props.user.n_following}
           />
       </article>
     )
@@ -50,7 +50,7 @@ export default class UserDetail extends Component {
 }
 
 UserDetail.propTypes = {
-  selected_user: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 

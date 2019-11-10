@@ -64,6 +64,10 @@ class PinDetail extends Component {
     }
   }
 
+  getPrevLink() {
+    let pins = this.props.board.pins
+  }
+
   render() {
 
     console.log('PinDetail', this.props)
@@ -126,8 +130,8 @@ class PinDetail extends Component {
 PinDetail.propTypes = {
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
-  selected_user: PropTypes.object.isRequired,
-  selected_board: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  board: PropTypes.object.isRequired,
   pin: PropTypes.object.isRequired,
 }
 

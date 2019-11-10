@@ -21,14 +21,14 @@ export default class UserShortDetail extends Component {
         className={styles.user_short_detail}
       >
           <img
-            src={BASE_URL + 'media/' + this.props.selected_user.avatar}
-            alt={`${this.props.selected_user.username}'s avatar`}
+            src={BASE_URL + 'media/' + this.props.user.avatar}
+            alt={`${this.props.user.username}'s avatar`}
           />
               <h2><Link
-                to={`/${this.props.selected_user.slug}/`}
-              >{this.props.selected_user.username}</Link></h2>
+                to={`/${this.props.user.slug}/`}
+              >{this.props.user.username}</Link></h2>
           <UserWebsite
-            website={this.props.selected_user.website}
+            website={this.props.user.website}
           />
       </article>
     )
@@ -36,7 +36,7 @@ export default class UserShortDetail extends Component {
 }
 
 UserShortDetail.propTypes = {
-  selected_user: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 

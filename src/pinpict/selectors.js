@@ -77,19 +77,19 @@ const selectedPinSelector = createSelector(
 
 
 export const boardsListSelector = createStructuredSelector({
-  selected_user: selectedUserSelector,
+  user: selectedUserSelector,
   public_boards: publicBoardsSelector,
   private_boards: privateBoardsSelector,
 })
 
 export const boardDetailSelector = createStructuredSelector({
-  selected_user: selectedUserSelector,
-  selected_board: selectedBoardSelector,
+  user: selectedUserSelector,
+  board: selectedBoardSelector,
   pins: selectedBoardPinsSelector,
 })
 
 export const pinDetailSelector = createStructuredSelector({
-  selected_user: selectedUserSelector,
-  selected_board: selectedBoardSelector,
+  user: selectedUserSelector,
+  board: selectedBoardSelector,
   pin: selectedPinSelector,
 })
