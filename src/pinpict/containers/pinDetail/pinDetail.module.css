@@ -34,3 +34,45 @@
     padding: 18px 25px;
     word-wrap: break-word;
 }
+
+a.back_to_board {
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    height: 80px;
+    width: 80px;
+    box-shadow: 0 0 8px #222;
+    border: 1px solid #222;
+    background-color: #404040;
+    border-radius: 4px 0 0 4px;
+}
+
+a.back_to_board:hover, a.back_to_board:focus, a.back_to_board:active {
+    background-color: #585858;
+}
+
+a.back_to_board:before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-left: 25px solid #222;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    right: 15px;
+    top: 50%;
+    margin-top: -18px;
+}
+
+a.back_to_board:after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 28px;
+    position: absolute;
+    top: 50%;
+    margin-top: -3px;
+    right: 30px;
+    background-color: #222;
+}
