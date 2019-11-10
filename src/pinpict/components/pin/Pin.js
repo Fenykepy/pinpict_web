@@ -10,6 +10,7 @@ import { getPicturePath } from 'helpers/utils'
 import styles from './pin.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
+import PinRate from 'pinpict/components/pinRate/PinRate'
 
 const BASE_URL = settings.base_url
 
@@ -45,8 +46,12 @@ export default class Pin extends Component {
               alt="Pin"
             />
           </Link>
+          <PinRate
+            pin_id={this.props.id}
+            rate={this.props.owner_rate}
+            userslug={this.props.user}
+          />
         </div>
-          {/* TODO rate if owner */}
         <p
           className={styles.description}
         >{this.props.description}</p>

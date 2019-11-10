@@ -28,3 +28,9 @@
     word-wrap: break-word;
     margin: 0;
 }
+
+.pin ul { /* rater */
+    text-align: center;
+    padding: 5px 0;
+    border-top: 1px solid #505050;
+}

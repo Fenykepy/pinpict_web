@@ -16,6 +16,10 @@ export default class PinRate extends Component {
     return index +1
   }
 
+  ratePin(rate) {
+      console.log(`rate pin ${this.props.pin_id} at ${rate}`)
+  }
+
   render() {  
     
     if (! this.context.authenticatedslug === this.props.userslug) {
@@ -42,6 +46,7 @@ export default class PinRate extends Component {
           <li
             key={item.key}
           ><button
+            onClick={() => this.ratePin(item.next_rate)}
             className={item.class}
             title={item.text}
           ><span className="accessibility_text">{item.text}</span></button></li>
@@ -54,4 +59,5 @@ export default class PinRate extends Component {
 PinRate.propTypes = {
   rate: PropTypes.number,
   userslug: PropTypes.string,
+  pin_id: PropTypes.number.isRequired,
 }

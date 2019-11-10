@@ -135,6 +135,7 @@ class PinDetail extends Component {
             rate={this.props.pin.owner_rate}
             username={this.props.user.username}
             userslug={this.props.user.slug}
+            pin_id={this.props.pin.id}
           />
         </article>
         

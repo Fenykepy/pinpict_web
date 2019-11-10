@@ -37,6 +37,7 @@ export default class PinDetailFooter extends Component {
       >
         {this.getLink()}
         <PinRate
+          pin_id={this.props.pin_id}
           rate={this.props.rate}
           userslug={this.props.userslug}
         />

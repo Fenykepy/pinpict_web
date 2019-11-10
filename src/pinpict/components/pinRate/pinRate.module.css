@@ -7,7 +7,7 @@
     width: 25px;
     background-color: inherit;
 }
-.star:hover, .star:active, .star:focus, .dot:hover, .dot:active, .dot:focus {
+.star:hover, .star:focus, .dot:hover, .dot:focus {
     background-color: #585858;
     border-radius: 12.5px;
 }
