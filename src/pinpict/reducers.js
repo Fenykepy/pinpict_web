@@ -269,6 +269,15 @@ function boards(state = {}, action) {
               full_errors: action.errors,
             }
           }
+      case REQUEST_CREATE_BOARD_SUCCESS:
+          return {
+            ...state,
+            [action.boarduserslug]: {
+              is_fetching_full: false,
+              full_fetched: true,
+              ...action.board,
+            }
+          }
       case LOGOUT:
           return {}
       default:

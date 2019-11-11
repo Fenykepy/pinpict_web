@@ -427,9 +427,11 @@ function requestCreateBoard() {
   }
 }
 
-function requestCreateBoardSuccess() {
+function requestCreateBoardSuccess(boarduserslug, board) {
   return {
     type: types.REQUEST_CREATE_BOARD_SUCCESS,
+    boarduserslug,
+    board,
   }
 }
 
@@ -441,7 +443,7 @@ function requestCreateBoardFailure(errors) {
 }
 
 export function createBoard(data) {
-  return async function(dispatch) {
+  return async function(dispatch, getState) {
     // start request
     dispatch(requestCreateBoard())
     console.log('request create board', data)
@@ -454,13 +456,21 @@ export function createBoard(data) {
         },
         JSON.stringify(data)
       )
-      console.log('request create board success', json)
-      dispatch(requestCreateBoardSuccess(json))
+      let boarduserslug = setBoarduserslug(json.user, json.slug)
       // we store board in state
-      dispatch(requestShortBoardSuccess(
-        setBoarduserslug(json.user, json.slug), 
-        json
-      ))
+      dispatch(requestCreateBoardSuccess(boarduserslug, json))
+      // we upgrade users board's lists
+      let user = getState().pinpict.users[json.user]
+      if (json.private) {
+        let boards = user.private_boards.slice()
+        boards.push(boarduserslug)
+        dispatch(requestUserPrivateBoardsSuccess(json.user, boards))
+      } else {
+        let boards = user.public_boards.slice()
+        boards.push(boarduserslug)
+        dispatch(requestUserPublicBoardsSuccess(json.user, boards))
+      }
+
     } catch (error) {
       let json = await error.response.json()
       // store error in state

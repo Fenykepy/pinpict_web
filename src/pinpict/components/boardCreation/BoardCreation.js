@@ -10,7 +10,6 @@ import FieldWrapper from 'forms/components/fieldWrapper/FieldWrapper'
 import BoardCreationForm from 'pinpict/components/boardCreationForm/BoardCreationForm'
 import CancelButton from 'forms/components/cancelButton/CancelButton'
 import Submit from 'forms/components/submit/Submit'
-import Button from 'forms/components/button/Button'
 import Spinner from 'app/components/spinner/Spinner'
 
 const BOARD_CREATION_FORM = "board-creation-form"
