@@ -21,7 +21,7 @@ import { CREATE_BOARD }from 'modal/modalIds'
 import styles from './boards.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
-import Modal from 'modal/containers/modal/Modal'
+import BoardCreationForm from 'pinpict/components/boardCreationForm/BoardCreationForm'
 import UserDetail from 'pinpict/components/userDetail/UserDetail'
 import BoardsList from 'pinpict/components/boardsList/BoardsList'
 import PrivateBoardsWrapper from 'pinpict/components/privateBoardsWrapper/PrivateBoardsWrapper'
@@ -87,11 +87,10 @@ class Boards extends Component {
             match={this.props.match}
             createBoard={(e) => this.createBoard(e, true).bind(this)}
         />
-        <Modal
+        <BoardCreationForm
           id={CREATE_BOARD}
-        >
-            <article>Create a board</article>
-        </Modal>
+          closable={false}
+        />
       </div>
     )
     
