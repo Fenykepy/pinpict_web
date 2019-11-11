@@ -60,6 +60,17 @@ class BoardDetail extends Component {
     }
   }
 
+  getDescription() {
+    if (this.props.board.description) {
+      return (
+        <p
+          className={styles.description}
+        >{this.props.board.description}</p>
+      )
+    }
+    return null
+  }
+
   getPrivateMessage() {
     if (this.props.board.policy === 0) {
       return (
@@ -88,6 +99,7 @@ class BoardDetail extends Component {
         <section className={styles.boardDetail + " columned"}>
           <header>
             <h1>{this.props.board.title}</h1>
+            {this.getDescription()}
             <p
               className={styles.nPins}
             >{this.props.board.n_pins} {this.props.board.n_pins === 1 ? "pin" : "pins"}</p>

@@ -18,3 +18,10 @@
     color: #000;
     font-weight: bold;
 }
+
+.description {
+    margin: 25px auto;
+    max-width: 1236px;
+    font-size: 18px;
+    font-size: 1.8rem;
+}
