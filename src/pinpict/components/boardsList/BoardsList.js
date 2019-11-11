@@ -16,7 +16,7 @@ export default class BoardsList extends Component {
           message={this.props.private ? "Create a private board" :
             "Create a board"}
           userslug={this.props.match.params.userslug}
-          onClick={() => console.log('clicked')}
+          onClick={this.props.createBoard}
         />
         {this.props.boards.map(board =>
           (<BoardAbstract

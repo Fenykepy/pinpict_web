@@ -2,10 +2,12 @@ import { combineReducers } from 'redux'
 
 import user from 'user/reducers'
 import pinpict from 'pinpict/reducers'
+import modal from 'modal/reducers'
 
 const rootReducer = combineReducers({
   user,
   pinpict,
+  modal,
 })
 
 export default rootReducer

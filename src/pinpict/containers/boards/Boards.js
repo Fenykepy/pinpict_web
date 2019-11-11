@@ -14,9 +14,14 @@ import {
 
 } from 'pinpict/actions'
 
+import { setModal } from 'modal/actions'
+
+import { CREATE_BOARD }from 'modal/modalIds'
+
 import styles from './boards.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
+import Modal from 'modal/containers/modal/Modal'
 import UserDetail from 'pinpict/components/userDetail/UserDetail'
 import BoardsList from 'pinpict/components/boardsList/BoardsList'
 import PrivateBoardsWrapper from 'pinpict/components/privateBoardsWrapper/PrivateBoardsWrapper'
@@ -44,6 +49,13 @@ class Boards extends Component {
     }
   }
 
+  createBoard(e, is_private=false) {
+    e.preventDefault()
+    console.log('create board')
+    this.props.dispatch(setModal(CREATE_BOARD))
+
+  }
+
   render() {
     console.log('Boards', this.props)
 
@@ -67,12 +79,19 @@ class Boards extends Component {
           <BoardsList
             boards={this.props.public_boards}
             match={this.props.match}
+            createBoard={this.createBoard.bind(this)}
           />
         </section>
         <PrivateBoardsWrapper
             private_boards={this.props.private_boards}
             match={this.props.match}
+            createBoard={(e) => this.createBoard(e, true).bind(this)}
         />
+        <Modal
+          id={CREATE_BOARD}
+        >
+            <article>Create a board</article>
+        </Modal>
       </div>
     )
     
