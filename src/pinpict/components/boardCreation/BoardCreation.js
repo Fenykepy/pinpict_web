@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { createBoard } from 'pinpict/actions'
+
 import withModal from 'modal/HOC/withModal'
 
 import FormWrapper from 'forms/components/formWrapper/FormWrapper'
@@ -34,13 +36,20 @@ class BoardCreation extends Component {
 
   handleCreateBoard(e) {
     e.preventDefault()
-    console.log('private', this.props.is_private)
-    //this.props.dispatch(createBoard({...this.state, private: this.props.is_private}))
+    this.props.dispatch(createBoard({...this.state, private: this.props.is_private}))
   }
 
   render() {
     console.log('BoardCreation', this.props)
 
+
+    // Show spinner if board is creating
+    if (this.props.is_creating) {
+      return (<Spinner message="Saving..." />)
+    }
+    
+
+    
     return (
       <FormWrapper>
         <header>
@@ -57,7 +66,7 @@ class BoardCreation extends Component {
           handleDescriptionChange={this.handleDescriptionChange.bind(this)}
           title={this.state.title}
           description={this.state.description}
-          errors={this.props.creation_errors}
+          errors={this.props.errors}
         />
         <footer>
           <FieldWrapper>
@@ -75,8 +84,8 @@ class BoardCreation extends Component {
 
 BoardCreation.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  is_creating: PropTypes.bool.isRequired,
-  creation_errors: PropTypes.object,
+  is_creating: PropTypes.bool,
+  errors: PropTypes.object,
 }
 
 // wrap component in modal

@@ -93,6 +93,7 @@ class Boards extends Component {
         <BoardCreation
           id={CREATE_BOARD}
           closable={false}
+          {...this.props.create_board}
         />
       </div>
     )
@@ -106,6 +107,7 @@ Boards.propTypes = {
   user: PropTypes.object.isRequired,
   public_boards: PropTypes.array.isRequired,
   private_boards: PropTypes.array.isRequired,
+  create_board: PropTypes.object.isRequired,
 }
 
 

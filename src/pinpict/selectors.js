@@ -10,6 +10,7 @@ const usersSelector = state => state.pinpict.users
 const selectedUserslugSelector = state => state.pinpict.selected_userslug
 const selectedBoarduserslugSelector = state => state.pinpict.selected_boarduserslug
 const selectedPinidSelector = state => state.pinpict.selected_pin_id
+const createBoardSelector = state => state.pinpict.create_board
 
 const selectedUserSelector = createSelector(
   usersSelector, selectedUserslugSelector,
@@ -96,10 +97,12 @@ const addedViaUserSelector = createSelector(
 )
 
 
+
 export const boardsListSelector = createStructuredSelector({
   user: selectedUserSelector,
   public_boards: publicBoardsSelector,
   private_boards: privateBoardsSelector,
+  create_board: createBoardSelector,
 })
 
 export const boardDetailSelector = createStructuredSelector({

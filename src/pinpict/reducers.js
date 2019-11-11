@@ -37,6 +37,10 @@ import {
   REQUEST_FULL_BOARD_SUCCESS,
   REQUEST_FULL_BOARD_FAILURE,
 
+  REQUEST_CREATE_BOARD,
+  REQUEST_CREATE_BOARD_SUCCESS,
+  REQUEST_CREATE_BOARD_FAILURE,
+
   STORE_BOARD_ABSTRACT,
 
   SELECT_USER,
@@ -272,6 +276,24 @@ function boards(state = {}, action) {
   }
 }
 
+function create_board(state = {}, action) {
+  switch (action.type) {
+      case REQUEST_CREATE_BOARD:
+          return {
+            is_creating: true,
+          }
+      case REQUEST_CREATE_BOARD_SUCCESS:
+          return {}
+      case REQUEST_CREATE_BOARD_FAILURE:
+          return {
+            errors: action.errors,
+          }
+      case LOGOUT:
+          return {}
+      default:
+          return state
+  }
+}
 
 function pins(state = {}, action) {
   switch (action.type) {
@@ -356,6 +378,7 @@ const pinpict = combineReducers({
   scan,
   pins,
   boards,
+  create_board,
   selected_userslug,
   selected_boarduserslug,
   selected_pin_id,

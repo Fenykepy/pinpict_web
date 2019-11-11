@@ -419,6 +419,58 @@ function fetchShortBoard(userslug, boardslug) {
 
 
 
+// Create a board
+
+function requestCreateBoard() {
+  return {
+    type: types.REQUEST_CREATE_BOARD,
+  }
+}
+
+function requestCreateBoardSuccess() {
+  return {
+    type: types.REQUEST_CREATE_BOARD_SUCCESS,
+  }
+}
+
+function requestCreateBoardFailure(errors) {
+  return {
+    type: types.REQUEST_CREATE_BOARD_FAILURE,
+    errors
+  }
+}
+
+export function createBoard(data) {
+  return async function(dispatch) {
+    // start request
+    dispatch(requestCreateBoard())
+    console.log('request create board', data)
+
+    try {
+      let json = await Fetch.post('api/board/',
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        JSON.stringify(data)
+      )
+      console.log('request create board success', json)
+      dispatch(requestCreateBoardSuccess(json))
+      // we store board in state
+      dispatch(requestShortBoardSuccess(
+        setBoarduserslug(json.user, json.slug), 
+        json
+      ))
+    } catch (error) {
+      let json = await error.response.json()
+      // store error in state
+      console.log('request create board failure', json)
+      dispatch(requestCreateBoardFailure(json))
+      throw error
+    }
+  }
+}
+
 
 
 
