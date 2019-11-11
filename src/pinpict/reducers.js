@@ -5,6 +5,10 @@ import {
 } from 'user/actionsTypes'
 
 import {
+  CLOSE_MODAL,
+} from 'modal/actionsTypes'
+
+import {
   REQUEST_USER,
   REQUEST_USER_SUCCESS,
   REQUEST_USER_FAILURE,
@@ -292,11 +296,15 @@ function create_board(state = {}, action) {
             is_creating: true,
           }
       case REQUEST_CREATE_BOARD_SUCCESS:
-          return {}
+          return {
+            created: true,
+          }
       case REQUEST_CREATE_BOARD_FAILURE:
           return {
             errors: action.errors,
           }
+      case CLOSE_MODAL:
+          return {}
       case LOGOUT:
           return {}
       default:

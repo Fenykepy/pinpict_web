@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { createBoard } from 'pinpict/actions'
+import { closeModal } from 'modal/actions'
 
 import withModal from 'modal/HOC/withModal'
 
@@ -45,6 +46,11 @@ class BoardCreation extends Component {
     // Show spinner if board is creating
     if (this.props.is_creating) {
       return (<Spinner message="Saving..." />)
+    }
+
+    // Close modal if board has been created
+    if (this.props.created) {
+      this.props.dispatch(closeModal())
     }
     
 
