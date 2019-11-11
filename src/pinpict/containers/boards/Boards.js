@@ -52,7 +52,6 @@ class Boards extends Component {
   createBoard(e, is_private=false) {
     e.preventDefault()
     this.props.dispatch(setModal(CREATE_BOARD, {is_private}))
-
   }
 
   createPrivateBoard(e) {

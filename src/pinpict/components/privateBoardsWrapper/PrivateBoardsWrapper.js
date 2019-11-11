@@ -56,4 +56,5 @@ export default class PrivateBoardWrapper extends Component {
 PrivateBoardWrapper.propTypes = {
   match: PropTypes.object.isRequired,
   private_boards: PropTypes.array.isRequired,
+  createBoard: PropTypes.func.isRequired,
 }

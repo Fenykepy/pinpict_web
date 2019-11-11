@@ -6,6 +6,10 @@ import { withRouter } from 'react-router-dom'
 
 import { boardDetailSelector } from 'pinpict/selectors'
 
+import { setModal } from 'modal/actions'
+
+import { ADD_PIN }from 'modal/modalIds'
+
 import {
   selectUser,
   selectBoard,
@@ -82,6 +86,13 @@ class BoardDetail extends Component {
     return null
   }
 
+  createPin(e, is_private=false) {
+    e.preventDefault()
+    console.log('add Pin !')
+    this.props.dispatch(setModal(ADD_PIN))
+  }
+
+
   render() {
     console.log('BoardDetail', this.props)
 
@@ -111,6 +122,7 @@ class BoardDetail extends Component {
           <PinsList
             pins={this.props.pins}
             match={this.props.match}
+            createPin={this.createPin.bind(this)}
           />
         </section>
     )

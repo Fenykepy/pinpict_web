@@ -33,5 +33,5 @@ export default class BoardsList extends Component {
 BoardsList.propTypes = {
   boards: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired,
-  private: PropTypes.bool,
+  createBoard: PropTypes.func.isRequired,
 }
