@@ -1,4 +1,4 @@
-.add {
+.create {
     width: 236px;
     margin: 14px 7px 0 7px;
     padding: 0;
@@ -9,7 +9,9 @@
     height: 299px;
 }
 
-.add button {
+.create button, .create a {
+    /* TODO bug with font size between <a> and <button> */
+    text-decoration: none;
     background-color: #404040;
     box-sizing: border-box;
     border-radius: 4px;
@@ -22,19 +24,19 @@
     align-items: center;
 }
 
-.add button:hover, .add button:focus {
+.create button:hover, .create button:focus, .create a:hover, .create a:focus {
     background-color: #505050;
     border: 2px dashed #919191;
 }
 
-.add h3 {
+.create h3 {
     font-size: 14px;
     font-size: 1.4rem;
     font-weight: bold;
     color: #000;
 }
 
-.add div {
+.create div {
     position: relative;
     width: 40px;
     height: 40px;
@@ -45,21 +47,21 @@
     box-shadow: 0 0 10px #313131 inset;
 }
 
-.add div:before, .add div:after {
+.create div:before, .create div:after {
     content: "";
     display: block;
     position: absolute;
     background-color: #222;
 }
 
-.add div:before {
+.create div:before {
     height: 6px;
     width: 22px;
     top: 17px;
     right: 9px;
 }
 
-.add div:after {
+.create div:after {
     height: 22px;
     width: 6px;
     top: 9px;

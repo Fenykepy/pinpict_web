@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import BoardAbstract from 'pinpict/components/boardAbstract/BoardAbstract'
-import AddCreateButton from 'pinpict/components/addCreateButton/AddCreateButton'
+import CreateBoardButton from 'pinpict/components/createBoardButton/CreateBoardButton'
 
 export default class BoardsList extends Component {
 
@@ -12,7 +12,7 @@ export default class BoardsList extends Component {
 
     return (
       <div>
-        <AddCreateButton
+        <CreateBoardButton
           message={this.props.private ? "Create a private board" :
             "Create a board"}
           userslug={this.props.match.params.userslug}

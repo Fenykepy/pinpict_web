@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './addCreateButton.module.css'
+import { Link } from 'react-router-dom'
+
+import styles from 'pinpict/components/createBoardButton/createBoardButton.module.css'
 
 import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
-export default class AddCreateButton extends Component {
+export default class AddPinLink extends Component {
 
   static contextType = AppContext
   
@@ -19,18 +21,17 @@ export default class AddCreateButton extends Component {
 
     return (
       <article
-        className={styles.add}
+        className={styles.create}
       >
-        <button
-          onClick={this.props.onClick}
-        ><div /><h3>{this.props.message}</h3></button>
+        <Link
+          to="/pin/from"
+        ><div /><h3>{this.props.message}</h3></Link>
       </article>
     )
   }
 }
 
-AddCreateButton.propTypes = {
+AddPinLink.propTypes = {
   message: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   userslug: PropTypes.string.isRequired,
 }
