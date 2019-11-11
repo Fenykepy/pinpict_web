@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 
 import { modalSelector } from 'modal/selectors'
@@ -28,6 +29,11 @@ function withModal(WrappedComponent) {
     render() {
 
       console.log('withModal', this.props)
+  
+      if ( ! this.props.modal || this.props.modal !== this.props.id) {
+        return null
+      }
+
       return (
         <div
           className={styles.overlay}
@@ -50,9 +56,10 @@ withModal.propTypes = {
   closable: PropTypes.bool,
 }
 
-console.log('withModal', withModal)
-
   
 // Wrap the component to inject dispatch and state into it
-export default connect(modalSelector)(withModal)
+export default compose(
+  connect(modalSelector),
+  withModal
+)
 

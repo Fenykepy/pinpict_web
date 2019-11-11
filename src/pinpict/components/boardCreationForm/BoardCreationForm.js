@@ -21,4 +21,4 @@ BoardCreationForm.propTypes = {
 }
 
 // wrap component in modal
-export default BoardCreationForm
+export default withModal(BoardCreationForm)
