@@ -9,3 +9,8 @@
     background-color: rgba(0,0,0,.8);
     z-index: 999;
 }
+
+.overlay article {
+    max-width: 770px;
+    margin: 50px auto;
+}

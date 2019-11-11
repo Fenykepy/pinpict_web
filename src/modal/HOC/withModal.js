@@ -27,9 +27,10 @@ function withModal(WrappedComponent) {
     }
 
     render() {
+      
+      // we remove extra_props
+      const { extra_props, ...rest } = this.props
 
-      console.log('withModal', this.props)
-  
       if ( ! this.props.modal || this.props.modal !== this.props.id) {
         return null
       }
@@ -40,8 +41,9 @@ function withModal(WrappedComponent) {
           onClick={this.closeIfClosable.bind(this)}
         >
           <WrappedComponent
-            closeModal={this.closeModal}
-            {...this.props}
+            closeModal={this.closeModal.bind(this)}
+            {...rest}
+            {...this.props.extra_props}
           />
         </div>
       )
@@ -53,6 +55,7 @@ withModal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   modal: PropTypes.string.isRequired,
+  extra_props: PropTypes.object,
   closable: PropTypes.bool,
 }
 

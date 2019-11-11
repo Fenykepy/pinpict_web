@@ -21,7 +21,7 @@ import { CREATE_BOARD }from 'modal/modalIds'
 import styles from './boards.module.css'
 
 import Spinner from 'app/components/spinner/Spinner'
-import BoardCreationForm from 'pinpict/components/boardCreationForm/BoardCreationForm'
+import BoardCreation from 'pinpict/components/boardCreation/BoardCreation'
 import UserDetail from 'pinpict/components/userDetail/UserDetail'
 import BoardsList from 'pinpict/components/boardsList/BoardsList'
 import PrivateBoardsWrapper from 'pinpict/components/privateBoardsWrapper/PrivateBoardsWrapper'
@@ -51,9 +51,12 @@ class Boards extends Component {
 
   createBoard(e, is_private=false) {
     e.preventDefault()
-    console.log('create board')
-    this.props.dispatch(setModal(CREATE_BOARD))
+    this.props.dispatch(setModal(CREATE_BOARD, {is_private}))
 
+  }
+
+  createPrivateBoard(e) {
+    return this.createBoard(e, true)
   }
 
   render() {
@@ -85,9 +88,9 @@ class Boards extends Component {
         <PrivateBoardsWrapper
             private_boards={this.props.private_boards}
             match={this.props.match}
-            createBoard={(e) => this.createBoard(e, true).bind(this)}
+            createBoard={this.createPrivateBoard.bind(this)}
         />
-        <BoardCreationForm
+        <BoardCreation
           id={CREATE_BOARD}
           closable={false}
         />

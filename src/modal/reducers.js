@@ -4,12 +4,15 @@ import {
 } from 'modal/actionsTypes'
 
 
-export default function modal(state = '', action) {
+export default function modal(state = {}, action) {
   switch (action.type) {
       case SET_MODAL:
-          return action.modal_id
+          return {
+            id: action.modal_id,
+            extra_props: action.extra_props,
+          }
       case CLOSE_MODAL:
-          return ''
+          return {}
       default:
           return state
   }

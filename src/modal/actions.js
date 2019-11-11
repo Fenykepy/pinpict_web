@@ -1,9 +1,10 @@
 import * as types from './actionsTypes'
 
-export function setModal(modal_id) {
+export function setModal(modal_id, extra_props={}) {
   return {
     type: types.SET_MODAL,
     modal_id,
+    extra_props,
   }
 }
 
