@@ -43,6 +43,7 @@ export default class PrivateBoardWrapper extends Component {
             <BoardsList
               boards={this.props.private_boards}
               match={this.props.match}
+              private={true}
             />
           </section>
         </div>
