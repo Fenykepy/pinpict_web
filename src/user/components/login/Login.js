@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Redirect, Link } from 'react-router-dom'
+import { withRouter, Redirect, Link } from 'react-router-dom'
 
 import { login } from 'user/actions'
 
@@ -15,7 +15,7 @@ import Spinner from 'app/components/spinner/Spinner'
 
 const LOGIN_FORM = "login-form"
 
-export default class Login extends Component {
+class Login extends Component {
   
   static contextType = AppContext
 
@@ -47,7 +47,9 @@ export default class Login extends Component {
     
     if (this.context.authenticatedslug) {
       // Redirect if user is loggued in
-      return (<Redirect to={`/${this.context.authenticatedslug}/`} />)
+      let { from } = this.props.location.state || { from: { pathname: `/${this.context.authenticatedslug}/`}}
+
+      return (<Redirect to={from} />)
     }
 
 
@@ -88,6 +90,7 @@ export default class Login extends Component {
   
 }
 
+export default withRouter(Login)
 
 Login.propTypes = {
   is_logging_in: PropTypes.bool.isRequired,  
