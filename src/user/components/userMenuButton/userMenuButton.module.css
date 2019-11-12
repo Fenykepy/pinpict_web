@@ -7,6 +7,8 @@
     padding: 0 25px;
     background: none;
     position: relative;
+    font-size: 17px;
+    font-size: 1.7rem;
 }
 
 .userMenu:hover, .userMenu:active, .userMenu:focus {
