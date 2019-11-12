@@ -4,20 +4,29 @@
     margin: 80px auto;
     padding: 40px 0 0 0;
     position: relative;
+    overflow: hidden;
 }
 
 .pinFrom header {
     border-bottom: 1px solid #505050;
 }
 
+.pinFrom div {
+    display: flex;
+}
+
 .pinFrom a {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
     height: 150px;
     text-decoration: none;
     font-weight: bold;
     font-size: 17px;
     font-size: 1.7rem;
     color: #000;
+    background-color: #585858;
 }
 
 .pinFrom a:last-child {

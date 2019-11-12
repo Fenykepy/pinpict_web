@@ -14,12 +14,14 @@ export default class PinFrom extends Component {
         <header>
           <h1>Add a pin from</h1>
         </header>
-        <Link
-          to="/pin/from/webpage/"
-        >A web page</Link>
-        <Link
-          to="/pin/from/yourcomputer/"
-        >Your computer</Link>
+        <div>
+          <Link
+            to="/pin/from/webpage/"
+          >A web page</Link>
+          <Link
+            to="/pin/from/yourcomputer/"
+          >Your computer</Link>
+        </div>
       </article>
     )
   }
