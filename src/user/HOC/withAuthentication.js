@@ -13,7 +13,7 @@ function withAuthentication(WrappedComponent) {
     
     render() {
 
-      console.log('withAuthentication', this.props)
+      //console.log('withAuthentication', this.props)
 
       if (! this.context.authenticatedslug) {
         // User isn't authenticated, redirect to login page

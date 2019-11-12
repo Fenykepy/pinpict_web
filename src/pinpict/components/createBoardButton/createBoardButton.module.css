@@ -10,7 +10,6 @@
 }
 
 .create button, .create a {
-    /* TODO bug with font size between <a> and <button> */
     text-decoration: none;
     background-color: #404040;
     box-sizing: border-box;
