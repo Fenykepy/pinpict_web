@@ -1,0 +1,40 @@
+.pinForm {
+    width: 750px;
+    margin: 80px auto;
+    padding: 40px;
+    position:relative;
+    box-sizing: border-box;
+}
+
+.pinForm h1 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.leftForm {
+    width: 318px;
+    margin-right: 40px;
+}
+
+.image {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    bottom: 64px;
+    width: 312px;
+    border: 1px solid var(--input-border);
+    border-radius: 2px;
+    background: var(--input-bg);
+}
+
+.image > div {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    max-width: 100%;
+    max-height: 100%;
+}

@@ -29,3 +29,6 @@ button {
     font-family: var(--sans);
 }
 
+textarea {
+    resize: vertical;
+}
