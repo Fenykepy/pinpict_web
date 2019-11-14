@@ -1,0 +1,34 @@
+.imageWrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 312px;
+    position: relative;
+    margin: 0;
+    line-height: 0;
+}
+
+.imageWrapper img {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.remove {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: #ccc;
+    background: rgba(0, 0, 0, 0.8); 
+    font-size: 60px;
+    font-size: 6.0rem;
+    display: none;
+}
+
+.add {
+}
+
+.imageWrapper:hover .remove, .imageWrapper:focus .remove {
+    display: block;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import styles from './imageFileInput.module.css'
+
 import { formatFileSize } from 'helpers/utils'
 
 export default class ImageFileInput extends Component {
@@ -49,11 +51,12 @@ export default class ImageFileInput extends Component {
       // we show file image
       return (
         <div
-          className="imageWrapper"
+          className={styles.imageWrapper}
         >
           <button
             title={this.props.removeTitle || ""}
             onClick={this.handleRemoveFile.bind(this)}
+            className={styles.removeFile}
           >×</button>
           <img
             title={`Filename: ${this.props.file.name}\n weight: ${formatFileSize(this.props.file)}`}
@@ -66,6 +69,7 @@ export default class ImageFileInput extends Component {
       // we show button
       return (
         <button
+          className={styles.addFile}
           title={this.props.title || ""}
           onClick={this.handleClick.bind(this)}
         >{this.props.message}</button>

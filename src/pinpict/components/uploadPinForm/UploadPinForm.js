@@ -60,9 +60,9 @@ export default class UploadPinForm extends Component {
           <ImageFileInput
             id="id-source_file"
             handleFileChange={this.props.handleFileChange.bind(this)}
-            message="Add pin"
+            message="Add pin file"
             title="Choose file to upload"
-            removeTitle="Delete this file"
+            removeTitle="Remove this file"
             className={this.props.fileClassName}
             file={this.props.file}
           />
