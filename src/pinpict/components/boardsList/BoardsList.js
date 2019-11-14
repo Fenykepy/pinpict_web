@@ -13,7 +13,7 @@ export default class BoardsList extends Component {
     return (
       <div>
         <CreateBoardButton
-          message={this.props.private ? "Create a private board" :
+          title={this.props.private ? "Create a private board" :
             "Create a board"}
           userslug={this.props.match.params.userslug}
           onClick={this.props.createBoard}

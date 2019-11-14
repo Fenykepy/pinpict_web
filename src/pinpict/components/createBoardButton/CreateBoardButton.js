@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import styles from './createBoardButton.module.css'
 
+import RoundCross from 'forms/components/roundCross/RoundCross'
+
 import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
 export default class CreateBoardButton extends Component {
@@ -23,14 +25,16 @@ export default class CreateBoardButton extends Component {
       >
         <button
           onClick={this.props.onClick}
-        ><div /><h3>{this.props.message}</h3></button>
+        ><RoundCross
+            title={this.props.title}
+        /></button>
       </article>
     )
   }
 }
 
 CreateBoardButton.propTypes = {
-  message: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   userslug: PropTypes.string.isRequired,
 }

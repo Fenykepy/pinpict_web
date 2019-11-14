@@ -1,0 +1,38 @@
+.roundCross {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 90px auto 10px;
+    border: 1px solid #222;
+    border-radius: 20px;
+    background-color: #505050;
+    box-shadow: 0 0 10px #313131 inset;
+}
+
+.roundCross:before, .roundCross:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #222;
+}
+
+.roundCross:before {
+    height: 6px;
+    width: 22px;
+    top: 17px;
+    right: 9px;
+}
+
+.roundCross:after {
+    height: 22px;
+    width: 6px;
+    top: 9px;
+    right: 17px;
+}
+
+.titleCross h3 {
+    font-size: 16px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #000;
+}

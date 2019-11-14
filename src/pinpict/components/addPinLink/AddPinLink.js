@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 import styles from 'pinpict/components/createBoardButton/createBoardButton.module.css'
 
+import RoundCross from 'forms/components/roundCross/RoundCross'
+
 import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
 
 export default class AddPinLink extends Component {
@@ -25,13 +27,15 @@ export default class AddPinLink extends Component {
       >
         <Link
           to="/pin/from"
-        ><div /><h3>{this.props.message}</h3></Link>
+        ><RoundCross
+            title={this.props.title}
+        /></Link>
       </article>
     )
   }
 }
 
 AddPinLink.propTypes = {
-  message: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   userslug: PropTypes.string.isRequired,
 }

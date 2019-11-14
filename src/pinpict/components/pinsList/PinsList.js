@@ -13,7 +13,7 @@ export default class PinsList extends Component {
     return(
       <div>
         <AddPinLink
-          message={"Add a pin"}
+          title={"Add a pin"}
           userslug={this.props.match.params.userslug}
         />
           {this.props.pins.map(pin =>
