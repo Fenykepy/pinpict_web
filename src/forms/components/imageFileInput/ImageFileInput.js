@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import styles from './imageFileInput.module.css'
 
+import RoundCross from 'forms/components/roundCross/RoundCross'
+
 import { formatFileSize } from 'helpers/utils'
 
 export default class ImageFileInput extends Component {
@@ -72,7 +74,9 @@ export default class ImageFileInput extends Component {
           className={styles.addFile}
           title={this.props.title || ""}
           onClick={this.handleClick.bind(this)}
-        >{this.props.message}</button>
+        ><RoundCross
+            title={this.props.message}
+          /></button>
       )
     }
 
