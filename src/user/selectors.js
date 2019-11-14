@@ -5,6 +5,7 @@ export const authenticatedSlugSelector = state => state.user.authenticatedslug
 export const isLoggingInSelector = state => state.user.is_logging_in
 export const isRefreshingSelector = state => state.user.is_refreshing
 export const loginErrorsSelector = state => state.user.login_errors
+export const userBoardsSelector = state => state.user.boards
 
 export const userSelector = createStructuredSelector({
   username: usernameSelector,

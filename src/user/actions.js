@@ -162,7 +162,7 @@ export function refresh() {
 
 
 // Get current user
-//
+
 function requestCurrentUser() {
   return {
     type: types.REQUEST_CURRENT_USER
@@ -220,3 +220,71 @@ function fetchCurrentUser() {
     }
   }
 }
+
+
+// get current user boards (titles and slugs)
+
+function requestCurrentUserBoards() {
+  return {
+    type: types.REQUEST_CURRENT_USER_BOARDS
+  }
+}
+
+function requestCurrentUserBoardsSuccess(boards) {
+  return {
+    type: types.REQUEST_CURRENT_USER_BOARDS_SUCCESS,
+    boards
+  }
+}
+
+function requestCurrentUserBoardsFailure(errors) {
+  return {
+    type: types.REQUEST_CURRENT_USER_BOARDS_FAILURE,
+    errors
+  }
+}
+
+
+function shouldFetchCurrentUserBoards(state) {
+  const user = state.user
+  if (! user || ! user.boards) return true
+  if (user.boards.is_fetching) return false
+  return true
+}
+
+export function fetchCurrentUserBoardsIfNeeded() {
+  return (dispatch, getState) => {
+    if ( shouldFetchCurrentUserBoards(getState()) ) {
+      return dispatch(fetchCurrentUserBoards())
+    }
+    // else return a resolved promise
+    return new Promise((resolve, reject) => resolve())
+  }
+}
+
+
+function fetchCurrentUserBoards() {
+  return async function(dispatch) {
+    // start request
+    dispatch(requestCurrentUserBoards())
+    
+    try {
+      let json = await Fetch.get('api/user/current/boards/')
+      dispatch(requestCurrentUserBoardsSuccess(json))
+    } catch(error) {
+      let json = await error.response.json()
+      // store error in state
+      dispatch(requestCurrentUserBoardsFailure(json))
+      throw error
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

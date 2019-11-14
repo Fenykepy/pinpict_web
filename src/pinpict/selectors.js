@@ -4,6 +4,8 @@ import {
   createStructuredSelector
 } from 'reselect'
 
+import { userBoardsSelector } from 'user/selectors'
+
 const boardsSelector = state => state.pinpict.boards
 const pinsSelector = state => state.pinpict.pins
 const usersSelector = state => state.pinpict.users
@@ -116,4 +118,8 @@ export const pinDetailSelector = createStructuredSelector({
   board: selectedBoardSelector,
   pin: selectedPinSelector,
   added_via: addedViaUserSelector,
+})
+
+export const uploadPinSelector = createStructuredSelector({
+  boards: userBoardsSelector,
 })

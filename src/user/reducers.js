@@ -10,6 +10,9 @@ import {
   REQUEST_CURRENT_USER,
   REQUEST_CURRENT_USER_SUCCESS,
   REQUEST_CURRENT_USER_FAILURE,
+  REQUEST_CURRENT_USER_BOARDS,
+  REQUEST_CURRENT_USER_BOARDS_SUCCESS,
+  REQUEST_CURRENT_USER_BOARDS_FAILURE,
 } from 'user/actionsTypes'
 
 export default function user(state = {}, action) {
@@ -68,6 +71,32 @@ export default function user(state = {}, action) {
         is_fetching: false,
         fetched: false,
         fetch_errors: action.errors,
+      }
+    case REQUEST_CURRENT_USER_BOARDS:
+      return {
+        ...state,
+        boards: {
+          ...state.boards,
+          is_fetching: true,
+        }
+      }
+    case REQUEST_CURRENT_USER_BOARDS_SUCCESS:
+      return {
+        ...state,
+        boards: {
+          ...state.boards,
+          is_fetching: false,
+          boards: action.boards,
+        }
+      }
+    case REQUEST_CURRENT_USER_BOARDS_FAILURE:
+      return {
+        ...state,
+        boards: {
+          ...state.boards,
+          is_fetching: false,
+          errors: action.errors,
+        }
       }
     case LOGOUT:
       return {}
