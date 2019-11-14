@@ -63,6 +63,7 @@ export default class ImageFileInput extends Component {
           <img
             title={`Filename: ${this.props.file.name}\n weight: ${formatFileSize(this.props.file)}`}
             src={this.state.src}
+            alt="To be uploaded"
           />
         </div>
       )
