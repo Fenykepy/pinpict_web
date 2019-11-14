@@ -8,7 +8,7 @@ import Boards from 'pinpict/containers/boards/Boards'
 import BoardDetail from 'pinpict/containers/boardDetail/BoardDetail'
 import PinDetail from 'pinpict/containers/pinDetail/PinDetail'
 import PinFrom from 'pinpict/components/pinFrom/PinFrom'
-import PinFromComputer from 'pinpict/components/pinFromComputer/PinFromComputer'
+import PinFromComputer from 'pinpict/containers/pinFromComputer/PinFromComputer'
 
 const AuthenticatedPinFromComputer = withAuthentication(PinFromComputer)
 const AuthenticatedPinFrom = withAuthentication(PinFrom)

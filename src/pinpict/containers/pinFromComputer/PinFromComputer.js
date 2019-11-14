@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
+import { uploadPinSelector } from 'pinpict/selectors'
+
+import { fetchCurrentUserBoardsIfNeeded } from 'user/actions'
 import UploadPinForm from 'pinpict/components/uploadPinForm/UploadPinForm'
 import FieldWrapper from 'forms/components/fieldWrapper/FieldWrapper'
 import Submit from 'forms/components/submit/Submit'
@@ -8,7 +14,7 @@ import styles from './pinFromComputer.module.css'
 
 const PIN_FROM_COMPUTER = "PIN_FROM_COMPUTER"
 
-export default class PinFromComputer extends Component {
+class PinFromComputer extends Component {
 
   constructor(props) {
     super(props)
@@ -18,6 +24,10 @@ export default class PinFromComputer extends Component {
       description: '',
       source_file: null,
     }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchCurrentUserBoardsIfNeeded())
   }
   
   handleDescriptionChange(e) {
@@ -73,3 +83,5 @@ export default class PinFromComputer extends Component {
     )
   }
 }
+
+export default withRouter(connect(uploadPinSelector)(PinFromComputer))
