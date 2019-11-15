@@ -27,15 +27,20 @@ export default class UploadPinForm extends Component {
             errors_list={this.props.errors}
             field={'board'}
           />
-          <input
+          <select
             id="id-board"
             name="board"
-            type="text"
             value={this.props.board}
             onChange={this.props.handleBoardChange.bind(this)}
-            placeholder="Board (required)"
             required
-          />
+          >
+              {this.props.boards.map(board =>
+                <option
+                  key={board.slug}
+                  value={board.slug}
+                >{board.title}</option>
+              )}
+          </select>
         </FieldWrapper>
         <FieldWrapper>
           <label htmlFor="id-description">Description:<FormRequiredField /></label>
@@ -76,6 +81,7 @@ export default class UploadPinForm extends Component {
 UploadPinForm.propTypes = {
   id: PropTypes.string.isRequired,
   board: PropTypes.string,
+  boards: PropTypes.array,
   description: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   handleBoardChange: PropTypes.func.isRequired,

@@ -69,6 +69,7 @@ class PinFromComputer extends Component {
             file={this.state.source_file}
             fileClassName={styles.image}
             board={this.state.board}
+            boards={this.props.boards.boards}
             description={this.state.description}
             errors={this.props.errors}
           />
