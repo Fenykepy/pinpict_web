@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -49,6 +50,8 @@ class PinFromComputer extends Component {
   }
     
   render() {
+
+    console.log('PinFromComputer', this.props)
     return(
       <article
         className={styles.pinForm}
@@ -83,5 +86,15 @@ class PinFromComputer extends Component {
     )
   }
 }
+
+PinFromComputer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  boards: PropTypes.shape({
+    boards: PropTypes.array.isRequired,
+    is_fetching: PropTypes.bool,
+    fetched: PropTypes.bool,
+  })
+}
+
 
 export default withRouter(connect(uploadPinSelector)(PinFromComputer))

@@ -15,7 +15,7 @@ import {
   REQUEST_CURRENT_USER_BOARDS_FAILURE,
 } from 'user/actionsTypes'
 
-export default function user(state = {}, action) {
+export default function user(state = {boards: {boards: []}}, action) {
   switch (action.type) {
     case REQUEST_LOGIN:
       return {
@@ -86,6 +86,7 @@ export default function user(state = {}, action) {
         boards: {
           ...state.boards,
           is_fetching: false,
+          fetched: true,
           boards: action.boards,
         }
       }
@@ -95,6 +96,7 @@ export default function user(state = {}, action) {
         boards: {
           ...state.boards,
           is_fetching: false,
+          fetched: false,
           errors: action.errors,
         }
       }
