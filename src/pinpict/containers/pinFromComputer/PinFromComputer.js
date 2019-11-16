@@ -7,6 +7,9 @@ import { withRouter } from 'react-router-dom'
 import { uploadPinSelector } from 'pinpict/selectors'
 
 import { fetchCurrentUserBoardsIfNeeded } from 'user/actions'
+import { uploadPin } from 'pinpict/actions'
+
+import Spinner from 'app/components/spinner/Spinner'
 import UploadPinForm from 'pinpict/components/uploadPinForm/UploadPinForm'
 import FieldWrapper from 'forms/components/fieldWrapper/FieldWrapper'
 import Submit from 'forms/components/submit/Submit'
@@ -45,13 +48,50 @@ class PinFromComputer extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log('submit form', this.state)
-    //this.props.dispatch(uploadPin(this.state))
+    // set default board if necessary
+    let board = this.state.board || this.props.default_board
+    console.log('submit form', {...this.state, board})
+    this.props.dispatch(uploadPin({...this.state, board}))
   }
+
+
     
   render() {
-
     console.log('PinFromComputer', this.props)
+
+    if (this.props.boards.is_fetching) {
+      return (
+        <article
+          className={styles.pinForm}
+        >
+          <Spinner />
+        </article>
+      )
+    }
+
+    if (this.props.create_pin.is_uploading) {
+      return (
+        <article
+          className={styles.pinForm}
+        >
+          <Spinner
+            message="Uploading pin..."
+          />
+        </article>
+      )
+    }
+
+    if (this.props.boards.length === 0) {
+      return (
+        <article
+          className={styles.pinForm}
+        >
+          <p>You need to create a board before adding pins.</p>
+        </article>
+      )
+    }
+
+
     return(
       <article
         className={styles.pinForm}
@@ -69,9 +109,10 @@ class PinFromComputer extends Component {
             file={this.state.source_file}
             fileClassName={styles.image}
             board={this.state.board}
+            default_board={this.props.default_board}
             boards={this.props.boards.boards}
             description={this.state.description}
-            errors={this.props.errors}
+            errors={this.props.create_pin.errors}
           />
           <footer> 
             <FieldWrapper>
@@ -94,7 +135,8 @@ PinFromComputer.propTypes = {
     boards: PropTypes.array.isRequired,
     is_fetching: PropTypes.bool,
     fetched: PropTypes.bool,
-  })
+  }),
+  default_board: PropTypes.string,
 }
 
 

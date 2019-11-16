@@ -45,6 +45,10 @@ import {
   REQUEST_CREATE_BOARD_SUCCESS,
   REQUEST_CREATE_BOARD_FAILURE,
 
+  REQUEST_UPLOAD_PIN,
+  REQUEST_UPLOAD_PIN_SUCCESS,
+  REQUEST_UPLOAD_PIN_FAILURE,
+
   STORE_BOARD_ABSTRACT,
 
   SELECT_USER,
@@ -343,12 +347,45 @@ function pins(state = {}, action) {
               errors: action.errors,
             }
           }
+      case REQUEST_UPLOAD_PIN_SUCCESS:
+          return {
+            ...state,
+            [action.pin.id]: {
+              is_fetching: false,
+              fetched: true,
+              ...action.pin,
+            }
+          }
       case LOGOUT:
           return {}
       default:
           return state
   }
 }
+
+
+
+function create_pin(state={}, action) {
+  switch (action.type) {
+      case REQUEST_UPLOAD_PIN:
+          return {
+            is_uploading: true,
+          }
+      case REQUEST_UPLOAD_PIN_SUCCESS:
+          return {
+            uploaded: true,
+          }
+      case REQUEST_UPLOAD_PIN_FAILURE:
+          return {
+            errors: action.errors,
+          }
+      case LOGOUT:
+          return {}
+      default:
+          return state
+  }
+}
+
 
 
 function selected_userslug(state = '', action) {
@@ -387,8 +424,6 @@ function selected_pin_id(state = '', action) {
 }
 
 
-
-
 const pinpict = combineReducers({
   users,
   tags,
@@ -396,6 +431,7 @@ const pinpict = combineReducers({
   pins,
   boards,
   create_board,
+  create_pin,
   selected_userslug,
   selected_boarduserslug,
   selected_pin_id,

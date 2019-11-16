@@ -10,6 +10,8 @@ export default class UploadPinForm extends Component {
 
   render() {
 
+
+
     return (
       <form
         id={this.props.id}
@@ -27,10 +29,11 @@ export default class UploadPinForm extends Component {
             errors_list={this.props.errors}
             field={'board'}
           />
+          {/* TODO Create a separate Select component wrapped to style arrow down */}
           <select
             id="id-board"
             name="board"
-            value={this.props.board}
+            value={this.props.board || this.props.default_board}
             onChange={this.props.handleBoardChange.bind(this)}
             required
           >
@@ -55,6 +58,7 @@ export default class UploadPinForm extends Component {
             value={this.props.description}
             onChange={this.props.handleDescriptionChange.bind(this)}
             placeholder="Few words about this pin (required)"
+            required
           />
         </FieldWrapper>
         <FieldWrapper>

@@ -10,5 +10,6 @@
     border-radius: 2px;
     color: var(--red);
     border: 1px solid var(--red);
-    background: var(--trans-red);
+    /*background: var(--trans-red);*/
+    background: rgba(255, 226, 226, 0.8);
 }

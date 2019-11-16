@@ -446,7 +446,7 @@ export function createBoard(data) {
   return async function(dispatch, getState) {
     // start request
     dispatch(requestCreateBoard())
-    console.log('request create board', data)
+    //console.log('request create board', data)
 
     try {
       let json = await Fetch.post('api/board/',
@@ -477,6 +477,54 @@ export function createBoard(data) {
       console.log('request create board failure', json)
       dispatch(requestCreateBoardFailure(json))
       throw error
+    }
+  }
+}
+
+
+// Upload a pin
+
+function requestUploadPin() {
+  return {
+    type: types.REQUEST_UPLOAD_PIN,
+  }
+}
+
+function requestUploadPinSuccess(pin) {
+  return {
+    type: types.REQUEST_UPLOAD_PIN_SUCCESS,
+    pin,
+  }
+}
+
+function requestUploadPinFailure(errors) {
+  return {
+    type: types.REQUEST_UPLOAD_PIN_FAILURE,
+    errors,
+  }
+}
+
+export function uploadPin(data) {
+  return async function(dispatch, getState) {
+    // start request
+    dispatch(requestUploadPin())
+    console.log('request upload pin', data)
+    try {
+      let fd = new FormData()
+      fd.append('board', data.board)
+      fd.append('description', data.description)
+      fd.append('source_file', data.source_file)
+      let json = await Fetch.post('api/pin/',
+        {},
+        fd
+      )
+      dispatch(requestUploadPinSuccess(json))
+    } catch (error) {
+      let json = await error.response.json()
+      // store error in state
+      console.log('request upload pin failure', json)
+      dispatch(requestUploadPinFailure(json))
+      //throw error
     }
   }
 }

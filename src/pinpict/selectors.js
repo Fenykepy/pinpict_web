@@ -13,6 +13,7 @@ const selectedUserslugSelector = state => state.pinpict.selected_userslug
 const selectedBoarduserslugSelector = state => state.pinpict.selected_boarduserslug
 const selectedPinidSelector = state => state.pinpict.selected_pin_id
 const createBoardSelector = state => state.pinpict.create_board
+const createPinSelector = state => state.pinpict.create_pin
 
 const selectedUserSelector = createSelector(
   usersSelector, selectedUserslugSelector,
@@ -53,6 +54,21 @@ const selectedBoardSelector = createSelector(
   (boards, boarduserslug) => {
     if (boards[boarduserslug]) return boards[boarduserslug]
     return {}
+  }
+)
+
+const defaultBoardSlugSelector = createSelector(
+  selectedBoarduserslugSelector, userBoardsSelector,
+  (boarduserslug, boards) => {
+    // Select pin creation / edition  default board:
+    // Last visited board if any
+    // First board of list otherwise
+    // If no board, null, it shouldn't append, because add pin 
+    // link is only available in board detail page
+    console.log(boarduserslug)
+    if (boarduserslug) return boarduserslug.split('@')[0]
+    if (boards.boards.length > 0) return boards.boards[0].slug
+    return ""
   }
 )
 
@@ -122,4 +138,6 @@ export const pinDetailSelector = createStructuredSelector({
 
 export const uploadPinSelector = createStructuredSelector({
   boards: userBoardsSelector,
+  default_board: defaultBoardSlugSelector,
+  create_pin: createPinSelector,
 })
