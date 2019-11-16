@@ -41,7 +41,8 @@ class App extends Component {
         >
           <AppContextProvider
             value={{
-              authenticatedslug: this.props.authenticatedslug
+              authenticatedslug: this.props.authenticatedslug,
+              dispatch: this.props.dispatch
             }}
           >  
             <Header 

@@ -537,6 +537,55 @@ export function uploadPin(data) {
 
 
 
+// update a pin
+function requestUpdatePin(pin_id) {
+  return {
+    type: types.REQUEST_UPDATE_PIN,
+    pin_id
+  }
+}
+
+function requestUpdatePinSuccess(pin_id, pin) {
+  return {
+    type: types.REQUEST_UPDATE_PIN_SUCCESS,
+    pin_id,
+    pin,
+  }
+}
+
+function requestUpdatePinFailure(pin_id, errors) {
+  return {
+    type: types.REQUEST_UPDATE_PIN_FAILURE,
+    pin_id,
+    errors,
+  }
+}
+
+export function updatePin(pin_id, data) {
+  return async function(dispatch, getState) {
+    // start request
+    dispatch(requestUpdatePin(pin_id))
+    //console.log('request update pin', data)
+    try {
+      let json = await Fetch.patch(`api/pin/${pin_id}/`,
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        JSON.stringify(data)
+      )
+      dispatch(requestUpdatePinSuccess(pin_id, json))
+    } catch (error) {
+      let json = await error.response.json()
+      // store error in state
+      console.log('request update pin failure', json)
+      dispatch(requestUpdatePinFailure(pin_id, json))
+      //throw error
+    }
+  }
+}
+
+
 
 
 

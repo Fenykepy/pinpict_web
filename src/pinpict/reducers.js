@@ -51,6 +51,10 @@ import {
   REQUEST_UPLOAD_PIN_SUCCESS,
   REQUEST_UPLOAD_PIN_FAILURE,
 
+  REQUEST_UPDATE_PIN,
+  REQUEST_UPDATE_PIN_SUCCESS,
+  REQUEST_UPDATE_PIN_FAILURE,
+
   STORE_BOARD_ABSTRACT,
 
   SELECT_USER,
@@ -288,6 +292,7 @@ function boards(state = {}, action) {
               ...action.board,
             }
           }
+      /* TODO refetch board's pin's list at pin creation or update.*/
       case LOGOUT:
           return {}
       default:
@@ -345,7 +350,6 @@ function pins(state = {}, action) {
               ...state[action.pin_id],
               id: action.pin_id,
               is_fetching: false,
-              fetched: true,
               errors: action.errors,
             }
           }
@@ -356,6 +360,34 @@ function pins(state = {}, action) {
               is_fetching: false,
               fetched: true,
               ...action.pin,
+            }
+          }
+      case REQUEST_UPDATE_PIN:
+          return {
+            ...state,
+            [action.pin_id]: {
+              ...state[action.pin_id],
+              is_updating: true,
+            }
+          }
+      case REQUEST_UPDATE_PIN_SUCCESS:
+          return {
+            ...state,
+            [action.pin_id]: {
+              ...state[action.pin_id],
+              is_updating: false,
+              fetched: true,
+              ...action.pin,
+            }
+          }
+      case REQUEST_UPDATE_PIN_FAILURE:
+          return {
+            ...state,
+            [action.pin_id]: {
+              ...state[action.pin_id],
+              id: action.pin_id,
+              is_updating: false,
+              errors: action.errors,
             }
           }
       case LOGOUT:

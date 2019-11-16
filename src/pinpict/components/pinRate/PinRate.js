@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { AppContext } from 'app/components/appContextProvider/AppContextProvider'
-
+import { updatePin } from 'pinpict/actions'
 import styles from './pinRate.module.css'
 
 export default class PinRate extends Component {
@@ -17,8 +17,11 @@ export default class PinRate extends Component {
   }
 
   ratePin(rate) {
-    // TODO Link it to rate function
-      console.log(`rate pin ${this.props.pin_id} at ${rate}`)
+    this.context.dispatch(updatePin(
+      this.props.pin_id,
+      {owner_rate: rate}
+    ))
+    //console.log(`rate pin ${this.props.pin_id} at ${rate}`)
   }
 
   render() {  
@@ -58,7 +61,7 @@ export default class PinRate extends Component {
 }
 
 PinRate.propTypes = {
+  pin_id: PropTypes.number.isRequired,
   rate: PropTypes.number,
   userslug: PropTypes.string,
-  pin_id: PropTypes.number.isRequired,
 }
