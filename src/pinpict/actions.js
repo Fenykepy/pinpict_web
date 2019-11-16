@@ -484,6 +484,12 @@ export function createBoard(data) {
 
 // Upload a pin
 
+export function resetCreatePin() {
+  return {
+    type: types.RESET_CREATE_PIN
+  }
+}
+
 function requestUploadPin() {
   return {
     type: types.REQUEST_UPLOAD_PIN,

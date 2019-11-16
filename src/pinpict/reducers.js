@@ -45,6 +45,8 @@ import {
   REQUEST_CREATE_BOARD_SUCCESS,
   REQUEST_CREATE_BOARD_FAILURE,
 
+  RESET_CREATE_PIN,
+
   REQUEST_UPLOAD_PIN,
   REQUEST_UPLOAD_PIN_SUCCESS,
   REQUEST_UPLOAD_PIN_FAILURE,
@@ -374,11 +376,14 @@ function create_pin(state={}, action) {
       case REQUEST_UPLOAD_PIN_SUCCESS:
           return {
             uploaded: true,
+            pin: action.pin,
           }
       case REQUEST_UPLOAD_PIN_FAILURE:
           return {
             errors: action.errors,
           }
+      case RESET_CREATE_PIN:
+          return {}
       case LOGOUT:
           return {}
       default:

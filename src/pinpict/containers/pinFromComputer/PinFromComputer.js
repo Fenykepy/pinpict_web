@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 import { uploadPinSelector } from 'pinpict/selectors'
 
 import { fetchCurrentUserBoardsIfNeeded } from 'user/actions'
-import { uploadPin } from 'pinpict/actions'
+import {
+  uploadPin,
+  resetCreatePin,
+} from 'pinpict/actions'
 
 import Spinner from 'app/components/spinner/Spinner'
 import UploadPinForm from 'pinpict/components/uploadPinForm/UploadPinForm'
@@ -54,10 +57,28 @@ class PinFromComputer extends Component {
     this.props.dispatch(uploadPin({...this.state, board}))
   }
 
+  uploadSuccess() {
+    let id = this.props.create_pin.pin.id
+    console.log('resetCreatePin', id)
+    this.props.dispatch(resetCreatePin())
+    console.log('redirect to ', id)
+    return (
+      <Redirect
+          push={true}
+          to={`/pin/${id}/`}
+      />
+    )
+  }
+
 
     
   render() {
     console.log('PinFromComputer', this.props)
+
+    if (this.props.create_pin.uploaded) {
+      // pin has just been created, redirect to pin
+      return this.uploadSuccess()
+    }
 
     if (this.props.boards.is_fetching) {
       return (
