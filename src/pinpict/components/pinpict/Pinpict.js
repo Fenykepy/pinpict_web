@@ -9,7 +9,9 @@ import BoardDetail from 'pinpict/containers/boardDetail/BoardDetail'
 import PinDetail from 'pinpict/containers/pinDetail/PinDetail'
 import PinFrom from 'pinpict/components/pinFrom/PinFrom'
 import PinFromComputer from 'pinpict/containers/pinFromComputer/PinFromComputer'
+import PinFromWebpage from 'pinpict/components/pinFromWebpage/PinFromWebpage'
 
+const AuthenticatedPinFromWebpage = withAuthentication(PinFromWebpage)
 const AuthenticatedPinFromComputer = withAuthentication(PinFromComputer)
 const AuthenticatedPinFrom = withAuthentication(PinFrom)
 
@@ -20,6 +22,9 @@ export default class Pinpict extends Component {
     
     return (
       <Switch>
+        <Route path="/pin/from/webpage/">
+          <AuthenticatedPinFromWebpage />
+        </Route>
         <Route path="/pin/from/yourcomputer/">
           <AuthenticatedPinFromComputer />
         </Route>

@@ -16,7 +16,7 @@ OK   "/pin/<pin_id>"                        Pin detail
    "/pin/from/"               Form to choose to upload pin or to scrap it from webpage
    "/pin/from/computer/"      Form to upload pin from computer
    "/pin/from/webpage/"       Form to choose webpage to scan
-   "/pin/scan/?url=<url>"     Scan url for images
+   "/pin/find/?url=<url>"     Scan url for images
    "/pin/create/"             Create a pin form (end of process)
 */
 
