@@ -50,6 +50,7 @@ class PinFromWebpage extends Component {
             type="url"
             value={this.state.url}
             onChange={this.handleUrlChange.bind(this)}
+            placeholder="http://www.example.com"
             required
           />
         </FieldWrapper>
