@@ -194,14 +194,14 @@ function scan(state = {}, action) {
           }
       case REQUEST_SCAN_SUCCESS:
           return {
+            ...state,
             is_scanning: false,
             scanned: true,
-            full_search: action.full_search,
-            url: action.url,
             results: action.results,
           }
       case REQUEST_SCAN_FAILURE:
           return {
+            ...state,
             is_scanning: false,
             scanned: false,
             errors: action.errors,

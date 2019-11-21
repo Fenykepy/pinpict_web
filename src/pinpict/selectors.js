@@ -14,6 +14,9 @@ const selectedBoarduserslugSelector = state => state.pinpict.selected_boardusers
 const selectedPinidSelector = state => state.pinpict.selected_pin_id
 const createBoardSelector = state => state.pinpict.create_board
 const createPinSelector = state => state.pinpict.create_pin
+const scanStateSelector = state => state.pinpict.scan
+
+
 
 const selectedUserSelector = createSelector(
   usersSelector, selectedUserslugSelector,
@@ -140,4 +143,8 @@ export const uploadPinSelector = createStructuredSelector({
   boards: userBoardsSelector,
   default_board: defaultBoardSlugSelector,
   create_pin: createPinSelector,
+})
+
+export const scanSelector = createStructuredSelector({
+  scan: scanStateSelector,
 })

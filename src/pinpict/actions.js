@@ -291,10 +291,10 @@ function shouldFetchPin(state, pin_id) {
 export function fetchPinIfNeeded(pin_id) {
   return (dispatch, getState) => {
     if ( shouldFetchPin(getState(), pin_id) ) {
-      console.log('need to fetch pin')
+      //console.log('need to fetch pin')
       return dispatch(fetchPin(pin_id))
     }
-    console.log('no need to fetch pin')
+    //console.log('no need to fetch pin')
     // else return a resolved promise
     return new Promise((resolve, reject) => resolve())
   }
@@ -330,7 +330,78 @@ export function fetchAddedViaIfNeeded(pin_id) {
 
 // Get tags
 
+
+
+
+
 // Scan url
+
+function requestScan(url, full_search) {
+  return {
+    type: types.REQUEST_SCAN,
+    url,
+    full_search,
+  }
+}
+
+function requestScanSuccess(results) {
+  return {
+    type: types.REQUEST_SCAN_SUCCESS,
+    results,
+  }
+}
+
+function requestScanFailure(errors) {
+  return {
+    type: types.REQUEST_SCAN_FAILURE,
+    errors,
+  }
+}
+
+function shouldScan(state, url, full_search) {
+  const scan = state.pinpict.scan
+  if (scan.url === url && scan.full_search === full_search) return false
+  return true
+}
+
+
+export function scanIfNeeded(url, full_search=false) {
+  return (dispatch, getState) => {
+    if (shouldScan(getState(), url, full_search)) {
+      return dispatch(scan(url, full_search))
+    }
+    console.log('no need to scan url')
+    // else return a resolved promise
+    return new Promise((resolve, reject) => resolve())
+  }
+}
+
+function scan(url, full_search) {
+  return async function(dispatch, getState) {
+    // start request
+    dispatch(requestScan(url, full_search))
+    try {
+      let json = await Fetch.post('api/pin/scan/',
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        JSON.stringify({url: url, full_search: full_search})
+      )
+      // we store search in state
+      dispatch(requestScanSuccess(json))
+    } catch (error) {
+      let json = await error.response.json()
+      // store error in state
+      console.log('request scan failure', json)
+      dispatch(requestScanFailure(json))
+      throw error
+    }
+  }
+}
+
+
+
 
 
 // Select board
